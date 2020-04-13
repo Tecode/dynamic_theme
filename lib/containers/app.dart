@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
 import 'package:dynamic_theme/helpers/themes.dart';
@@ -14,6 +16,7 @@ class DynamicTheme extends StatefulWidget {
 
 class _DynamicThemeState extends State<DynamicTheme> {
   Options _options;
+  Timer _timeDilationTimer;
 
   @override
   void initState() {
@@ -24,6 +27,34 @@ class _DynamicThemeState extends State<DynamicTheme> {
       timeDilation: timeDilation,
       platform: defaultTargetPlatform,
     );
+  }
+
+  @override
+  void dispose() {
+    _timeDilationTimer?.cancel();
+    _timeDilationTimer = null;
+    super.dispose();
+  }
+
+//  修改页面参数（例如字体大小、主题颜色）
+  void _handleOptionsChanged(Options newOptions) {
+    setState(() {
+      if (_options.timeDilation != newOptions.timeDilation) {
+        _timeDilationTimer?.cancel();
+        _timeDilationTimer = null;
+        if (newOptions.timeDilation > 1.0) {
+          // We delay the time dilation change long enough that the user can see
+          // that UI has started reacting and then we slam on the brakes so that
+          // they see that the time is in fact now dilated.
+          _timeDilationTimer = Timer(const Duration(milliseconds: 150), () {
+            timeDilation = newOptions.timeDilation;
+          });
+        } else {
+          timeDilation = newOptions.timeDilation;
+        }
+      }
+      _options = newOptions;
+    });
   }
 
 // 文字缩放
@@ -50,23 +81,39 @@ class _DynamicThemeState extends State<DynamicTheme> {
       home: Scaffold(
         body: SizedBox(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'TEXT',
-                  style: Theme.of(context).textTheme.display1,
-                ),
-                Text(
-                  'Flutter: Dynamic Theming | Change Theme At Runtime',
-                  style: Theme.of(context).textTheme.subtitle,
-                ),
-                FlatButton(
-                  onPressed: () => {print('12112')},
-                  child: Text('暗黑'),
-                ),
-              ],
+            child: Builder(
+              builder: (BuildContext context) {
+                final bool isDark =
+                    Theme.of(context).brightness == Brightness.dark;
+
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'TEXT',
+                      style: Theme.of(context).textTheme.display1,
+                    ),
+                    Text(
+                      'Flutter: Dynamic Theming | Change Theme At Runtime',
+                      style: Theme.of(context).textTheme.subtitle,
+                    ),
+                    FlatButton(
+                      onPressed: () => _handleOptionsChanged(
+                        _options.copyWith(
+                            themeMode:
+                                isDark ? ThemeMode.light : ThemeMode.dark),
+                      ),
+                      child: Text(
+                        isDark ? '珍珠白' : '暗夜黑',
+                        style: TextStyle(
+                          color: isDark ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),
