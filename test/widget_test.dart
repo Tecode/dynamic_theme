@@ -19,7 +19,7 @@ void main() {
     await tester.pump();
 
     // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('暗黑'), findsOneWidget);
+    expect(find.text('珍珠白'), findsNothing);
+    expect(find.text('暗夜黑'), findsOneWidget);
   });
 }
