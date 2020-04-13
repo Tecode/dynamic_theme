@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
 import 'package:dynamic_theme/helpers/themes.dart';
+import 'package:dynamic_theme/router/routerList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
@@ -34,6 +37,30 @@ class _DynamicThemeState extends State<DynamicTheme> {
     _timeDilationTimer?.cancel();
     _timeDilationTimer = null;
     super.dispose();
+  }
+
+//  路由跳转
+
+  void _launchRouter(BuildContext context) {
+//    if (demo.routeName != null) {
+    Timeline.instantSync('Start Transition', arguments: <String, String>{
+      'from': '/',
+      'to': '/newView',
+    });
+    Navigator.pushNamed(context, '/newView');
+//    }
+  }
+
+// 配置路由
+  Map<String, WidgetBuilder> _buildRoutes() {
+    // For a different example of how to set up an application routing table
+    // using named routes, consider the example in the Navigator class documentation:
+    // https://docs.flutter.io/flutter/widgets/Navigator-class.html
+    return Map<String, WidgetBuilder>.fromIterable(
+      routerList,
+      key: (dynamic data) => '${data.routeName}',
+      value: (dynamic data) => data.buildRoute,
+    );
   }
 
 //  修改页面参数（例如字体大小、主题颜色）
@@ -99,10 +126,21 @@ class _DynamicThemeState extends State<DynamicTheme> {
                       style: Theme.of(context).textTheme.subtitle,
                     ),
                     FlatButton(
+                      onPressed: () => _launchRouter(context),
+                      child: Text(
+                        '路由跳转',
+                        style: Theme.of(context).textTheme.body1.merge(
+                              TextStyle(
+                                color: isDark ? Colors.white : Colors.black,
+                              ),
+                            ),
+                      ),
+                    ),
+                    FlatButton(
                       onPressed: () => _handleOptionsChanged(
                         _options.copyWith(
-                            themeMode:
-                                isDark ? ThemeMode.light : ThemeMode.dark),
+                          themeMode: isDark ? ThemeMode.light : ThemeMode.dark,
+                        ),
                       ),
                       child: Text(
                         isDark ? '珍珠白' : '暗夜黑',
@@ -133,6 +171,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
           }),
         );
       },
+      routes: _buildRoutes(),
     );
   }
 }

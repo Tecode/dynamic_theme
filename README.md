@@ -1,5 +1,12 @@
 # Dynamic Theme
 
+## 效果预览
+
+<p align="center">
+    <img width="375" title="Flutter" src="./assets/preview/iOS_DynamicTheme.gif">
+</p>
+
+
 ## Flutter version
 
 ```bash
