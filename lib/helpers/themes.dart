@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-final ThemeData kLightGalleryTheme = _buildLightTheme();
-final ThemeData kDarkGalleryTheme = _buildDarkTheme();
+final ThemeData lightTheme = _buildLightTheme();
+final ThemeData darkTheme = _buildDarkTheme();
 
 TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'scales.dart';
 
-class GalleryOptions {
-  GalleryOptions({
+class Options {
+  Options({
     this.themeMode,
     this.textScaleFactor,
     this.textDirection = TextDirection.ltr,
@@ -15,7 +14,7 @@ class GalleryOptions {
   });
 
   final ThemeMode themeMode;
-  final GalleryTextScaleValue textScaleFactor;
+  final TextScaleValue textScaleFactor;
   final TextDirection textDirection;
   final double timeDilation;
   final TargetPlatform platform;
@@ -23,9 +22,9 @@ class GalleryOptions {
   final bool showRasterCacheImagesCheckerboard;
   final bool showOffscreenLayersCheckerboard;
 
-  GalleryOptions copyWith({
+  Options copyWith({
     ThemeMode themeMode,
-    GalleryTextScaleValue textScaleFactor,
+    TextScaleValue textScaleFactor,
     TextDirection textDirection,
     double timeDilation,
     TargetPlatform platform,
@@ -33,7 +32,7 @@ class GalleryOptions {
     bool showRasterCacheImagesCheckerboard,
     bool showOffscreenLayersCheckerboard,
   }) {
-    return GalleryOptions(
+    return Options(
       themeMode: themeMode ?? this.themeMode,
       textScaleFactor: textScaleFactor ?? this.textScaleFactor,
       textDirection: textDirection ?? this.textDirection,
@@ -51,7 +50,7 @@ class GalleryOptions {
   @override
   bool operator ==(dynamic other) {
     if (runtimeType != other.runtimeType) return false;
-    final GalleryOptions typedOther = other;
+    final Options typedOther = other;
     return themeMode == typedOther.themeMode &&
         textScaleFactor == typedOther.textScaleFactor &&
         textDirection == typedOther.textDirection &&
@@ -204,8 +203,8 @@ class _Heading extends StatelessWidget {
 class _ThemeModeItem extends StatelessWidget {
   const _ThemeModeItem(this.options, this.onOptionsChanged);
 
-  final GalleryOptions options;
-  final ValueChanged<GalleryOptions> onOptionsChanged;
+  final Options options;
+  final ValueChanged<Options> onOptionsChanged;
 
   static final Map<ThemeMode, String> modeLabels = <ThemeMode, String>{
     ThemeMode.system: 'System Default',
@@ -258,8 +257,8 @@ class _ThemeModeItem extends StatelessWidget {
 class _TextScaleFactorItem extends StatelessWidget {
   const _TextScaleFactorItem(this.options, this.onOptionsChanged);
 
-  final GalleryOptions options;
-  final ValueChanged<GalleryOptions> onOptionsChanged;
+  final Options options;
+  final ValueChanged<Options> onOptionsChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -278,20 +277,20 @@ class _TextScaleFactorItem extends StatelessWidget {
               ],
             ),
           ),
-          PopupMenuButton<GalleryTextScaleValue>(
+          PopupMenuButton<TextScaleValue>(
             padding: const EdgeInsetsDirectional.only(end: 16.0),
             icon: const Icon(Icons.arrow_drop_down),
             itemBuilder: (BuildContext context) {
-              return kAllGalleryTextScaleValues
-                  .map<PopupMenuItem<GalleryTextScaleValue>>(
-                      (GalleryTextScaleValue scaleValue) {
-                return PopupMenuItem<GalleryTextScaleValue>(
+              return textScaleValues
+                  .map<PopupMenuItem<TextScaleValue>>(
+                      (TextScaleValue scaleValue) {
+                return PopupMenuItem<TextScaleValue>(
                   value: scaleValue,
                   child: Text(scaleValue.label),
                 );
               }).toList();
             },
-            onSelected: (GalleryTextScaleValue scaleValue) {
+            onSelected: (TextScaleValue scaleValue) {
               onOptionsChanged(
                 options.copyWith(textScaleFactor: scaleValue),
               );
@@ -306,8 +305,8 @@ class _TextScaleFactorItem extends StatelessWidget {
 class _TextDirectionItem extends StatelessWidget {
   const _TextDirectionItem(this.options, this.onOptionsChanged);
 
-  final GalleryOptions options;
-  final ValueChanged<GalleryOptions> onOptionsChanged;
+  final Options options;
+  final ValueChanged<Options> onOptionsChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -329,8 +328,8 @@ class _TextDirectionItem extends StatelessWidget {
 class _TimeDilationItem extends StatelessWidget {
   const _TimeDilationItem(this.options, this.onOptionsChanged);
 
-  final GalleryOptions options;
-  final ValueChanged<GalleryOptions> onOptionsChanged;
+  final Options options;
+  final ValueChanged<Options> onOptionsChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -352,8 +351,8 @@ class _TimeDilationItem extends StatelessWidget {
 class _PlatformItem extends StatelessWidget {
   const _PlatformItem(this.options, this.onOptionsChanged);
 
-  final GalleryOptions options;
-  final ValueChanged<GalleryOptions> onOptionsChanged;
+  final Options options;
+  final ValueChanged<Options> onOptionsChanged;
 
   String _platformLabel(TargetPlatform platform) {
     switch (platform) {
@@ -408,16 +407,16 @@ class _PlatformItem extends StatelessWidget {
   }
 }
 
-class GalleryOptionsPage extends StatelessWidget {
-  const GalleryOptionsPage({
+class OptionsPage extends StatelessWidget {
+  const OptionsPage({
     Key key,
     this.options,
     this.onOptionsChanged,
     this.onSendFeedback,
   }) : super(key: key);
 
-  final GalleryOptions options;
-  final ValueChanged<GalleryOptions> onOptionsChanged;
+  final Options options;
+  final ValueChanged<Options> onOptionsChanged;
   final VoidCallback onSendFeedback;
 
   List<Widget> _enabledDiagnosticItems() {

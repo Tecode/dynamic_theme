@@ -1,11 +1,10 @@
-# dynamic_theme
-
-A new Flutter application.
+# Dynamic Theme
 
 ## Flutter version
+
 ```bash
-Flutter 1.12.13+hotfix.8 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 0b8abb4724 (7 weeks ago) • 2020-02-11 11:44:36 -0800
-Engine • revision e1e6ced81d
-Tools • Dart 2.7.0
+Flutter 1.12.13+hotfix.9 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision f139b11009 (13 days ago) • 2020-03-30 13:57:30 -0700
+Engine • revision af51afceb8
+Tools • Dart 2.7.2
 ```

@@ -4,17 +4,16 @@
 
 import 'package:flutter/material.dart';
 
-class GalleryTextScaleValue {
-  const GalleryTextScaleValue(this.scale, this.label);
+class TextScaleValue {
+  const TextScaleValue(this.scale, this.label);
 
   final double scale;
   final String label;
 
   @override
   bool operator ==(dynamic other) {
-    if (runtimeType != other.runtimeType)
-      return false;
-    final GalleryTextScaleValue typedOther = other;
+    if (runtimeType != other.runtimeType) return false;
+    final TextScaleValue typedOther = other;
     return scale == typedOther.scale && label == typedOther.label;
   }
 
@@ -25,13 +24,12 @@ class GalleryTextScaleValue {
   String toString() {
     return '$runtimeType($label)';
   }
-
 }
 
-const List<GalleryTextScaleValue> kAllGalleryTextScaleValues = <GalleryTextScaleValue>[
-  GalleryTextScaleValue(null, 'System Default'),
-  GalleryTextScaleValue(0.8, 'Small'),
-  GalleryTextScaleValue(1.0, 'Normal'),
-  GalleryTextScaleValue(1.3, 'Large'),
-  GalleryTextScaleValue(2.0, 'Huge'),
+const List<TextScaleValue> textScaleValues = <TextScaleValue>[
+  TextScaleValue(null, 'System Default'),
+  TextScaleValue(0.8, 'Small'),
+  TextScaleValue(1.0, 'Normal'),
+  TextScaleValue(1.3, 'Large'),
+  TextScaleValue(2.0, 'Huge'),
 ];
