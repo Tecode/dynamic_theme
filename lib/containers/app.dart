@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:dynamic_theme/containers/Entrance.dart';
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
@@ -13,7 +14,7 @@ import 'package:flutter/material.dart';
 
 class DynamicTheme extends StatefulWidget {
   const DynamicTheme();
-  static String routeName = '/';
+
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
 }
@@ -38,24 +39,6 @@ class _DynamicThemeState extends State<DynamicTheme> {
     _timeDilationTimer?.cancel();
     _timeDilationTimer = null;
     super.dispose();
-  }
-
-//  路由跳转
-
-  void _launchRouter(BuildContext context) {
-//    if (demo.routeName != null) {
-    Timeline.instantSync('Start Transition', arguments: <String, String>{
-      'from': '/',
-      'to': '/newView',
-    });
-    Navigator.pushNamed(
-      context,
-      '/newView',
-      arguments: NewView(
-        content: '网络搜索结果汉语- 维基百科，自由的百科全书',
-      ),
-    );
-//    }
   }
 
 // 配置路由
@@ -112,56 +95,9 @@ class _DynamicThemeState extends State<DynamicTheme> {
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
-      home: Scaffold(
-        body: SizedBox(
-          child: Center(
-            child: Builder(
-              builder: (BuildContext context) {
-                final bool isDark =
-                    Theme.of(context).brightness == Brightness.dark;
-
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'TEXT',
-                      style: Theme.of(context).textTheme.display1,
-                    ),
-                    Text(
-                      'Flutter: Dynamic Theming | Change Theme At Runtime',
-                      style: Theme.of(context).textTheme.subtitle,
-                    ),
-                    FlatButton(
-                      onPressed: () => _launchRouter(context),
-                      child: Text(
-                        '路由跳转',
-                        style: Theme.of(context).textTheme.body1.merge(
-                              TextStyle(
-                                color: isDark ? Colors.white : Colors.black,
-                              ),
-                            ),
-                      ),
-                    ),
-                    FlatButton(
-                      onPressed: () => _handleOptionsChanged(
-                        _options.copyWith(
-                          themeMode: isDark ? ThemeMode.light : ThemeMode.dark,
-                        ),
-                      ),
-                      child: Text(
-                        isDark ? '珍珠白' : '暗夜黑',
-                        style: TextStyle(
-                          color: isDark ? Colors.white : Colors.black,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ),
+      home: Entrance(
+        options: _options,
+        handleOptionsChanged: _handleOptionsChanged,
       ),
       builder: (BuildContext context, Widget child) {
         return _applyTextScaleFactor(

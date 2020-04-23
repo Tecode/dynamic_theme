@@ -25,7 +25,13 @@ class NewView extends StatelessWidget {
       ),
       child: Material(
         child: SafeArea(
-          child: Center(child: Text('${param.content}')),
+          child: Center(
+            child: Text(
+              '${param.content}',
+              style: Theme.of(context).textTheme.display1,
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ),
     );
