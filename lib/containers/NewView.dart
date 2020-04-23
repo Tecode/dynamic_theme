@@ -1,10 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class NewView extends StatelessWidget {
-  const NewView();
+  final String content;
+  const NewView({
+    this.content,
+  });
+
   static const String routeName = '/newView';
   @override
   Widget build(BuildContext context) {
+    final NewView param = ModalRoute.of(context).settings.arguments;
+
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         leading: CupertinoButton(
@@ -16,8 +23,10 @@ class NewView extends StatelessWidget {
           },
         ),
       ),
-      child: SafeArea(
-        child: Center(child: Text('999')),
+      child: Material(
+        child: SafeArea(
+          child: Center(child: Text('${param.content}')),
+        ),
       ),
     );
   }

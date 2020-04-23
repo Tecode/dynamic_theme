@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 class DynamicTheme extends StatefulWidget {
   const DynamicTheme();
+  static String routeName = '/';
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
 }
@@ -47,7 +48,13 @@ class _DynamicThemeState extends State<DynamicTheme> {
       'from': '/',
       'to': '/newView',
     });
-    Navigator.pushNamed(context, '/newView');
+    Navigator.pushNamed(
+      context,
+      '/newView',
+      arguments: NewView(
+        content: '网络搜索结果汉语- 维基百科，自由的百科全书',
+      ),
+    );
 //    }
   }
 
