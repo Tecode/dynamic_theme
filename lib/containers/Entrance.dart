@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dynamic_theme/helpers/options.dart';
+import 'package:dynamic_theme/widgets/Entrance/NavigationBar.dart';
 import 'package:flutter/material.dart';
 
 import 'NewView.dart';
@@ -86,6 +87,7 @@ class _EntranceState extends State<Entrance> {
           ),
         ),
       ),
+      bottomNavigationBar: NavigationBar(),
     );
   }
 }

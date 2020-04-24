@@ -15,3 +15,11 @@ Framework • revision f139b11009 (13 days ago) • 2020-03-30 13:57:30 -0700
 Engine • revision af51afceb8
 Tools • Dart 2.7.2
 ```
+
+## 最佳实践
+
+### 是否是暗黑模式
+
+```dart
+final bool isDark = Theme.of(context).brightness == Brightness.dark;
+```
