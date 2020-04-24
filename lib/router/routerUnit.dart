@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RouterUnit {
   const RouterUnit({
     @required this.title,
-    @required this.icon,
+    this.icon,
     this.subtitle,
     @required this.category,
     @required this.routeName,

@@ -93,6 +93,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
+      initialRoute: '/',
       home: Entrance(
         options: _options,
         handleOptionsChanged: _handleOptionsChanged,
