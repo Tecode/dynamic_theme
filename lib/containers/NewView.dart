@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +25,9 @@ class NewView extends StatelessWidget {
         ),
       ),
       child: Material(
-        child: Builder(
-          builder: (BuildContext context) => ListView.builder(
+        child: ScrollConfiguration(
+          behavior: CustomBehavior(),
+          child: ListView.builder(
             primary: true,
             itemCount: 60,
             itemBuilder: (BuildContext context, int index) {

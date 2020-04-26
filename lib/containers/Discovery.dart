@@ -1,11 +1,13 @@
+import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:flutter/material.dart';
 
 class Discovery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (BuildContext context) => ListView.builder(
+      body: ScrollConfiguration(
+        behavior: CustomBehavior(),
+        child: ListView.builder(
           itemCount: 60,
           itemBuilder: (BuildContext context, int index) {
             return Container(

@@ -18,6 +18,32 @@ Tools • Dart 2.7.2
 
 ## 最佳实践
 
+### 去掉`Android`溢出拖拽的半圆效果
+
+```dart
+class Behavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
+  }
+}
+
+ScrollConfiguration(
+        behavior: CustomBehavior(),
+        child: ListView.builder(
+          itemCount: 60,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 44.0,
+              width: MediaQuery.of(context).size.width,
+              child: Center(child: Text('Data-$index')),
+            );
+          },
+        ),
+      )
+```
+
 ### 是否是暗黑模式
 
 ```dart
