@@ -80,7 +80,7 @@ class Options {
   }
 }
 
-const double _kItemHeight = 48.0;
-const EdgeInsetsDirectional _kItemPadding =
-    EdgeInsetsDirectional.only(start: 56.0);
+//const double _kItemHeight = 48.0;
+//const EdgeInsetsDirectional _kItemPadding =
+//    EdgeInsetsDirectional.only(start: 56.0);
 

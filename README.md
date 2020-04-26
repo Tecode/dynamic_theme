@@ -23,3 +23,9 @@ Tools • Dart 2.7.2
 ```dart
 final bool isDark = Theme.of(context).brightness == Brightness.dark;
 ```
+
+### `helpers/colors.dart`自定义颜色
+
+```dart
+CustomColors.of(context).borderColor
+```

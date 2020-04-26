@@ -24,14 +24,16 @@ class NewView extends StatelessWidget {
         ),
       ),
       child: Material(
-        child: SafeArea(
-          child: Center(
-            child: Text(
-              '${param.content}',
-              style: Theme.of(context).textTheme.display1,
-              textAlign: TextAlign.center,
-            ),
-          ),
+        child: ListView.builder(
+          primary: true,
+          itemCount: 60,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 44.0,
+              width: MediaQuery.of(context).size.width,
+              child: Center(child: Text('Data-$index')),
+            );
+          },
         ),
       ),
     );

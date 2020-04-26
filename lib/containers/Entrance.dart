@@ -1,10 +1,9 @@
-import 'dart:developer';
-
+import 'package:dynamic_theme/containers/Discovery.dart';
+import 'package:dynamic_theme/containers/Home.dart';
+import 'package:dynamic_theme/containers/Mine.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/widgets/Entrance/NavigationBar.dart';
 import 'package:flutter/material.dart';
-
-import 'NewView.dart';
 
 class Entrance extends StatefulWidget {
   final Options options;
@@ -15,80 +14,42 @@ class Entrance extends StatefulWidget {
   });
   static String routeName = '/';
 
+//  路由页面
+  static List<Map<String, dynamic>> get navList {
+    return [
+      {'value': '首页', 'key': 'HOME'},
+      {'value': '发现', 'key': 'DISCOVERY'},
+      {'value': '订单', 'key': 'ORDER'},
+      {'value': '我的', 'key': 'MINE'},
+    ];
+  }
+
   @override
   _EntranceState createState() => _EntranceState();
 }
 
 class _EntranceState extends State<Entrance> {
-  //  路由跳转
-  void _launchRouter(BuildContext context) {
-    Timeline.instantSync('Start Transition', arguments: <String, String>{
-      'from': '/',
-      'to': '/newView',
-    });
-    Navigator.pushNamed(
-      context,
-      '/newView',
-      arguments: NewView(
-        content: '网络搜索结果汉语- 维基百科，自由的百科全书',
-      ),
-    );
-  }
+  int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        child: Center(
-          child: Builder(
-            builder: (BuildContext context) {
-              final bool isDark =
-                  Theme.of(context).brightness == Brightness.dark;
-
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'TEXT',
-                    style: Theme.of(context).textTheme.display1,
-                  ),
-                  Text(
-                    'Flutter: Dynamic Theming | Change Theme At Runtime',
-                    style: Theme.of(context).textTheme.subtitle,
-                  ),
-                  FlatButton(
-                    onPressed: () => _launchRouter(context),
-                    child: Text(
-                      '路由跳转',
-                      style: Theme.of(context).textTheme.body1.merge(
-                            TextStyle(
-                              color: isDark ? Colors.white : Colors.black,
-                            ),
-                          ),
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: () => widget.handleOptionsChanged(
-                      widget.options.copyWith(
-                        themeMode: isDark ? ThemeMode.light : ThemeMode.dark,
-                      ),
-                    ),
-                    child: Text(
-                      isDark ? '珍珠白' : '暗夜黑',
-                      style: TextStyle(
-                        color: isDark ? Colors.white : Colors.black,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            },
+      body: IndexedStack(
+        index: activeIndex,
+        children: <Widget>[
+          Home(),
+          Discovery(),
+          Text('44'),
+          Mine(
+            options: widget.options,
+            handleOptionsChanged: widget.handleOptionsChanged,
           ),
-        ),
+        ],
       ),
-      bottomNavigationBar: NavigationBar(),
+      bottomNavigationBar: NavigationBar(
+        activeKey: Entrance.navList[activeIndex]['key'],
+        onChange: (int index) => setState(() => activeIndex = index),
+      ),
     );
   }
 }
