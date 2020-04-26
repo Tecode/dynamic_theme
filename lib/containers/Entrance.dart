@@ -78,6 +78,7 @@ class _EntranceState extends State<Entrance> {
                       isDark ? '珍珠白' : '暗夜黑',
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black,
+                        fontSize: 16.0,
                       ),
                     ),
                   ),

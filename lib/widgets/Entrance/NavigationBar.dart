@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBar extends StatelessWidget {
@@ -9,7 +10,7 @@ class NavigationBar extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         border: Border(
           top: BorderSide(
-            color: Color(0xffdedede).withOpacity(0.5),
+            color: CustomColors.of(context).borderColor,
             width: 0.5,
           ),
         ),
@@ -29,7 +30,7 @@ class NavigationBar extends StatelessWidget {
                   Container(
                     width: 20.0,
                     height: 20.0,
-                    color: Colors.blueAccent,
+                    color: CustomColors.of(context).cubeColor,
                   ),
                   Text(
                     '标题',
