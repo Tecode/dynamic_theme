@@ -24,16 +24,18 @@ class NewView extends StatelessWidget {
         ),
       ),
       child: Material(
-        child: ListView.builder(
-          primary: true,
-          itemCount: 60,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 44.0,
-              width: MediaQuery.of(context).size.width,
-              child: Center(child: Text('Data-$index')),
-            );
-          },
+        child: Builder(
+          builder: (BuildContext context) => ListView.builder(
+            primary: true,
+            itemCount: 60,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 44.0,
+                width: MediaQuery.of(context).size.width,
+                child: Center(child: Text('Data-$index')),
+              );
+            },
+          ),
         ),
       ),
     );
