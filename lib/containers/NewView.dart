@@ -11,7 +11,7 @@ class NewView extends StatelessWidget {
   static const String routeName = '/newView';
   @override
   Widget build(BuildContext context) {
-    final NewView param = ModalRoute.of(context).settings.arguments;
+//    final NewView param = ModalRoute.of(context).settings.arguments;
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
@@ -20,7 +20,7 @@ class NewView extends StatelessWidget {
           child: Text('返回'),
           onPressed: () {
             // The demo is on the root navigator.
-            Navigator.of(context, rootNavigator: true).pop();
+            Navigator.of(context, rootNavigator: true)..pop();
           },
         ),
       ),

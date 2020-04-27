@@ -17,6 +17,19 @@ class DynamicTheme extends StatefulWidget {
   _DynamicThemeState createState() => _DynamicThemeState();
 }
 
+//继承NavigatorObserver
+class MyObserver extends NavigatorObserver {
+  @override
+  void didPush(Route route, Route previousRoute) {
+    // 当调用Navigator.push时回调
+    super.didPush(route, previousRoute);
+    //可通过route.settings获取路由相关内容
+    //route.currentResult获取返回内容
+    //....等等
+    print(route.settings.name);
+  }
+}
+
 class _DynamicThemeState extends State<DynamicTheme> {
   Options _options;
   Timer _timeDilationTimer;
@@ -94,6 +107,39 @@ class _DynamicThemeState extends State<DynamicTheme> {
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
       initialRoute: '/',
+      onGenerateRoute: (_) {
+        //  当通过Navigation.of(context).pushNamed跳转路由时，
+        //  在routes查找不到时，会调用该方法
+        return PageRouteBuilder(
+          pageBuilder: (BuildContext context, _, __) {
+            //这里为返回的Widget
+            return Material(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('404', style: Theme.of(context).textTheme.display2),
+                  CupertinoButton(
+                    child: Text('Back'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
+              ),
+            );
+          },
+          opaque: false,
+          transitionDuration: Duration(milliseconds: 200),
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) =>
+                  FadeTransition(
+            opacity: animation,
+            child: ScaleTransition(
+              scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+              child: child,
+            ),
+          ),
+        );
+      },
+      navigatorObservers: [MyObserver()],
       home: Entrance(
         options: _options,
         handleOptionsChanged: _handleOptionsChanged,
