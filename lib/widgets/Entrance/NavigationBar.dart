@@ -49,7 +49,7 @@ class NavigationBar extends StatelessWidget {
                       Text(
                         '${Entrance.navList[index]['value']}',
                         style: TextStyle(
-                          fontSize: 11.0,
+                          fontSize: 10.0,
                           height: 1.4,
                           color: Entrance.navList[index]['key'] == activeKey
                               ? CustomColors.of(context).activeNavColor
