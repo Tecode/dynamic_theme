@@ -59,7 +59,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
     // https://docs.flutter.io/flutter/widgets/Navigator-class.html
     return Map<String, WidgetBuilder>.fromIterable(
       routerList,
-      key: (dynamic data) => '${data.routeName}',
+      key: (dynamic data) => data.routeName,
       value: (dynamic data) => data.buildRoute,
     );
   }
