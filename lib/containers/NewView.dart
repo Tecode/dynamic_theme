@@ -20,6 +20,7 @@ class _NewViewState extends State<NewView> with RouteAware {
   void didChangeDependencies() {
     super.didChangeDependencies();
     DynamicTheme.routeObserver.subscribe(this, ModalRoute.of(context));
+    print(this);
   }
 
   @override
@@ -51,7 +52,8 @@ class _NewViewState extends State<NewView> with RouteAware {
           child: Text('返回'),
           onPressed: () {
             // The demo is on the root navigator.
-            Navigator.of(context, rootNavigator: true).maybePop();
+//            Navigator.of(context, rootNavigator: true).maybePop();
+            Navigator.pop(context, '数据传参');
           },
         ),
       ),
@@ -72,7 +74,12 @@ class _NewViewState extends State<NewView> with RouteAware {
                   child: Container(
                     height: 44.0,
                     width: MediaQuery.of(context).size.width,
-                    child: Center(child: Text('Data-$index')),
+                    child: Center(
+                      child: Text(
+                        'Data-$index',
+                        style: Theme.of(context).textTheme.body2,
+                      ),
+                    ),
                   ),
                 ),
               );

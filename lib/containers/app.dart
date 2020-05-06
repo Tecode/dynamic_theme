@@ -12,7 +12,8 @@ import 'package:flutter/material.dart';
 
 class DynamicTheme extends StatefulWidget {
   const DynamicTheme();
-  static final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+  static final RouteObserver<PageRoute> routeObserver =
+      RouteObserver<PageRoute>();
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
 }
