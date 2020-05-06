@@ -12,22 +12,9 @@ import 'package:flutter/material.dart';
 
 class DynamicTheme extends StatefulWidget {
   const DynamicTheme();
-
+  static final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
-}
-
-//继承NavigatorObserver
-class MyObserver extends NavigatorObserver {
-  @override
-  void didPush(Route route, Route previousRoute) {
-    // 当调用Navigator.push时回调
-    super.didPush(route, previousRoute);
-    //可通过route.settings获取路由相关内容
-    //route.currentResult获取返回内容
-    //....等等
-    print(route.settings.name);
-  }
 }
 
 class _DynamicThemeState extends State<DynamicTheme> {
@@ -106,7 +93,6 @@ class _DynamicThemeState extends State<DynamicTheme> {
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
-      initialRoute: '/',
       onGenerateRoute: (_) {
         //  当通过Navigation.of(context).pushNamed跳转路由时，
         //  在routes查找不到时，会调用该方法
@@ -139,7 +125,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
           ),
         );
       },
-      navigatorObservers: [MyObserver()],
+      navigatorObservers: [DynamicTheme.routeObserver],
       home: Entrance(
         options: _options,
         handleOptionsChanged: _handleOptionsChanged,

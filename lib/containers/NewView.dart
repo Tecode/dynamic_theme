@@ -1,16 +1,45 @@
 import 'package:dynamic_theme/containers/Detail.dart';
-import 'package:dynamic_theme/containers/Entrance.dart';
+import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NewView extends StatelessWidget {
+class NewView extends StatefulWidget {
   final String content;
   const NewView({
     this.content,
   });
-
   static const String routeName = '/newView';
+
+  @override
+  _NewViewState createState() => _NewViewState();
+}
+
+class _NewViewState extends State<NewView> with RouteAware {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    DynamicTheme.routeObserver.subscribe(this, ModalRoute.of(context));
+  }
+
+  @override
+  void didPopNext() {
+    // Covering route was popped off the navigator.
+    print('返回NewView');
+  }
+
+  @override
+  void didPush() {
+    // Route was pushed onto navigator and is now topmost route.
+    print('进入NewView');
+  }
+
+  @override
+  void dispose() {
+    DynamicTheme.routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
 //    final NewView param = ModalRoute.of(context).settings.arguments;
