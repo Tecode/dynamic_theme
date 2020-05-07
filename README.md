@@ -10,10 +10,10 @@
 ## Flutter version
 
 ```bash
-Flutter 1.12.13+hotfix.9 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision f139b11009 (13 days ago) • 2020-03-30 13:57:30 -0700
-Engine • revision af51afceb8
-Tools • Dart 2.7.2
+Flutter 1.17.0 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision e6b34c2b5c (5 days ago) • 2020-05-02 11:39:18 -0700
+Engine • revision 540786dd51
+Tools • Dart 2.8.1
 ```
 
 ## 路由(命名路由)
