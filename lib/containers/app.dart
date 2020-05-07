@@ -12,7 +12,8 @@ import 'package:flutter/material.dart';
 
 class DynamicTheme extends StatefulWidget {
   const DynamicTheme();
-
+  static final RouteObserver<PageRoute> routeObserver =
+      RouteObserver<PageRoute>();
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
 }
@@ -46,7 +47,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
     // https://docs.flutter.io/flutter/widgets/Navigator-class.html
     return Map<String, WidgetBuilder>.fromIterable(
       routerList,
-      key: (dynamic data) => '${data.routeName}',
+      key: (dynamic data) => data.routeName,
       value: (dynamic data) => data.buildRoute,
     );
   }
@@ -93,7 +94,39 @@ class _DynamicThemeState extends State<DynamicTheme> {
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
-      initialRoute: '/',
+      onGenerateRoute: (_) {
+        //  当通过Navigation.of(context).pushNamed跳转路由时，
+        //  在routes查找不到时，会调用该方法
+        return PageRouteBuilder(
+          pageBuilder: (BuildContext context, _, __) {
+            //这里为返回的Widget
+            return Material(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('404', style: Theme.of(context).textTheme.display2),
+                  CupertinoButton(
+                    child: Text('Back'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
+              ),
+            );
+          },
+          opaque: false,
+          transitionDuration: Duration(milliseconds: 200),
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) =>
+                  FadeTransition(
+            opacity: animation,
+            child: ScaleTransition(
+              scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+              child: child,
+            ),
+          ),
+        );
+      },
+      navigatorObservers: [DynamicTheme.routeObserver],
       home: Entrance(
         options: _options,
         handleOptionsChanged: _handleOptionsChanged,

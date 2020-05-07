@@ -1,11 +1,16 @@
 import 'package:dynamic_theme/helpers/customBehavior.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Discovery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScrollConfiguration(
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        transitionBetweenRoutes: false,
+        middle: Text('发现'),
+      ),
+      child: ScrollConfiguration(
         behavior: CustomBehavior(),
         child: ListView.builder(
           itemCount: 60,

@@ -19,13 +19,9 @@ class Mine extends StatefulWidget {
 class _MineState extends State<Mine> {
   //  路由跳转
   void _launchRouter(BuildContext context) {
-    Timeline.instantSync('Start Transition', arguments: <String, String>{
-      'from': '/',
-      'to': '/newView',
-    });
     Navigator.pushNamed(
       context,
-      '/newView',
+      '/newView5',
       arguments: NewView(
         content: '网络搜索结果汉语- 维基百科，自由的百科全书',
       ),

@@ -5,12 +5,11 @@ class RouterUnit {
     @required this.title,
     this.icon,
     this.subtitle,
-    @required this.category,
+    this.category,
     @required this.routeName,
     this.documentationUrl,
     @required this.buildRoute,
   })  : assert(title != null),
-        assert(category != null),
         assert(routeName != null),
         assert(buildRoute != null);
 
@@ -58,23 +57,3 @@ const RouterCategory kDemos = RouterCategory._(
   name: 'Studies',
   icon: Icons.arrow_back_ios,
 );
-
-//const RouterCategory _kStyle = RouterCategory._(
-//  name: 'Style',
-//  icon: GalleryIcons.custom_typography,
-//);
-//
-//const RouterCategory _kMaterialComponents = RouterCategory._(
-//  name: 'Material',
-//  icon: GalleryIcons.category_mdc,
-//);
-//
-//const RouterCategory _kCupertinoComponents = RouterCategory._(
-//  name: 'Cupertino',
-//  icon: GalleryIcons.phone_iphone,
-//);
-//
-//const RouterCategory _kMedia = RouterCategory._(
-//  name: 'Media',
-//  icon: GalleryIcons.drive_video,
-//);

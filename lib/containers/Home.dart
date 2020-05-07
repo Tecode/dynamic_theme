@@ -15,13 +15,12 @@ class _HomeState extends State<Home> {
       'from': '/',
       'to': '/newView',
     });
-    Navigator.pushNamed(
-      context,
+    Navigator.of(context).pushNamed(
       '/newView',
       arguments: NewView(
         content: '网络搜索结果汉语- 维基百科，自由的百科全书',
       ),
-    );
+    ).then((value) => print(value));
   }
 
   @override
