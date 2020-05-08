@@ -39,17 +39,17 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   Text(
                     'TEXT',
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   Text(
                     'Flutter: Dynamic Theming | Change Theme At Runtime',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   FlatButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
                       '路由跳转',
-                      style: Theme.of(context).textTheme.body1.merge(
+                      style: Theme.of(context).textTheme.bodyText1.merge(
                             TextStyle(
                               color: isDark ? Colors.white : Colors.black,
                             ),

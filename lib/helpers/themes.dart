@@ -5,7 +5,7 @@ final ThemeData darkTheme = _buildDarkTheme();
 
 TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(
-    title: base.title.copyWith(
+    bodyText1: base.bodyText1.copyWith(
       fontFamily: 'GoogleSans',
     ),
   );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:flutter/material.dart';
@@ -44,17 +42,17 @@ class _MineState extends State<Mine> {
                 children: <Widget>[
                   Text(
                     'TEXT',
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   Text(
                     'Flutter: Dynamic Theming | Change Theme At Runtime',
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   FlatButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
                       '路由跳转',
-                      style: Theme.of(context).textTheme.body1.merge(
+                      style: Theme.of(context).textTheme.bodyText2.merge(
                             TextStyle(
                               color: isDark ? Colors.white : Colors.black,
                             ),

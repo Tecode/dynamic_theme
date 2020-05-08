@@ -77,7 +77,7 @@ class _NewViewState extends State<NewView> with RouteAware {
                     child: Center(
                       child: Text(
                         'Data-$index',
-                        style: Theme.of(context).textTheme.body2,
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
                   ),
