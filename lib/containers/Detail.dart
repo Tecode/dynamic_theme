@@ -58,7 +58,7 @@ class Detail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('TITLE', style: Theme.of(context).textTheme.display3),
+                Text('TITLE', style: Theme.of(context).textTheme.bodyText1),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   child: Text('弹窗'),
