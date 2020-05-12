@@ -10,7 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/cupertino.dart'
     hide CupertinoDialogAction, CupertinoAlertDialog;
 
-// TODO(abarth): These constants probably belong somewhere more general.
+// (abarth): These constants probably belong somewhere more general.
 
 const TextStyle _kCupertinoDialogTitleStyle = TextStyle(
   fontFamily: '.SF UI Display',
@@ -991,7 +991,7 @@ class _PressableActionButtonState extends State<_PressableActionButton> {
     return _ActionButtonParentDataWidget(
       isPressed: _isPressed,
       child: MergeSemantics(
-        // TODO(mattcarroll): Button press dynamics need overhaul for iOS: https://github.com/flutter/flutter/issues/19786
+        // (mattcarroll): Button press dynamics need overhaul for iOS: https://github.com/flutter/flutter/issues/19786
         child: GestureDetector(
           excludeFromSemantics: true,
           behavior: HitTestBehavior.opaque,
@@ -1001,7 +1001,7 @@ class _PressableActionButtonState extends State<_PressableActionButton> {
           onTapUp: (TapUpDetails details) => setState(() {
             _isPressed = false;
           }),
-          // TODO(mattcarroll): Cancel is currently triggered when user moves past slop instead of off button: https://github.com/flutter/flutter/issues/19783
+          // (mattcarroll): Cancel is currently triggered when user moves past slop instead of off button: https://github.com/flutter/flutter/issues/19783
           onTapCancel: () => setState(() => _isPressed = false),
           child: widget.child,
         ),
@@ -1200,7 +1200,7 @@ class CupertinoDialogAction extends StatelessWidget {
 
     // Apply a sizing policy to the action button's content based on whether or
     // not the device is in accessibility mode.
-    // TODO(mattcarroll): The following logic is not entirely correct. It is also
+    // (mattcarroll): The following logic is not entirely correct. It is also
     // the case that if content text does not contain a space, it should also
     // wrap instead of ellipsizing. We are consciously not implementing that
     // now due to complexity.
