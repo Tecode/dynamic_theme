@@ -1,3 +1,6 @@
+import 'package:dynamic_theme/containers/Discovery.dart';
+import 'package:dynamic_theme/containers/NewView.dart';
+import 'package:dynamic_theme/router/routerAnimation.dart';
 import 'package:dynamic_theme/widgets/common/AlertDialog.dart';
 import 'package:flutter/cupertino.dart'
     hide CupertinoAlertDialog, CupertinoDialogAction;
@@ -67,7 +70,11 @@ class Detail extends StatelessWidget {
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   child: Text('底部弹窗'),
-                  onPressed: () => {},
+                  onPressed: () => Navigator.of(context).push(
+                    bottomPopRouter(
+                      Discovery(),
+                    ),
+                  ),
                 ),
               ],
             ),
