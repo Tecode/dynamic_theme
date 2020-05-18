@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dynamic_theme/containers/Entrance.dart';
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:flutter/material.dart';
 
@@ -12,15 +13,17 @@ class _HomeState extends State<Home> {
   //  路由跳转
   void _launchRouter(BuildContext context) {
     Timeline.instantSync('Start Transition', arguments: <String, String>{
-      'from': '/',
-      'to': '/newView',
+      'from': Entrance.routeName,
+      'to': NewView.routeName,
     });
-    Navigator.of(context).pushNamed(
-      '/newView',
-      arguments: NewView(
-        content: '网络搜索结果汉语- 维基百科，自由的百科全书',
-      ),
-    ).then((value) => print(value));
+    Navigator.of(context)
+        .pushNamed(
+          NewView.routeName,
+          arguments: NewView(
+            content: '网络搜索结果汉语- 维基百科，自由的百科全书',
+          ),
+        )
+        .then((value) => print(value));
   }
 
   @override

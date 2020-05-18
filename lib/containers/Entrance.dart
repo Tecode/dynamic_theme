@@ -3,6 +3,7 @@ import 'package:dynamic_theme/containers/Home.dart';
 import 'package:dynamic_theme/containers/Mine.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/widgets/Entrance/NavigationBar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Entrance extends StatefulWidget {
@@ -32,23 +33,36 @@ class _EntranceState extends State<Entrance> {
   int activeIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: activeIndex,
+    return Material(
+      child: Column(
         children: <Widget>[
-          Home(),
-          Discovery(),
-          Text('44'),
-          Mine(
-            options: widget.options,
-            handleOptionsChanged: widget.handleOptionsChanged,
+          Expanded(
+            child: IndexedStack(
+              index: activeIndex,
+              children: <Widget>[
+                Home(),
+                Discovery(),
+                Discovery(),
+                Mine(
+                  options: widget.options,
+                  handleOptionsChanged: widget.handleOptionsChanged,
+                ),
+              ],
+            ),
+          ),
+          NavigationBar(
+            activeKey: Entrance.navList[activeIndex]['key'],
+            onChange: (int index) => setState(() {
+              activeIndex = index;
+            }),
           ),
         ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        activeKey: Entrance.navList[activeIndex]['key'],
-        onChange: (int index) => setState(() => activeIndex = index),
       ),
     );
   }
