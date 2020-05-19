@@ -16,6 +16,13 @@ Engine • revision 540786dd51
 Tools • Dart 2.8.1
 ```
 
+## Flutter 
+
+```shell script
+flutter run --profile --trace-skia
+flutter screenshot --type=skia --observatory-uri=http://127.0.0.1:49368/s4vbW7Mp_KE=/#/timeline
+```
+
 ## 路由(命名路由)
 
 ### Navigator.of(context).pushNamed
