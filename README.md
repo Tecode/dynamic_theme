@@ -51,6 +51,12 @@ Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => fal
 Navigator.of(context).pushNamedAndRemoveUntil('/screen4', ModalRoute.withName('/screen1'));
 ```
 
+### Navigator.of(context).popUntil
+`Navigator.of(context).popUntil`推出之前push的路由直到`/newView`路由为止
+
+```
+Navigator.of(context).popUntil(ModalRoute.withName('/newView'))
+```
 ## 其它路由
 
 ```dart

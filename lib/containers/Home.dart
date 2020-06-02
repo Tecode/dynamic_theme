@@ -12,15 +12,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   //  路由跳转
   void _launchRouter(BuildContext context) {
-    Timeline.instantSync('Start Transition', arguments: <String, String>{
-      'from': Entrance.routeName,
-      'to': NewView.routeName,
-    });
+    // Timeline.instantSync('Start Transition', arguments: <String, String>{
+    //   'from': Entrance.routeName,
+    //   'to': NewView.routeName,
+    // });
     Navigator.of(context)
         .pushNamed(
           NewView.routeName,
           arguments: NewView(
-            content: '网络搜索结果汉语- 维基百科，自由的百科全书',
+            content: '路由传参',
           ),
         )
         .then((value) => print(value));

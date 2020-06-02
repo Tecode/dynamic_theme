@@ -43,10 +43,11 @@ class _NewViewState extends State<NewView> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-//    final NewView param = ModalRoute.of(context).settings.arguments;
+   final NewView param = ModalRoute.of(context).settings.arguments;
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        middle: Text('NewList-${param.content}'),
         leading: CupertinoButton(
           padding: EdgeInsets.zero,
           child: Text('返回'),
@@ -61,6 +62,7 @@ class _NewViewState extends State<NewView> with RouteAware {
         child: ScrollConfiguration(
           behavior: CustomBehavior(),
           child: ListView.builder(
+            reverse: true,
             primary: true,
             itemCount: 60,
             itemBuilder: (BuildContext context, int index) {
@@ -69,14 +71,14 @@ class _NewViewState extends State<NewView> with RouteAware {
                   splashColor: Colors.transparent,
                   onTap: () => Navigator.of(context).pushNamed(
                     Detail.routeName,
-                    arguments: Detail(value: '参数'),
+                    arguments: Detail(value: 'NewView参数'),
                   ),
                   child: Container(
                     height: 44.0,
                     width: MediaQuery.of(context).size.width,
                     child: Center(
                       child: Text(
-                        'Data-$index',
+                        '${param.content}-${index.toRadixString(2)}',
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ),
