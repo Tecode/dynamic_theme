@@ -1,5 +1,11 @@
 # Dynamic Theme
 
+## Android版本下载
+<p align="center">
+    <img width="200" title="Flutter" src="./assets/preview/QRCode_258.png">
+</p>
+
+
 ## 效果预览
 
 <p align="center">
