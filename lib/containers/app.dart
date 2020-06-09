@@ -9,6 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart';
+import 'package:uni_links/uni_links.dart';
+
+enum UniLinksType { string, uri }
 
 class DynamicTheme extends StatefulWidget {
   const DynamicTheme();
@@ -21,6 +24,7 @@ class DynamicTheme extends StatefulWidget {
 class _DynamicThemeState extends State<DynamicTheme> {
   Options _options;
   Timer _timeDilationTimer;
+  UniLinksType _type = UniLinksType.string;
 
   @override
   void initState() {
@@ -39,6 +43,35 @@ class _DynamicThemeState extends State<DynamicTheme> {
     _timeDilationTimer = null;
     super.dispose();
   }
+
+//  初始化Scheme
+  Future<void> initPlatformState() async {
+    if (_type == UniLinksType.string) {
+      await initPlatformStateForStringUniLinks();
+    } else {
+      await initPlatformStateForUriUniLinks();
+    }
+  }
+
+  /// An implementation using a [String] link
+  Future<void> initPlatformStateForStringUniLinks() async {
+    // Attach a listener to the links stream
+    _sub = getLinksStream().listen((String link) {
+      if (!mounted) return;
+      setState(() {
+        _latestLink = link ?? 'Unknown';
+        _latestUri = null;
+        try {
+          if (link != null) _latestUri = Uri.parse(link);
+        } on FormatException {}
+      });
+    }, onError: (Object err) {
+      if (!mounted) return;
+      setState(() {
+        _latestLink = 'Failed to get latest link: $err.';
+        _latestUri = null;
+      });
+    });
 
 // 配置路由
   Map<String, WidgetBuilder> _buildRoutes() {
