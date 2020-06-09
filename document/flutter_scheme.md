@@ -45,6 +45,8 @@ import 'package:uni_links/uni_links.dart';
 
 ## Android 配置
 
+**⚠️注意：Scheme 命名不支持`dynamic_theme`在`iOS`中测试了一下无法打开,改成了全小写`dynamictheme`**
+
 ### `android/app/src/main/AndroidManifest.xml`
 
 **新增以下代码[查看完整代码]()**
@@ -69,10 +71,10 @@ import 'package:uni_links/uni_links.dart';
  <action android:name="android.intent.action.VIEW"/>
   <category android:name="android.intent.category.DEFAULT"/>
   <category android:name="android.intent.category.BROWSABLE"/>
-  <data android:scheme="dynamic_theme"/>
+  <data android:scheme="dynamictheme"/>
   <data 
         android:host="detail"
-        android:scheme="dynamic_theme"/>
+        android:scheme="dynamictheme"/>
 </intent-filter>
 ```
 
@@ -101,7 +103,7 @@ import 'package:uni_links/uni_links.dart';
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>dynamic_theme</string>
+				<string>dynamictheme</string>
 			</array>
 		</dict>
 	</array>
@@ -111,5 +113,7 @@ import 'package:uni_links/uni_links.dart';
 </plist>
 
 ```
+
+## iOS 效果预览
 
 

@@ -65,6 +65,8 @@ class _EntranceState extends State<Entrance> {
       print('initial link: $initialLink');
       if (initialLink != null) {
         print('initialLink--$initialLink');
+        //  跳转到指定页面
+        schemeJump(context, initialLink);
       }
     } on PlatformException {
       initialLink = 'Failed to get initial link.';
