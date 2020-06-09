@@ -42,3 +42,74 @@ Process finished with exit code 0
 ```
 import 'package:uni_links/uni_links.dart';
 ```
+
+## Android 配置
+
+### `android/app/src/main/AndroidManifest.xml`
+
+**新增以下代码[查看完整代码]()**
+
+```dart
+<!-- Deep Links -->
+<intent-filter>
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
+    <data
+          android:scheme="[YOUR_SCHEME]"
+          android:host="[YOUR_HOST]" />
+</intent-filter>
+```
+
+**例子：**
+
+```dart
+<intent-filter>
+ <action android:name="android.intent.action.VIEW"/>
+  <category android:name="android.intent.category.DEFAULT"/>
+  <category android:name="android.intent.category.BROWSABLE"/>
+  <data android:scheme="dynamic_theme"/>
+  <data 
+        android:host="detail"
+        android:scheme="dynamic_theme"/>
+</intent-filter>
+```
+
+## iOS 配置
+
+### 打开`Xcode->Info->URL Types`设置`URL Scheme`
+
+添加完也直接反应到配置文件`info.plist`中了，当然你要是觉得自己很厉害，也可以直接在`info.plist`添加。
+
+<p align="center">
+    <img width="1400" title="Xcode->Info->URL Types" src="../assets/preview/xcode_scheme.png">
+</p>
+
+**`ios/Runner/Info.plist`**
+
+```dart
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+...
+<!-- 其它配置 -->
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dynamic_theme</string>
+			</array>
+		</dict>
+	</array>
+...
+<!-- 其它配置 -->
+</dict>
+</plist>
+
+```
+
+
