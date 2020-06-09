@@ -114,6 +114,72 @@ import 'package:uni_links/uni_links.dart';
 
 ```
 
+## Scheme [跳转 index.html](./document/index.html)
+```html
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scheme 跳转</title>
+</head>
+<style>
+    h3,
+    p {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h3>
+        <a href="dynamictheme://"> 打开App(dynamictheme://) </a>
+        <a href="dynamictheme://detail"> 打开App跳转到详情页面 </a>
+    </h3>
+    <p>dynamictheme://</p>
+    <h3>
+    </h3>
+    <p>dynamictheme://detail</p>
+    <h3>
+        <a href="dynamictheme://detail?name=flutter">
+            打开App跳转到详情页面带上参数
+        </a>
+    </h3>
+    <p>dynamictheme://detail?name=flutter</p>
+</body>
+
+</html>
+```
+
+
 ## iOS 效果预览
 
+### 未打开App（开启以后跳转）
 
+<p align="center">
+    <img width="200" title="ios_scheme_open" src="../assets/preview/ios_scheme_open.gif">
+</p>
+
+
+### 已打开App（监听Scheme）
+
+<p align="center">
+    <img width="200" title="ios_scheme_listen" src="../assets/preview/ios_scheme_listen.gif">
+</p>
+
+## Android 效果预览
+
+### 未打开App（开启以后跳转）
+
+<p align="center">
+    <img width="200" title="android_scheme_open" src="../assets/preview/android_scheme_open.gif">
+</p>
+
+
+### 已打开App（监听Scheme）
+
+<p align="center">
+    <img width="200" title="android_scheme_listen" src="../assets/preview/android_scheme_listen.gif">
+</p>
