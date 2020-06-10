@@ -114,43 +114,68 @@ import 'package:uni_links/uni_links.dart';
 
 ```
 
-## Scheme [跳转 index.html](./document/index.html)
-```html
-<!doctype html>
-<html lang="zh-cn">
+## Dart 代码
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Scheme 跳转</title>
-</head>
-<style>
-    h3,
-    p {
-        text-align: center;
+**不同状态下实现页面跳转**
+
+```dart
+Future<void> initPlatformStateForStringUniLinks() async {
+    String initialLink;
+    // App未打开的状态在这个地方捕获scheme
+    try {
+      initialLink = await getInitialLink();
+      print('initial link: $initialLink');
+      if (initialLink != null) {
+        print('initialLink--$initialLink');
+        //  跳转到指定页面
+        schemeJump(context, initialLink);
+      }
+    } on PlatformException {
+      initialLink = 'Failed to get initial link.';
+    } on FormatException {
+      initialLink = 'Failed to parse the initial link as Uri.';
     }
-</style>
+    // App打开的状态监听scheme
+    _sub = getLinksStream().listen((String link) {
+      if (!mounted || link == null) return;
+      print('link--$link');
+    //  跳转到指定页面
+      schemeJump(context, link);
+    }, onError: (Object err) {
+      if (!mounted) return;
+    });
+}
+```
 
-<body>
-    <h3>
-        <a href="dynamictheme://"> 打开App(dynamictheme://) </a>
-        <a href="dynamictheme://detail"> 打开App跳转到详情页面 </a>
-    </h3>
-    <p>dynamictheme://</p>
-    <h3>
-    </h3>
-    <p>dynamictheme://detail</p>
-    <h3>
-        <a href="dynamictheme://detail?name=flutter">
-            打开App跳转到详情页面带上参数
-        </a>
-    </h3>
-    <p>dynamictheme://detail?name=flutter</p>
-</body>
+**解析Scheme跳转页面**
 
-</html>
+我配置的`scheme`是`dynamictheme://`使用的是`Deep Link`，你也可以配置成`http://www.xx.com`和`https://www.xx.com`这种是`App Links`。
+
+```dart
+final Uri _jumpUri = Uri.parse(schemeUrl.replaceFirst(
+    'dynamictheme://',
+    'http://path/',
+  ));
+  switch (_jumpUri.path) {
+    case '/detail':
+      Navigator.of(context).pushNamed(
+        Detail.routeName,
+        arguments: Detail(value: _jumpUri.queryParameters['name'] ?? '详情'),
+      );
+      break;
+    default:
+      break;
+}
+```
+
+## Scheme [测试地址](https://tecode.github.io/dynamic_theme/document/index.html)
+
+测试前需要先[安装APK](https://www.pgyer.com/QChJ)(目前只有安卓APK可以下载，iOS需要自己拉代码打包)。
+
+```html
+<a href="dynamictheme://"> 打开App(dynamictheme://) </a>
+<a href="dynamictheme://detail"> 打开App跳转到详情页面 </a>
+<a href="dynamictheme://detail?name=flutter"> 打开App跳转到详情页面带上参数 </a>
 ```
 
 

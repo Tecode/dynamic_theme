@@ -16,15 +16,16 @@
 ## Flutter version
 
 ```bash
-Flutter 1.17.0 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision e6b34c2b5c (5 days ago) • 2020-05-02 11:39:18 -0700
-Engine • revision 540786dd51
-Tools • Dart 2.8.1
+Flutter 1.17.3 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision b041144f83 (5 days ago) • 2020-06-04 09:26:11 -0700
+Engine • revision ee76268252
+Tools • Dart 2.8.4
 ```
 
 ## Flutter 
 
 ```shell script
+flutter build apk --relese
 flutter run --profile --trace-skia
 flutter screenshot --type=skia --observatory-uri=http://127.0.0.1:49368/s4vbW7Mp_KE=/#/timeline
 ```
