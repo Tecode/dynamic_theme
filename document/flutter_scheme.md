@@ -1,8 +1,10 @@
-# Flutter scheme 使用
+# Flutter Scheme 使用(浏览器打开App，App内打开另一个App)
 
-## URL scheme的作用
+## 🍵[项目地址](https://github.com/Tecode/dynamic_theme)
 
-### iOS scheme介绍
+## URL Scheme的作用
+
+### iOS Scheme介绍
 
 我们都知道苹果手机中的APP都有一个沙盒，APP就是一个信息孤岛，相互是不可以进行通信的。但是iOS的APP可以注册自己的URL Scheme，URL Scheme是为方便app之间互相调用而设计的。我们可以通过系统的OpenURL来打开该app，并可以传递一些参数。
 
@@ -12,7 +14,7 @@ URL Scheme必须能唯一标识一个APP，如果你设置的URL Scheme与别的
 
 一般情况下，是会调用先安装的app。但是iOS的系统app的URL Scheme肯定是最高的。所以我们定义URL Scheme的时候，尽量避开系统app已经定义过的URL Scheme。
 
-### Android scheme介绍
+### Android Scheme介绍
 
 android中的scheme是一种页面内跳转协议;
 
@@ -49,7 +51,7 @@ import 'package:uni_links/uni_links.dart';
 
 ### `android/app/src/main/AndroidManifest.xml`
 
-**新增以下代码[查看完整代码]()**
+**新增以下代码[查看完整代码](https://github.com/Tecode/dynamic_theme/blob/852afd2e3ebc85c9d143324cc5282b20cda233c2/ios/Runner/Info.plist#L22)**
 
 ```dart
 <!-- Deep Links -->
