@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>富文本编辑器</title>
+  <!-- Main Quill library -->
+  <script src="http://cdn.quilljs.com/1.2.0/quill.js"></script>
+  <script src="http://cdn.quilljs.com/1.2.0/quill.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <!-- Theme included stylesheets -->
+  <link href="http://cdn.quilljs.com/1.2.0/quill.snow.css" rel="stylesheet">
+  <link href="http://cdn.quilljs.com/1.2.0/quill.bubble.css" rel="stylesheet">
+  <style>
+    #editor {
+      height: 600px;
+    }
+
+    #btn1 {
+      border: none;
+      font-size: 16px;
+      padding: 10px 15px;
+      outline: none;
+      margin: 15px 0;
+    }
+
+    #html {
+      line-height: 16px;
+      width: 1000px;
+      white-space: pre-wrap;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="toolbar"></div>
+  <div id="editor"></div>
+  <script>
+    var toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'header': 1 }, { 'header': 2 }],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'script': 'sub' }, { 'script': 'super' }],
+      [{ 'indent': '-1' }, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      ['link', 'image', 'video', 'formula'],
+      [{ 'color': ['#000', '#202326'] }, { 'background': [] }],
+      [{ 'font': [] }],
+      [{ 'align': [] }]
+    ];
+    var options = {
+      modules: {
+        toolbar: toolbarOptions
+      },
+      placeholder: '请输入文字...',
+      readOnly: false,
+      theme: 'snow'
+    };
+    var editor = new Quill('#editor', options);
+    // editor.insertText(0, 'Hello', 'bold', true);//set init value 
+    function callMe() {
+      var html = editor.root.innerHTML;
+      document.getElementById('html').innerHTML = html;
+    }
+  </script>
+  <button id="btn1" onClick="callMe()">获取Html</button>
+  <xmp id="html"></xmp>
+
+</body>
+
+</html>
