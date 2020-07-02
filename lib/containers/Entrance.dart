@@ -25,7 +25,7 @@ class Entrance extends StatefulWidget {
 //  路由页面
   static List<Map<String, dynamic>> get navList {
     return [
-      {'value': '首页', 'key': 'HOME'},
+      {'value': '消息', 'key': 'HOME'},
       {'value': '发现', 'key': 'DISCOVERY'},
       {'value': '订单', 'key': 'ORDER'},
       {'value': '我的', 'key': 'MINE'},

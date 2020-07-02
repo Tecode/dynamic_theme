@@ -51,7 +51,7 @@ class _MineState extends State<Mine> {
                   FlatButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
-                      '路由跳转',
+                      '404',
                       style: Theme.of(context).textTheme.bodyText2.merge(
                             TextStyle(
                               color: isDark ? Colors.white : Colors.black,
