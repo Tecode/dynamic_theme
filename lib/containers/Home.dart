@@ -4,6 +4,8 @@ import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_easyrefresh/material_footer.dart';
+import 'package:flutter_easyrefresh/material_header.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -72,9 +74,8 @@ class _HomeState extends State<Home> {
             enableControlFinishRefresh: true,
             enableControlFinishLoad: true,
             controller: _controller,
-            scrollController: _scrollController,
+//            scrollController: _scrollController,
             header: ClassicalHeader(
-              enableInfiniteRefresh: true,
               bgColor: Theme.of(context).backgroundColor,
               infoColor: Colors.black87,
               float: false,
@@ -87,19 +88,17 @@ class _HomeState extends State<Home> {
               noMoreText: '没有更多了',
               infoText: '%T 更新了消息',
             ),
-            footer: _enableLoad
-                ? ClassicalFooter(
-                    enableInfiniteLoad: true,
-                    enableHapticFeedback: false,
-                    loadText: 'S.of(context).pushToLoad',
-                    loadReadyText: 'S.of(context).releaseToLoad',
-                    loadingText: 'S.of(context).loading',
-                    loadedText: 'S.of(context).loaded',
-                    loadFailedText: 'S.of(context).loadFailed',
-                    noMoreText: '没有更多了',
-                    infoText: '%T 更新',
-                  )
-                : null,
+            footer: ClassicalFooter(
+              enableInfiniteLoad: true,
+              enableHapticFeedback: false,
+              loadText: 'S.of(context).pushToLoad',
+              loadReadyText: 'S.of(context).releaseToLoad',
+              loadingText: 'S.of(context).loading',
+              loadedText: 'S.of(context).loaded',
+              loadFailedText: 'S.of(context).loadFailed',
+              noMoreText: '没有更多了',
+              infoText: '%T 更新',
+            ),
             onRefresh: _enableRefresh
                 ? () async {
                     await Future.delayed(Duration(seconds: 2), () {
