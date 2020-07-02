@@ -4,8 +4,6 @@ import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_footer.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   EasyRefreshController _controller;
-  ScrollController _scrollController;
+  // ScrollController _scrollController;
   int _count = 20;
   // 是否开启加载
   bool _enableLoad = true;
@@ -45,7 +43,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _controller = EasyRefreshController();
-    _scrollController = ScrollController();
+    // _scrollController = ScrollController();
   }
 
   @override
