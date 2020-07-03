@@ -50,6 +50,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        transitionBetweenRoutes: true,
         trailing: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => _launchRouter(context),
@@ -59,7 +60,6 @@ class _HomeState extends State<Home> {
             color: CustomColors.of(context).color202326,
           ),
         ),
-        transitionBetweenRoutes: false,
         middle: Text('消息'),
       ),
       child: Padding(
@@ -89,11 +89,11 @@ class _HomeState extends State<Home> {
             footer: ClassicalFooter(
               enableInfiniteLoad: true,
               enableHapticFeedback: false,
-              loadText: 'S.of(context).pushToLoad',
-              loadReadyText: 'S.of(context).releaseToLoad',
-              loadingText: 'S.of(context).loading',
-              loadedText: 'S.of(context).loaded',
-              loadFailedText: 'S.of(context).loadFailed',
+              loadText: '拉动加载',
+              loadReadyText: '准备加载',
+              loadingText: '正在加载',
+              loadedText: '加载完成',
+              loadFailedText: '加载失败',
               noMoreText: '没有更多了',
               infoText: '%T 更新',
             ),

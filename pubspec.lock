@@ -72,9 +72,11 @@ packages:
   flutter_easyrefresh:
     dependency: "direct main"
     description:
-      name: flutter_easyrefresh
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: e5c648d8952154b29101cb98058bf0708aa01cf0
+      resolved-ref: e5c648d8952154b29101cb98058bf0708aa01cf0
+      url: "https://github.com/xuelongqy/flutter_easyrefresh.git"
+    source: git
     version: "2.1.1"
   flutter_test:
     dependency: "direct dev"

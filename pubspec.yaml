@@ -20,7 +20,10 @@ dependencies:
   flutter:
     sdk: flutter
   uni_links: 0.4.0
-  flutter_easyrefresh: 2.1.1
+  flutter_easyrefresh:
+    git:
+      url: https://github.com/xuelongqy/flutter_easyrefresh.git
+      ref: e5c648d8952154b29101cb98058bf0708aa01cf0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
