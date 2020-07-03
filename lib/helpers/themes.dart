@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/helpers/route.dart';
 import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = _buildLightTheme();
@@ -52,6 +53,11 @@ ThemeData _buildLightTheme() {
     secondary: secondaryColor,
   );
   final ThemeData base = ThemeData(
+    pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+        }
+    ),
     brightness: Brightness.light,
     accentColorBrightness: Brightness.dark,
     colorScheme: colorScheme,
