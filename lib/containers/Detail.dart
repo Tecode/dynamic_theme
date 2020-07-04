@@ -1,10 +1,8 @@
-import 'package:dynamic_theme/containers/Discovery.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/router/routerAnimation.dart';
-import 'package:dynamic_theme/widgets/common/AlertDialog.dart';
-import 'package:flutter/cupertino.dart'
-    hide CupertinoAlertDialog, CupertinoDialogAction;
-import 'package:flutter/material.dart';
+import 'package:dynamic_theme/widgets/common/DialogBox.dart';
 
 class Detail extends StatelessWidget {
   final String value;
@@ -24,24 +22,9 @@ class Detail extends StatelessWidget {
   }
 
   void _onAlertWithTitlePress(BuildContext context) {
-    showDialog(
-      context: context,
-      child: CupertinoAlertDialog(
-        title: const Text(
-            'Allow "Maps" to access your location while you are using the app?'),
-        content: const Text(
-            'Your current location will be displayed on the map and used '
-            'for directions, nearby search results, and estimated travel times.'),
-        actions: <Widget>[
-          CupertinoDialogAction(
-            child: const Text('Don\'t Allow'),
-            onPressed: () => Navigator.pop(context, 'Disallow'),
-          ),
-          CupertinoDialogAction(
-            child: const Text('Allow'),
-            onPressed: () => Navigator.pop(context, 'Allow'),
-          ),
-        ],
+    Navigator.of(context).push(
+      showDialogRouter(
+        DialogBox(),
       ),
     );
   }
@@ -86,9 +69,14 @@ class Detail extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   child: Text('底部弹窗'),
                   onPressed: () => Navigator.of(context).push(
-                    bottomPopRouter(
-                      Discovery(),
-                    ),
+                    bottomPopRouter(Scaffold(
+                      body: Center(
+                        child: CupertinoButton(
+                          child: Text('返回'),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ),
+                    )),
                   ),
                 ),
               ],

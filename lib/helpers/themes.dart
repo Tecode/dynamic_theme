@@ -20,6 +20,11 @@ ThemeData _buildDarkTheme() {
     secondary: secondaryColor,
   );
   final ThemeData base = ThemeData(
+    pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+        }
+    ),
     brightness: Brightness.dark,
     accentColorBrightness: Brightness.dark,
     primaryColor: primaryColor,

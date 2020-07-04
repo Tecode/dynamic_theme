@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class Home extends StatefulWidget {
+  const Home();
   @override
   _HomeState createState() => _HomeState();
 }
@@ -57,7 +58,7 @@ class _HomeState extends State<Home> {
           child: Icon(
             Icons.track_changes,
             size: 24.0,
-            color: CustomColors.of(context).color202326,
+            color: ColorTheme.of(context).color202326,
           ),
         ),
         middle: Text('消息'),
@@ -160,7 +161,7 @@ class AvatarWrapBox extends StatelessWidget {
             height: 60.0,
             margin: EdgeInsets.only(right: 12.0),
             decoration: BoxDecoration(
-              color: CustomColors.of(context).colorF3F3F6,
+              color: ColorTheme.of(context).colorF3F3F6,
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
@@ -171,12 +172,12 @@ class AvatarWrapBox extends StatelessWidget {
               Container(
                 width: 160.0,
                 height: 18.0,
-                color: CustomColors.of(context).colorF3F3F6,
+                color: ColorTheme.of(context).colorF3F3F6,
               ),
               Container(
-                width: MediaQuery.of(context).size.width - 80.0 - 28.0,
+                width: 260.0,
                 height: 18.0,
-                color: CustomColors.of(context).colorF3F3F6,
+                color: ColorTheme.of(context).colorF3F3F6,
               ),
             ],
           )

@@ -18,7 +18,7 @@ class NavigationBar extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         border: Border(
           top: BorderSide(
-            color: CustomColors.of(context).borderColor,
+            color: ColorTheme.of(context).borderColor,
             width: 0.5,
           ),
         ),
@@ -42,9 +42,12 @@ class NavigationBar extends StatelessWidget {
                       Container(
                         width: 20.0,
                         height: 20.0,
-                        color: Entrance.navList[index]['key'] == activeKey
-                            ? CustomColors.of(context).activeNavColor
-                            : CustomColors.of(context).cubeColor,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: Entrance.navList[index]['key'] == activeKey
+                              ? ColorTheme.of(context).activeNavColor
+                              : ColorTheme.of(context).cubeColor,
+                        ),
                       ),
                       Text(
                         '${Entrance.navList[index]['value']}',
@@ -52,8 +55,8 @@ class NavigationBar extends StatelessWidget {
                           fontSize: 10.0,
                           height: 1.4,
                           color: Entrance.navList[index]['key'] == activeKey
-                              ? CustomColors.of(context).activeNavColor
-                              : CustomColors.of(context).cubeColor,
+                              ? ColorTheme.of(context).activeNavColor
+                              : ColorTheme.of(context).cubeColor,
                         ),
                       ),
                       SizedBox(

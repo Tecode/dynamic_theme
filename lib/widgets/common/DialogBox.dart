@@ -1,0 +1,104 @@
+import 'package:dynamic_theme/helpers/colors.dart';
+import 'package:dynamic_theme/helpers/textThemeStyle.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class DialogBox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Center(
+        child: Container(
+          width: 280.0,
+          padding: EdgeInsets.only(top: 24.0),
+          decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor.withOpacity(0.98),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0)
+                    .copyWith(bottom: 10.0),
+                child: Text(
+                  '提示',
+                  style: TextThemeStyle.of(context).fontBold17,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0)
+                    .copyWith(bottom: 16.0),
+                child: Text(
+                  '确认选择精品小班学习吗，选择之后不可更改',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextThemeStyle.of(context).font16.copyWith(height: 1.4),
+                ),
+              ),
+              BottomButton(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  final bool cancelButton;
+  const BottomButton({this.cancelButton = false});
+
+  Widget _buttonWidget(BuildContext context) {
+    if (cancelButton) {
+      Row(
+        children: <Widget>[
+          Expanded(
+            child: CupertinoButton(
+              padding: EdgeInsets.all(0.0),
+              minSize: 52.0,
+              child: Text('取消'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+          Container(
+            width: 0.5,
+            height: 52.0,
+            color: ColorTheme.of(context).borderColor,
+          ),
+          Expanded(
+            child: CupertinoButton(
+              padding: EdgeInsets.all(0.0),
+              minSize: 52.0,
+              child: Text('确定'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ],
+      );
+    }
+    return CupertinoButton(
+      padding: EdgeInsets.all(0.0),
+      child: Center(child: Text('确定')),
+      onPressed: () => Navigator.of(context).pop(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 52.0,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: ColorTheme.of(context).borderColor,
+            width: 0.5,
+          ),
+        ),
+      ),
+      child: _buttonWidget(context),
+    );
+  }
+}

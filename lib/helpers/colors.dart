@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class CustomColors {
+class ColorTheme {
   /// 边框颜色
   final Color borderColor;
   final Color cubeColor;
@@ -10,7 +10,7 @@ class CustomColors {
   final Color colorF3F3F6;
   final Color color202326;
 
-  CustomColors({
+  const ColorTheme({
     this.borderColor,
     this.cubeColor,
     this.activeNavColor,
@@ -19,10 +19,10 @@ class CustomColors {
     this.color202326,
   });
 
-  static CustomColors of(BuildContext context) {
+  static ColorTheme of(BuildContext context) {
 //  暗黑色
     if (Theme.of(context).brightness == Brightness.dark) {
-      return CustomColors(
+      return const ColorTheme(
         borderColor: Color(0xfff161617),
         cubeColor: Colors.white70,
         activeNavColor: Colors.brown,
@@ -32,7 +32,7 @@ class CustomColors {
       );
     }
 //    明亮色
-    return CustomColors(
+    return ColorTheme(
       borderColor: Color(0xffdedede),
       cubeColor: Colors.black38,
       activeNavColor: Colors.amberAccent,

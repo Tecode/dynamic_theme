@@ -1,4 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+
+// 底部弹出窗
 
 Route bottomPopRouter(Widget widget) {
   return PageRouteBuilder(
@@ -15,5 +17,23 @@ Route bottomPopRouter(Widget widget) {
         child: child,
       );
     },
+  );
+}
+
+// AlertBox
+Route showDialogRouter(Widget widget, {Color barrierColor}) {
+  return PageRouteBuilder(
+    opaque: false,
+    barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
+    transitionDuration: Duration(milliseconds: 120),
+    pageBuilder: (context, animation, secondaryAnimation) => widget,
+    transitionsBuilder: (_, Animation<double> animation, __, Widget child) =>
+        FadeTransition(
+      opacity: animation,
+      child: ScaleTransition(
+        scale: Tween<double>(begin: 0.8, end: 1.0).animate(animation),
+        child: child,
+      ),
+    ),
   );
 }
