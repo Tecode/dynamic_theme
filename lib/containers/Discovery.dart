@@ -13,6 +13,7 @@ class Discovery extends StatelessWidget {
       child: ScrollConfiguration(
         behavior: CustomBehavior(),
         child: ListView.builder(
+          controller: PrimaryScrollController.of(context),
           itemCount: 600,
           itemBuilder: (BuildContext context, int index) {
             return Container(

@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   EasyRefreshController _controller;
-  // ScrollController _scrollController;
+  ScrollController _scrollController;
   int _count = 20;
   // 是否开启加载
   bool _enableLoad = true;
@@ -30,6 +30,7 @@ class _HomeState extends State<Home> {
     //   'from': Entrance.routeName,
     //   'to': NewView.routeName,
     // });
+//    _controller.callRefresh();
     Navigator.of(context)
         .pushNamed(
           NewView.routeName,
@@ -44,11 +45,18 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _controller = EasyRefreshController();
-    // _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+    _scrollController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    _scrollController = PrimaryScrollController.of(context);
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: true,
@@ -73,7 +81,7 @@ class _HomeState extends State<Home> {
             enableControlFinishRefresh: true,
             enableControlFinishLoad: true,
             controller: _controller,
-//            scrollController: _scrollController,
+            scrollController: _scrollController,
             header: ClassicalHeader(
               bgColor: Theme.of(context).backgroundColor,
               infoColor: Colors.black87,
