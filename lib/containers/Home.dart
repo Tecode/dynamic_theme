@@ -1,6 +1,8 @@
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/customBehavior.dart';
+import 'package:dynamic_theme/widgets/common/RefreshFooter.dart';
+import 'package:dynamic_theme/widgets/common/RefreshHeader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -82,30 +84,13 @@ class _HomeState extends State<Home> {
             enableControlFinishLoad: true,
             controller: _controller,
             scrollController: _scrollController,
-            header: ClassicalHeader(
-              bgColor: Theme.of(context).backgroundColor,
-              infoColor: Colors.black87,
-              float: false,
-              enableHapticFeedback: false,
-              refreshText: '拉动刷新',
-              refreshReadyText: '释放刷新',
-              refreshingText: '数据加载中',
-              refreshedText: '更新完成',
-              refreshFailedText: '刷新失败',
-              noMoreText: '没有更多了',
-              infoText: '%T 更新了消息',
+            header: RefreshHeader(
+              refreshedText: "小暑金将伏，微凉麦正秋",
+              refreshingText: "小暑金将伏，微凉麦正秋",
+              refreshReadyText: "小暑金将伏，微凉麦正秋",
+              refreshText: "小暑金将伏，微凉麦正秋",
             ),
-            footer: ClassicalFooter(
-              enableInfiniteLoad: true,
-              enableHapticFeedback: false,
-              loadText: '拉动加载',
-              loadReadyText: '准备加载',
-              loadingText: '正在加载',
-              loadedText: '加载完成',
-              loadFailedText: '加载失败',
-              noMoreText: '没有更多了',
-              infoText: '%T 更新',
-            ),
+            footer: RefreshFooter(),
             onRefresh: _enableRefresh
                 ? () async {
                     await Future.delayed(Duration(seconds: 2), () {

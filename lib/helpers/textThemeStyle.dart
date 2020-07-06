@@ -12,12 +12,14 @@ class TextThemeStyle with Diagnosticable {
   final TextStyle fontBold17;
   final TextStyle font16;
   final TextStyle fontBold16;
+  final TextStyle font14;
 
   const TextThemeStyle({
     this.font17,
     this.fontBold17,
     this.font16,
     this.fontBold16,
+    this.font14,
   });
 
   static TextThemeStyle of(BuildContext context) {
@@ -54,6 +56,12 @@ class TextThemeStyle with Diagnosticable {
         fontFamily: _fontFamily,
         height: _lineHeight,
         fontWeight: _fontWeight,
+      ),
+      font14: TextStyle(
+        fontSize: 14.0,
+        color: ColorTheme.of(context).color202326,
+        fontFamily: _fontFamily,
+        height: _lineHeight,
       ),
     );
   }
