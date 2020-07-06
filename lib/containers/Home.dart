@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/customBehavior.dart';
@@ -61,7 +63,7 @@ class _HomeState extends State<Home> {
     _scrollController = PrimaryScrollController.of(context);
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        transitionBetweenRoutes: true,
+        transitionBetweenRoutes: Platform.isIOS,
         trailing: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => _launchRouter(context),

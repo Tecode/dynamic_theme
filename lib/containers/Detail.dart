@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dynamic_theme/containers/NewView.dart';
@@ -34,7 +37,21 @@ class Detail extends StatelessWidget {
     final Detail arguments = ModalRoute.of(context).settings.arguments;
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        padding: EdgeInsetsDirectional.only(start: 0.0, bottom: 8.0),
+        transitionBetweenRoutes: Platform.isIOS,
         middle: Text(arguments.value),
+        leading: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => Navigator.pop(context, '数据传参'),
+          child: Container(
+            width: 44.0,
+            padding: EdgeInsets.only(left: 10.0, right: 20.0),
+            child: Image.asset(
+              'assets/icons/ic_arrow_left_gray.png',
+              color: ColorTheme.of(context).color202326,
+            ),
+          ),
+        ),
       ),
       child: SafeArea(
         child: Material(

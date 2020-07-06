@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dynamic_theme/containers/Detail.dart';
 import 'package:dynamic_theme/containers/app.dart';
+import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,19 +46,24 @@ class _NewViewState extends State<NewView> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-   final NewView param = ModalRoute.of(context).settings.arguments;
+    final NewView param = ModalRoute.of(context).settings.arguments;
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        padding: EdgeInsetsDirectional.only(start: 0.0, bottom: 8.0),
+        transitionBetweenRoutes: Platform.isIOS,
         middle: Text('NewList-${param.content}'),
-        leading: CupertinoButton(
-          padding: EdgeInsets.zero,
-          child: Text('返回'),
-          onPressed: () {
-            // The demo is on the root navigator.
-//            Navigator.of(context, rootNavigator: true).maybePop();
-            Navigator.pop(context, '数据传参');
-          },
+        leading: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => Navigator.pop(context, '数据传参'),
+          child: Container(
+            width: 44.0,
+            padding: EdgeInsets.only(left: 10.0, right: 20.0),
+            child: Image.asset(
+              'assets/icons/ic_arrow_left_gray.png',
+              color: ColorTheme.of(context).color202326,
+            ),
+          ),
         ),
       ),
       child: Material(

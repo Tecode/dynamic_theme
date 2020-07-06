@@ -419,7 +419,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
             : Text(
                 _showText,
                 style: TextThemeStyle.of(context)
-                    .font14
+                    .font12
                     .copyWith(color: ColorTheme.of(context).cubeColor),
               ),
       ),
