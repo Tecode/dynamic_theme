@@ -28,7 +28,7 @@ class Entrance extends StatefulWidget {
       {'value': '消息', 'key': 'HOME'},
       {'value': '发现', 'key': 'DISCOVERY'},
       {'value': '订单', 'key': 'ORDER'},
-      {'value': '我的', 'key': 'MINE'},
+      {'value': '功能', 'key': 'MINE'},
     ];
   }
 

@@ -44,7 +44,7 @@ class Detail extends StatelessWidget {
           behavior: HitTestBehavior.opaque,
           onTap: () => Navigator.pop(context, '数据传参'),
           child: Container(
-            width: 44.0,
+            width: 42.0,
             padding: EdgeInsets.only(left: 10.0, right: 20.0),
             child: Image.asset(
               'assets/icons/ic_arrow_left_gray.png',
