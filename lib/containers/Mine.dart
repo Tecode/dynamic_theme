@@ -48,6 +48,7 @@ class _MineState extends State<Mine> {
                     'Flutter: Dynamic Theming | Change Theme At Runtime',
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
+                  ButtonColor(),
                   FlatButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
@@ -79,6 +80,22 @@ class _MineState extends State<Mine> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ButtonColor extends StatefulWidget {
+  @override
+  _ButtonColorState createState() => _ButtonColorState();
+}
+
+class _ButtonColorState extends State<ButtonColor> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 60.0,
+      height: 60.0,
+      color: Colors.amber,
     );
   }
 }
