@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dynamic_theme/containers/Discovery.dart';
 import 'package:dynamic_theme/containers/Home.dart';
 import 'package:dynamic_theme/containers/Mine.dart';
+import 'package:dynamic_theme/containers/Order.dart';
 import 'package:dynamic_theme/helpers/helpers.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/widgets/Entrance/NavigationBar.dart';
@@ -101,7 +102,7 @@ class _EntranceState extends State<Entrance> {
               children: <Widget>[
                 Home(),
                 Discovery(),
-                Discovery(),
+                Order(),
                 Mine(
                   options: widget.options,
                   handleOptionsChanged: widget.handleOptionsChanged,

@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 // 底部弹出窗
 
-Route bottomPopRouter(Widget widget) {
+Route bottomPopRouter(
+  Widget widget, {
+  opaque: false,
+}) {
   return PageRouteBuilder(
+    opaque: opaque,
+    barrierColor: null,
     pageBuilder: (context, animation, secondaryAnimation) => widget,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(0.0, 1.0);

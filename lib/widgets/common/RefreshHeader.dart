@@ -429,7 +429,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
         child: _showText == null
             ? SizedBox()
             : Text(
-                _showText + '${min(_pulledExtent, widget.extent)}',
+                _showText,
                 style: TextThemeStyle.of(context)
                     .font12
                     .copyWith(color: ColorTheme.of(context).cubeColor),

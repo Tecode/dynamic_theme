@@ -1,5 +1,6 @@
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/helpers/options.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Mine extends StatefulWidget {
