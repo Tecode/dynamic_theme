@@ -24,7 +24,8 @@ class Discovery extends StatefulWidget {
   _DiscoveryState createState() => _DiscoveryState();
 }
 
-class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixin {
+class _DiscoveryState extends State<Discovery>
+    with AutomaticKeepAliveClientMixin {
   EasyRefreshController _controller;
 
   ScrollController _scrollController;
@@ -177,12 +178,10 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                               }),
                             ),
                             behavior: HitTestBehavior.opaque,
-                            child: CachedNetworkImage(
-                              progressIndicatorBuilder:
-                                  (context, url, progress) => Container(
-                                color: ColorTheme.of(context).colorF3F3F6,
-                              ),
-                              imageUrl: _data.url,
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/images/loading.gif',
+                              image: _data.url,
+                              imageCacheWidth: 80,
                               fit: BoxFit.cover,
                             ),
                           ),
