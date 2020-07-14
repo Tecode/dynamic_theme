@@ -51,31 +51,32 @@ final Animatable<Offset> _kMiddleLeftTween = Tween<Offset>(
 );
 
 // Offset from offscreen below to fully on screen.
-final Animatable<Offset> _kBottomUpTween = Tween<Offset>(
-  begin: const Offset(0.0, 1.0),
-  end: Offset.zero,
-);
+//final Animatable<Offset> _kBottomUpTween = Tween<Offset>(
+//  begin: const Offset(0.0, 1.0),
+//  end: Offset.zero,
+//);
 
 // Custom decoration from no shadow to page shadow mimicking iOS page
 // transitions using gradients.
-final DecorationTween _kGradientShadowTween = DecorationTween(
-  begin: _CupertinoEdgeShadowDecoration.none, // No decoration initially.
-  end: const _CupertinoEdgeShadowDecoration(
-    edgeGradient: LinearGradient(
-      // Spans 5% of the page.
-      begin: AlignmentDirectional(0.90, 0.0),
-      end: AlignmentDirectional.centerEnd,
-      // Eyeballed gradient used to mimic a drop shadow on the start side only.
-      colors: <Color>[
-        Color(0x00000000),
-        Color(0x04000000),
-        Color(0x12000000),
-        Color(0x38000000),
-      ],
-      stops: <double>[0.0, 0.3, 0.6, 1.0],
-    ),
-  ),
-);
+// 投影
+//final DecorationTween _kGradientShadowTween = DecorationTween(
+//  begin: _CupertinoEdgeShadowDecoration.none, // No decoration initially.
+//  end: const _CupertinoEdgeShadowDecoration(
+//    edgeGradient: LinearGradient(
+//      // Spans 5% of the page.
+//      begin: AlignmentDirectional(0.90, 0.0),
+//      end: AlignmentDirectional.centerEnd,
+//      // Eyeballed gradient used to mimic a drop shadow on the start side only.
+//      colors: <Color>[
+//        Color(0x00000000),
+//        Color(0x04000000),
+//        Color(0x12000000),
+//        Color(0x38000000),
+//      ],
+//      stops: <double>[0.0, 0.3, 0.6, 1.0],
+//    ),
+//  ),
+//);
 
 /// A modal route that replaces the entire screen with an iOS transition.
 ///
@@ -378,20 +379,20 @@ class CupertinoPageTransition extends StatelessWidget {
                     reverseCurve: Curves.easeInToLinear,
                   ))
             .drive(_kMiddleLeftTween),
-        _primaryShadowAnimation = (linearTransition
-                ? primaryRouteAnimation
-                : CurvedAnimation(
-                    parent: primaryRouteAnimation,
-                    curve: Curves.linearToEaseOut,
-                  ))
-            .drive(_kGradientShadowTween),
+//        _primaryShadowAnimation = (linearTransition
+//                ? primaryRouteAnimation
+//                : CurvedAnimation(
+//                    parent: primaryRouteAnimation,
+//                    curve: Curves.linearToEaseOut,
+//                  ))
+//            .drive(_kGradientShadowTween),
         super(key: key);
 
   // When this page is coming in to cover another page.
   final Animation<Offset> _primaryPositionAnimation;
   // When this page is becoming covered by another page.
   final Animation<Offset> _secondaryPositionAnimation;
-  final Animation<Decoration> _primaryShadowAnimation;
+//  final Animation<Decoration> _primaryShadowAnimation;
 
   /// The widget below this widget in the tree.
   final Widget child;
@@ -656,8 +657,8 @@ class _CupertinoEdgeShadowDecoration extends Decoration {
 
   // An edge shadow decoration where the shadow is null. This is used
   // for interpolating from no shadow.
-  static const _CupertinoEdgeShadowDecoration none =
-      _CupertinoEdgeShadowDecoration();
+//  static const _CupertinoEdgeShadowDecoration none =
+//      _CupertinoEdgeShadowDecoration();
 
   // A gradient to draw to the left of the box being decorated.
   // Alignments are relative to the original box translated one box
@@ -926,7 +927,6 @@ Widget _buildCupertinoDialogTransitions(
 /// iOS-style entrance and exit animations, modal barrier color, and modal
 /// barrier behavior (the dialog is not dismissible with a tap on the barrier).
 ///
-/// This function takes a `builder` which typically builds a [CupertinoDialog]
 /// or [CupertinoAlertDialog] widget. Content below the dialog is dimmed with a
 /// [ModalBarrier]. The widget returned by the `builder` does not share a
 /// context with the location that `showCupertinoDialog` is originally called
@@ -951,7 +951,6 @@ Widget _buildCupertinoDialogTransitions(
 ///
 /// See also:
 ///
-///  * [CupertinoDialog], an iOS-style dialog.
 ///  * [CupertinoAlertDialog], an iOS-style alert dialog.
 ///  * [showDialog], which displays a Material-style dialog.
 ///  * [showGeneralDialog], which allows for customization of the dialog popup.

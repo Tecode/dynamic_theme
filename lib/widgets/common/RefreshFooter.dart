@@ -204,23 +204,9 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
     return Icons.done;
   }
 
-  // 更新时间
-  DateTime _dateTime;
-  // 获取更多信息
-//  String get _infoText {
-//    if (widget.loadState == LoadMode.loaded) {
-//      _dateTime = DateTime.now();
-//    }
-//    String fillChar = _dateTime.minute < 10 ? "0" : "";
-//    return widget.classicalFooter.infoText
-//        .replaceAll("%T", "${_dateTime.hour}:$fillChar${_dateTime.minute}");
-//  }
-
   @override
   void initState() {
     super.initState();
-    // 初始化时间
-    _dateTime = DateTime.now();
     // 初始化动画
     _readyController = new AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);

@@ -174,7 +174,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
 //  获取下拉距离
   RefreshMode get _refreshState => widget.linkNotifier.refreshState;
   double get _pulledExtent => widget.linkNotifier.pulledExtent;
-  double get _indicatorExtent => widget.linkNotifier.refreshIndicatorExtent;
+//  double get _indicatorExtent => widget.linkNotifier.refreshIndicatorExtent;
   // 是否到达触发刷新距离
   bool _overTriggerDistance = false;
 

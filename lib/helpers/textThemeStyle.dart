@@ -25,8 +25,8 @@ class TextThemeStyle with Diagnosticable {
   });
 
   static TextThemeStyle of(BuildContext context) {
-    final String _fontFamilyDisplay =
-        Platform.isIOS ? '.SF UI Display' : 'Roboto';
+//    final String _fontFamilyDisplay =
+//        Platform.isIOS ? '.SF UI Display' : 'Roboto';
     final String _fontFamily = Platform.isIOS ? '.SF UI Text' : 'Roboto';
     final FontWeight _fontWeight =
         Platform.isIOS ? FontWeight.w500 : FontWeight.w600;

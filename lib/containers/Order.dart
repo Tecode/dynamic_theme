@@ -13,6 +13,8 @@ class _OrderState extends State<Order> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        heroTag: 'order',
+        transitionBetweenRoutes: false,
         middle: Text('订单'),
       ),
       child: Padding(
