@@ -48,9 +48,9 @@ class Options {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(other) {
     if (runtimeType != other.runtimeType) return false;
-    final Options typedOther = other;
+    final typedOther = other;
     return themeMode == typedOther.themeMode &&
         textScaleFactor == typedOther.textScaleFactor &&
         textDirection == typedOther.textDirection &&
@@ -83,4 +83,3 @@ class Options {
 //const double _kItemHeight = 48.0;
 //const EdgeInsetsDirectional _kItemPadding =
 //    EdgeInsetsDirectional.only(start: 56.0);
-

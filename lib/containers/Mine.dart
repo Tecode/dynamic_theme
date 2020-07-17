@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class Mine extends StatefulWidget {
   final Options options;
   final Function handleOptionsChanged;
-  Mine({
+  const Mine({
     this.handleOptionsChanged,
     this.options,
   });
@@ -34,8 +34,7 @@ class _MineState extends State<Mine> {
         child: Center(
           child: Builder(
             builder: (BuildContext context) {
-              final bool isDark =
-                  Theme.of(context).brightness == Brightness.dark;
+              final isDark = Theme.of(context).brightness == Brightness.dark;
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,

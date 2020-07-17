@@ -17,21 +17,19 @@ enum UniLinksType { string, uri }
 class Entrance extends StatefulWidget {
   final Options options;
   final Function handleOptionsChanged;
-  Entrance({
+  const Entrance({
     this.handleOptionsChanged,
     this.options,
   });
   static String routeName = '/';
 
 //  路由页面
-  static List<Map<String, dynamic>> get navList {
-    return [
+  static List<Map<String, dynamic>> get navList => [
       {'value': '消息', 'key': 'HOME'},
       {'value': '发现', 'key': 'DISCOVERY'},
       {'value': '订单', 'key': 'ORDER'},
       {'value': '功能', 'key': 'MINE'},
     ];
-  }
 
   @override
   _EntranceState createState() => _EntranceState();
@@ -39,7 +37,7 @@ class Entrance extends StatefulWidget {
 
 class _EntranceState extends State<Entrance> {
   int activeIndex = 0;
-  UniLinksType _type = UniLinksType.string;
+  final UniLinksType _type = UniLinksType.string;
   StreamSubscription _sub;
 
   @override
@@ -50,6 +48,7 @@ class _EntranceState extends State<Entrance> {
   }
 
   ///  初始化Scheme只使用了String类型的路由跳转
+  // ignore: comment_references
   ///  所以只有一个有需求可以使用[initPlatformStateForUriUniLinks]
   Future<void> initPlatformState() async {
     if (_type == UniLinksType.string) {
@@ -92,8 +91,7 @@ class _EntranceState extends State<Entrance> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Material(
+  Widget build(BuildContext context) => Material(
       child: Column(
         children: <Widget>[
           Expanded(
@@ -111,7 +109,7 @@ class _EntranceState extends State<Entrance> {
             ),
           ),
           NavigationBar(
-            activeKey: Entrance.navList[activeIndex]['key'],
+            activeKey: Entrance.navList[activeIndex]['key'] as String,
             onChange: (int index) => setState(() {
               activeIndex = index;
             }),
@@ -119,5 +117,4 @@ class _EntranceState extends State<Entrance> {
         ],
       ),
     );
-  }
 }

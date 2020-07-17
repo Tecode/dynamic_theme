@@ -5,7 +5,7 @@ import 'package:dynamic_theme/router/routerUnit.dart';
 import 'package:flutter/widgets.dart';
 
 List<RouterUnit> _buildRouter() {
-  final List<RouterUnit> routerList = <RouterUnit>[
+  final routerList = <RouterUnit>[
     RouterUnit(
       title: '首页',
       routeName: NewView.routeName,

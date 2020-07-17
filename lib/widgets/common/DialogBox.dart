@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 
 class DialogBox extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Material(
+  Widget build(BuildContext context) => Material(
       color: Colors.transparent,
       child: Center(
         child: Container(
@@ -43,7 +42,6 @@ class DialogBox extends StatelessWidget {
         ),
       ),
     );
-  }
 }
 
 class BottomButton extends StatelessWidget {

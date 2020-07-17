@@ -4,27 +4,23 @@ import 'package:flutter/material.dart';
 final ThemeData lightTheme = _buildLightTheme();
 final ThemeData darkTheme = _buildDarkTheme();
 
-TextTheme _buildTextTheme(TextTheme base) {
-  return base.copyWith(
+TextTheme _buildTextTheme(TextTheme base) => base.copyWith(
     bodyText1: base.bodyText1.copyWith(
       fontFamily: 'GoogleSans',
     ),
   );
-}
 
 ThemeData _buildDarkTheme() {
-  const Color primaryColor = Color(0xFF0175c2);
-  const Color secondaryColor = Color(0xFF13B9FD);
-  final ColorScheme colorScheme = const ColorScheme.dark().copyWith(
+  const primaryColor = Color(0xFF0175c2);
+  const secondaryColor = Color(0xFF13B9FD);
+  final colorScheme = const ColorScheme.dark().copyWith(
     primary: primaryColor,
     secondary: secondaryColor,
   );
-  final ThemeData base = ThemeData(
-    pageTransitionsTheme: PageTransitionsTheme(
-        builders: {
-          TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
-        }
-    ),
+  final base = ThemeData(
+    pageTransitionsTheme: PageTransitionsTheme(builders: {
+      TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+    }),
     brightness: Brightness.dark,
     accentColorBrightness: Brightness.dark,
     primaryColor: primaryColor,
@@ -51,18 +47,16 @@ ThemeData _buildDarkTheme() {
 }
 
 ThemeData _buildLightTheme() {
-  const Color primaryColor = Color(0xFF0175c2);
-  const Color secondaryColor = Color(0xFF13B9FD);
-  final ColorScheme colorScheme = const ColorScheme.light().copyWith(
+  const primaryColor = Color(0xFF0175c2);
+  const secondaryColor = Color(0xFF13B9FD);
+  final colorScheme = const ColorScheme.light().copyWith(
     primary: primaryColor,
     secondary: secondaryColor,
   );
-  final ThemeData base = ThemeData(
-    pageTransitionsTheme: PageTransitionsTheme(
-        builders: {
-          TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
-        }
-    ),
+  final base = ThemeData(
+    pageTransitionsTheme: PageTransitionsTheme(builders: {
+      TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+    }),
     brightness: Brightness.light,
     accentColorBrightness: Brightness.dark,
     colorScheme: colorScheme,

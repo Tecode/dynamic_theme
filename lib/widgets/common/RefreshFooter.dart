@@ -54,24 +54,24 @@ class RefreshFooter extends Footer {
     enableHapticFeedback = false,
     this.key,
     this.alignment,
-    this.loadText: "拉动加载更多",
-    this.loadReadyText: "释放加载",
-    this.loadingText: "正在加载中",
-    this.loadedText: "加载完成",
-    this.loadFailedText: "加载失败",
-    this.noMoreText: "看看其它的吧，这里已经没有了",
-    this.showInfo: true,
-    this.infoText: "Updated at %T",
-    this.bgColor: Colors.transparent,
-    this.textColor: Colors.black,
-    this.infoColor: Colors.teal,
+    this.loadText = '拉动加载更多',
+    this.loadReadyText = '释放加载',
+    this.loadingText = '正在加载中',
+    this.loadedText = '加载完成',
+    this.loadFailedText = '加载失败',
+    this.noMoreText = '看看其它的吧，这里已经没有了',
+    this.showInfo = true,
+    this.infoText = 'Updated at %T',
+    this.bgColor = Colors.transparent,
+    this.textColor = Colors.black,
+    this.infoColor = Colors.teal,
   }) : super(
-          extent: extent,
-          triggerDistance: triggerDistance,
-          float: float,
-          completeDuration: completeDuration,
-          enableInfiniteLoad: enableInfiniteLoad,
-          enableHapticFeedback: enableHapticFeedback,
+          extent: extent as double,
+          triggerDistance: triggerDistance as double,
+          float: float as bool,
+          completeDuration: completeDuration as Duration,
+          enableInfiniteLoad: enableInfiniteLoad as bool,
+          enableHapticFeedback: enableHapticFeedback as bool,
         );
 
   @override
@@ -208,9 +208,9 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   void initState() {
     super.initState();
     // 初始化动画
-    _readyController = new AnimationController(
+    _readyController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
-    _readyAnimation = new Tween(begin: 0.5, end: 1.0).animate(_readyController)
+    _readyAnimation = Tween(begin: 0.5, end: 1.0).animate(_readyController)
       ..addListener(() {
         setState(() {
           if (_readyAnimation.status != AnimationStatus.dismissed) {
@@ -223,17 +223,16 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
         _readyController.reset();
       }
     });
-    _restoreController = new AnimationController(
+    _restoreController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
-    _restoreAnimation =
-        new Tween(begin: 1.0, end: 0.5).animate(_restoreController)
-          ..addListener(() {
-            setState(() {
-              if (_restoreAnimation.status != AnimationStatus.dismissed) {
-                _iconRotationValue = _restoreAnimation.value;
-              }
-            });
-          });
+    _restoreAnimation = Tween(begin: 1.0, end: 0.5).animate(_restoreController)
+      ..addListener(() {
+        setState(() {
+          if (_restoreAnimation.status != AnimationStatus.dismissed) {
+            _iconRotationValue = _restoreAnimation.value;
+          }
+        });
+      });
     _restoreAnimation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _restoreController.reset();
@@ -251,10 +250,10 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   @override
   Widget build(BuildContext context) {
     // 是否为垂直方向
-    bool isVertical = widget.axisDirection == AxisDirection.down ||
+    var isVertical = widget.axisDirection == AxisDirection.down ||
         widget.axisDirection == AxisDirection.up;
     // 是否反向
-    bool isReverse = widget.axisDirection == AxisDirection.up ||
+    var isReverse = widget.axisDirection == AxisDirection.up ||
         widget.axisDirection == AxisDirection.left;
     // 是否到达触发加载距离
     overTriggerDistance = widget.loadState != LoadMode.inactive &&
@@ -268,7 +267,7 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
           left: isVertical ? 0.0 : !isReverse ? 0.0 : null,
           right: isVertical ? 0.0 : isReverse ? 0.0 : null,
           child: Container(
-            alignment: widget.classicalFooter.alignment ?? isVertical
+            alignment: (widget.classicalFooter.alignment ?? isVertical) as bool
                 ? !isReverse ? Alignment.topCenter : Alignment.bottomCenter
                 : isReverse ? Alignment.centerRight : Alignment.centerLeft,
             width: !isVertical
@@ -304,80 +303,78 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   }
 
   // 构建显示内容
-  List<Widget> _buildContent(bool isVertical, bool isReverse) {
-    return isVertical
-        ? <Widget>[
-            Container(
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(
-                right: 10.0,
-              ),
-              child: (widget.loadState == LoadMode.load ||
-                          widget.loadState == LoadMode.armed) &&
-                      !widget.noMore
-                  ? SizedBox(
-                      width: 16.0,
-                      height: 16.0,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 4.0,
-                        backgroundColor: Color(0xffff4b6e),
-                        valueColor: AlwaysStoppedAnimation(Color(0xff0096fa)),
-                      ),
-                    )
-                  : widget.loadState == LoadMode.loaded ||
-                          widget.loadState == LoadMode.done ||
-                          (widget.enableInfiniteLoad &&
-                              widget.loadState != LoadMode.loaded) ||
-                          widget.noMore
-                      ? SizedBox()
-                      : Transform.rotate(
-                          child: Icon(
-                            !isReverse
-                                ? Icons.arrow_upward
-                                : Icons.arrow_downward,
-                            color: widget.classicalFooter.textColor,
-                          ),
-                          angle: 2 * pi * _iconRotationValue,
-                        ),
+  List<Widget> _buildContent(bool isVertical, bool isReverse) => isVertical
+      ? <Widget>[
+          Container(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(
+              right: 10.0,
             ),
-            Text(
-              _showText,
-              style: TextThemeStyle.of(context)
-                  .font12
-                  .copyWith(color: ColorTheme.of(context).cubeColor),
-            ),
-          ]
-        : <Widget>[
-            Container(
-              child: widget.loadState == LoadMode.load ||
-                      widget.loadState == LoadMode.armed
-                  ? Container(
-                      width: 20.0,
-                      height: 20.0,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.0,
-                        valueColor: AlwaysStoppedAnimation(
-                          widget.classicalFooter.textColor,
-                        ),
-                      ),
-                    )
-                  : widget.loadState == LoadMode.loaded ||
-                          widget.loadState == LoadMode.done ||
-                          (widget.enableInfiniteLoad &&
-                              widget.loadState != LoadMode.loaded) ||
-                          widget.noMore
-                      ? Icon(
-                          _finishedIcon,
+            child: (widget.loadState == LoadMode.load ||
+                        widget.loadState == LoadMode.armed) &&
+                    !widget.noMore
+                ? SizedBox(
+                    width: 16.0,
+                    height: 16.0,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 4.0,
+                      backgroundColor: Color(0xffff4b6e),
+                      valueColor: AlwaysStoppedAnimation(Color(0xff0096fa)),
+                    ),
+                  )
+                : widget.loadState == LoadMode.loaded ||
+                        widget.loadState == LoadMode.done ||
+                        (widget.enableInfiniteLoad &&
+                            widget.loadState != LoadMode.loaded) ||
+                        widget.noMore
+                    ? SizedBox()
+                    : Transform.rotate(
+                        child: Icon(
+                          !isReverse
+                              ? Icons.arrow_upward
+                              : Icons.arrow_downward,
                           color: widget.classicalFooter.textColor,
-                        )
-                      : Transform.rotate(
-                          child: Icon(
-                            !isReverse ? Icons.arrow_back : Icons.arrow_forward,
-                            color: widget.classicalFooter.textColor,
-                          ),
-                          angle: 2 * pi * _iconRotationValue,
                         ),
-            ),
-          ];
-  }
+                        angle: 2 * pi * _iconRotationValue,
+                      ),
+          ),
+          Text(
+            _showText,
+            style: TextThemeStyle.of(context)
+                .font12
+                .copyWith(color: ColorTheme.of(context).cubeColor),
+          ),
+        ]
+      : <Widget>[
+          Container(
+            child: widget.loadState == LoadMode.load ||
+                    widget.loadState == LoadMode.armed
+                ? Container(
+                    width: 20.0,
+                    height: 20.0,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.0,
+                      valueColor: AlwaysStoppedAnimation(
+                        widget.classicalFooter.textColor,
+                      ),
+                    ),
+                  )
+                : widget.loadState == LoadMode.loaded ||
+                        widget.loadState == LoadMode.done ||
+                        (widget.enableInfiniteLoad &&
+                            widget.loadState != LoadMode.loaded) ||
+                        widget.noMore
+                    ? Icon(
+                        _finishedIcon,
+                        color: widget.classicalFooter.textColor,
+                      )
+                    : Transform.rotate(
+                        child: Icon(
+                          !isReverse ? Icons.arrow_back : Icons.arrow_forward,
+                          color: widget.classicalFooter.textColor,
+                        ),
+                        angle: 2 * pi * _iconRotationValue,
+                      ),
+          ),
+        ];
 }

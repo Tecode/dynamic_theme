@@ -20,13 +20,13 @@ class _HomeState extends State<Home> {
   ScrollController _scrollController;
   int _count = 20;
   // 是否开启加载
-  bool _enableLoad = true;
+  final bool _enableLoad = true;
 
   // 控制结束
-  bool _enableControlFinish = false;
+  final bool _enableControlFinish = false;
 
   // 是否开启刷新
-  bool _enableRefresh = true;
+  final bool _enableRefresh = true;
 
   //  路由跳转
   void _launchRouter(BuildContext context) {
@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
             content: '路由传参',
           ),
         )
-        .then((value) => print(value));
+        .then(print);
   }
 
   @override
@@ -87,10 +87,10 @@ class _HomeState extends State<Home> {
             controller: _controller,
             scrollController: _scrollController,
             header: RefreshHeader(
-              refreshedText: "小暑金将伏，微凉麦正秋",
-              refreshingText: "小暑金将伏，微凉麦正秋",
-              refreshReadyText: "小暑金将伏，微凉麦正秋",
-              refreshText: "小暑金将伏，微凉麦正秋",
+              refreshedText: '小暑金将伏，微凉麦正秋',
+              refreshingText: '小暑金将伏，微凉麦正秋',
+              refreshReadyText: '小暑金将伏，微凉麦正秋',
+              refreshText: '小暑金将伏，微凉麦正秋',
             ),
             footer: RefreshFooter(),
             onRefresh: _enableRefresh

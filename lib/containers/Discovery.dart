@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dynamic_theme/containers/DiscoveryDetail.dart';
-import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:dynamic_theme/widgets/common/RefreshFooter.dart';
 import 'package:dynamic_theme/widgets/common/RefreshHeader.dart';
@@ -30,15 +28,15 @@ class _DiscoveryState extends State<Discovery>
 
   ScrollController _scrollController;
 
-  int _count = 100;
+  final int _count = 100;
   int _index = 1;
   int totalElements = 0;
 
-  bool _enableLoad = true;
+  final bool _enableLoad = true;
 
-  bool _enableControlFinish = false;
+  final bool _enableControlFinish = false;
 
-  bool _enableRefresh = true;
+  final bool _enableRefresh = true;
 
   @override
   bool get wantKeepAlive => true;
@@ -54,20 +52,20 @@ class _DiscoveryState extends State<Discovery>
     ),
   ];
 
-  List<NetworkSource> parseJson(List data) => (data
+  List<NetworkSource> parseJson(List data) => data
       .map((itemData) => NetworkSource(
             url: itemData['img_url'] as String,
             width: itemData['width'] as int,
             height: itemData['height'] as int,
             imgId: itemData['img_id'] as int,
           ))
-      .toList());
+      .toList();
 // 分页
   void _pagination() {
     rootBundle.loadString('assets/network_image.json').then((value) {
       var _json = json.decode(value);
-      List _contentList =
-          _json['content'].sublist((_index - 1) * _count, _index * _count);
+      var _contentList = _json['content']
+          .sublist((_index - 1) * _count, _index * _count) as List;
       setState(() {
         _imageList = [..._imageList, ...parseJson(_contentList)];
         totalElements = _json['totalElements'] as int;
@@ -84,6 +82,7 @@ class _DiscoveryState extends State<Discovery>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: false,
@@ -103,10 +102,10 @@ class _DiscoveryState extends State<Discovery>
                 controller: _controller,
                 scrollController: _scrollController,
                 header: RefreshHeader(
-                  refreshedText: "小暑金将伏，微凉麦正秋",
-                  refreshingText: "小暑金将伏，微凉麦正秋",
-                  refreshReadyText: "小暑金将伏，微凉麦正秋",
-                  refreshText: "小暑金将伏，微凉麦正秋",
+                  refreshedText: '小暑金将伏，微凉麦正秋',
+                  refreshingText: '小暑金将伏，微凉麦正秋',
+                  refreshReadyText: '小暑金将伏，微凉麦正秋',
+                  refreshText: '小暑金将伏，微凉麦正秋',
                 ),
                 footer: RefreshFooter(),
                 onRefresh: _enableRefresh
@@ -148,7 +147,7 @@ class _DiscoveryState extends State<Discovery>
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        final NetworkSource _data = _imageList[index];
+                        final  _data = _imageList[index];
                         return Hero(
                           tag: '$index TAG${_data.imgId}',
                           child: GestureDetector(
@@ -158,22 +157,20 @@ class _DiscoveryState extends State<Discovery>
                                 Animation<double> animation,
                                 Animation<double> secondaryAnimation,
                               ) {
-                                const opacityCurve = const Interval(0.0, 0.75,
+                                const opacityCurve = Interval(0.0, 0.75,
                                     curve: Curves.fastOutSlowIn);
                                 // 过渡动画
                                 return AnimatedBuilder(
                                   animation: animation,
                                   builder:
-                                      (BuildContext context, Widget child) {
-                                    return Opacity(
+                                      (BuildContext context, Widget child) => Opacity(
                                       opacity: opacityCurve
                                           .transform(animation.value),
                                       child: DiscoveryDetail(
                                         tag: '$index TAG${_data.imgId}',
                                         url: _data.url,
                                       ),
-                                    );
-                                  },
+                                    ),
                                 );
                               }),
                             ),

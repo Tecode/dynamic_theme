@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class RouterUnit {
   const RouterUnit({
     @required this.title,
+    @required this.buildRoute,
+    @required this.routeName,
     this.icon,
     this.subtitle,
     this.category,
-    @required this.routeName,
     this.documentationUrl,
-    @required this.buildRoute,
   })  : assert(title != null),
         assert(routeName != null),
         assert(buildRoute != null);
@@ -22,9 +22,7 @@ class RouterUnit {
   final String documentationUrl;
 
   @override
-  String toString() {
-    return '$runtimeType($title $routeName)';
-  }
+  String toString() => '$runtimeType($title $routeName)';
 }
 
 class RouterCategory {
@@ -37,10 +35,10 @@ class RouterCategory {
   final IconData icon;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final RouterCategory typedOther = other;
+    final typedOther = other;
     return typedOther.name == name && typedOther.icon == icon;
   }
 
@@ -48,9 +46,7 @@ class RouterCategory {
   int get hashCode => hashValues(name, icon);
 
   @override
-  String toString() {
-    return '$runtimeType($name)';
-  }
+  String toString() => '$runtimeType($name)';
 }
 
 const RouterCategory kDemos = RouterCategory._(

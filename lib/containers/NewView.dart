@@ -22,7 +22,8 @@ class _NewViewState extends State<NewView> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    DynamicTheme.routeObserver.subscribe(this, ModalRoute.of(context));
+    DynamicTheme.routeObserver
+        .subscribe(this, ModalRoute.of(context) as PageRoute<dynamic>);
     print(this);
   }
 
@@ -46,7 +47,7 @@ class _NewViewState extends State<NewView> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final NewView param = ModalRoute.of(context).settings.arguments;
+    final param = ModalRoute.of(context).settings.arguments as NewView;
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(

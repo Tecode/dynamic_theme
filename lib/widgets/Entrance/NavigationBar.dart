@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 class NavigationBar extends StatelessWidget {
   final String activeKey;
   final Function onChange;
-  NavigationBar({
+  const NavigationBar({
     this.activeKey = 'HOME',
     this.onChange,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       height: 46.0 + MediaQuery.of(context).padding.bottom,
       decoration: BoxDecoration(
         color: Theme.of(context).backgroundColor,
@@ -70,5 +69,4 @@ class NavigationBar extends StatelessWidget {
             .toList(),
       ),
     );
-  }
 }

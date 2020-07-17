@@ -4,41 +4,39 @@ import 'package:flutter/material.dart';
 
 Route bottomPopRouter(
   Widget widget, {
-  opaque: false,
-}) {
-  return PageRouteBuilder(
-    opaque: opaque,
-    barrierColor: null,
-    pageBuilder: (context, animation, secondaryAnimation) => widget,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      var begin = Offset(0.0, 1.0);
-      var end = Offset.zero;
-      var curve = Curves.ease;
+  opaque = false,
+}) =>
+    PageRouteBuilder(
+      opaque: opaque as bool,
+      barrierColor: null,
+      pageBuilder: (context, animation, secondaryAnimation) => widget,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 1.0);
+        var end = Offset.zero;
+        var curve = Curves.ease;
 
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
 
 // AlertBox
-Route showDialogRouter(Widget widget, {Color barrierColor}) {
-  return PageRouteBuilder(
-    opaque: false,
-    barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
-    transitionDuration: Duration(milliseconds: 120),
-    pageBuilder: (context, animation, secondaryAnimation) => widget,
-    transitionsBuilder: (_, Animation<double> animation, __, Widget child) =>
-        FadeTransition(
-      opacity: animation,
-      child: ScaleTransition(
-        scale: Tween<double>(begin: 0.8, end: 1.0).animate(animation),
-        child: child,
+Route showDialogRouter(Widget widget, {Color barrierColor}) => PageRouteBuilder(
+      opaque: false,
+      barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 120),
+      pageBuilder: (context, animation, secondaryAnimation) => widget,
+      transitionsBuilder: (_, Animation<double> animation, __, Widget child) =>
+          FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: Tween<double>(begin: 0.8, end: 1.0).animate(animation),
+          child: child,
+        ),
       ),
-    ),
-  );
-}
+    );

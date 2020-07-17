@@ -58,22 +58,22 @@ class RefreshHeader extends Header {
     enableHapticFeedback = false,
     this.key,
     this.alignment,
-    this.refreshText: "拉动刷新",
-    this.refreshReadyText: "松手刷新",
-    this.refreshingText: "正在更新数据",
-    this.refreshedText: "更新数据成功",
-    this.refreshFailedText: "更新数据失败",
-    this.noMoreText: "No more",
-    this.showInfo: true,
-    this.infoText: "Updated at %T",
-    this.bgColor: Colors.transparent,
-    this.textColor: Colors.black,
-    this.infoColor: Colors.teal,
+    this.refreshText = '拉动刷新',
+    this.refreshReadyText = '松手刷新',
+    this.refreshingText = '正在更新数据',
+    this.refreshedText = '更新数据成功',
+    this.refreshFailedText = '更新数据失败',
+    this.noMoreText = 'No more',
+    this.showInfo = true,
+    this.infoText = 'Updated at %T',
+    this.bgColor = Colors.transparent,
+    this.textColor = Colors.black,
+    this.infoColor = Colors.teal,
   }) : super(
-          extent: extent,
-          triggerDistance: triggerDistance,
-          float: float,
-          completeDuration: float
+          extent: extent as double,
+          triggerDistance: triggerDistance as double,
+          float: float as bool,
+          completeDuration: (float as bool
               ? completeDuration == null
                   ? Duration(
                       milliseconds: 400,
@@ -82,9 +82,9 @@ class RefreshHeader extends Header {
                       Duration(
                         milliseconds: 400,
                       )
-              : completeDuration,
-          enableInfiniteRefresh: enableInfiniteRefresh,
-          enableHapticFeedback: enableHapticFeedback,
+              : completeDuration) as Duration,
+          enableInfiniteRefresh: enableInfiniteRefresh as bool,
+          enableHapticFeedback: enableHapticFeedback as bool,
         );
 
   @override
@@ -148,7 +148,7 @@ class ClassicalHeaderWidget extends StatefulWidget {
   final bool noMore;
   final double extent;
 
-  ClassicalHeaderWidget({
+  const ClassicalHeaderWidget({
     Key key,
     this.refreshState,
     this.classicalHeader,
@@ -262,9 +262,9 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   void initState() {
     super.initState();
     // 准备动画
-    _readyController = new AnimationController(
+    _readyController = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
-    _readyAnimation = new Tween(begin: 0.5, end: 1.0).animate(_readyController)
+    _readyAnimation = Tween(begin: 0.5, end: 1.0).animate(_readyController)
       ..addListener(() {
 //        setState(() {
 //          if (_readyAnimation.status != AnimationStatus.dismissed) {
@@ -294,7 +294,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
       }
     });
     // float收起动画
-    _floatBackController = new AnimationController(
+    _floatBackController = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this);
     _floatBackAnimation = Tween(begin: widget.refreshIndicatorExtent, end: 0.0)
         .animate(_floatBackController)
@@ -366,7 +366,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
                       : (widget.refreshIndicatorExtent - _floatBackDistance)
                   : null,
           child: Container(
-            alignment: widget.classicalHeader.alignment ?? isVertical
+            alignment: (widget.classicalHeader.alignment ?? isVertical) as bool
                 ? isReverse ? Alignment.topCenter : Alignment.bottomCenter
                 : !isReverse ? Alignment.centerRight : Alignment.centerLeft,
             width: isVertical

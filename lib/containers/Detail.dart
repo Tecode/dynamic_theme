@@ -34,7 +34,7 @@ class Detail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Detail arguments = ModalRoute.of(context).settings.arguments;
+    final arguments = ModalRoute.of(context).settings.arguments as Detail;
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.only(start: 0.0),

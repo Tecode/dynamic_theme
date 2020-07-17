@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 /// 路由跳转 context schemeUrl
 void schemeJump(BuildContext context, String schemeUrl) {
-  final Uri _jumpUri = Uri.parse(schemeUrl.replaceFirst(
+  final _jumpUri = Uri.parse(schemeUrl.replaceFirst(
     'dynamictheme://',
     'http://path/',
   ));

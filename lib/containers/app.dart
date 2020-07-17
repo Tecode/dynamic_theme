@@ -34,16 +34,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
   }
 
 // 配置路由
-  Map<String, WidgetBuilder> _buildRoutes() {
-    // For a different example of how to set up an application routing table
-    // using named routes, consider the example in the Navigator class documentation:
-    // https://docs.flutter.io/flutter/widgets/Navigator-class.html
-    return Map<String, WidgetBuilder>.fromIterable(
-      routerList,
-      key: (dynamic data) => data.routeName,
-      value: (dynamic data) => data.buildRoute,
-    );
-  }
+  Map<String, WidgetBuilder> _buildRoutes() =>
+      {for (var data in routerList) data.routeName: data.buildRoute};
 
 //  修改页面参数（例如字体大小、主题颜色）
   void _handleOptionsChanged(Options newOptions) {

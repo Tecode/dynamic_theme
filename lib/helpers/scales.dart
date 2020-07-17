@@ -11,9 +11,9 @@ class TextScaleValue {
   final String label;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(other) {
     if (runtimeType != other.runtimeType) return false;
-    final TextScaleValue typedOther = other;
+    final typedOther = other;
     return scale == typedOther.scale && label == typedOther.label;
   }
 
@@ -21,9 +21,7 @@ class TextScaleValue {
   int get hashCode => hashValues(scale, label);
 
   @override
-  String toString() {
-    return '$runtimeType($label)';
-  }
+  String toString() => '$runtimeType($label)';
 }
 
 const List<TextScaleValue> textScaleValues = <TextScaleValue>[
