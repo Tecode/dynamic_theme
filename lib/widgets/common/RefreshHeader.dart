@@ -192,6 +192,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   // 是否刷新完成
   bool _refreshFinish = false;
 
+  // ignore: avoid_setters_without_getters
   set refreshFinish(bool finish) {
     if (_refreshFinish != finish) {
       if (finish && widget.float) {
@@ -323,10 +324,10 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   @override
   Widget build(BuildContext context) {
     // 是否为垂直方向
-    bool isVertical = widget.axisDirection == AxisDirection.down ||
+    var isVertical = widget.axisDirection == AxisDirection.down ||
         widget.axisDirection == AxisDirection.up;
     // 是否反向
-    bool isReverse = widget.axisDirection == AxisDirection.up ||
+    var isReverse = widget.axisDirection == AxisDirection.up ||
         widget.axisDirection == AxisDirection.left;
     // 是否到达触发刷新距离
     overTriggerDistance = _refreshState != RefreshMode.inactive &&

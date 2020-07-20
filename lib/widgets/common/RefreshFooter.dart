@@ -118,7 +118,7 @@ class ClassicalFooterWidget extends StatefulWidget {
   final bool success;
   final bool noMore;
 
-  ClassicalFooterWidget(
+  const ClassicalFooterWidget(
       {Key key,
       this.loadState,
       this.classicalFooter,

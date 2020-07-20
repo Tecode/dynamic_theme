@@ -13,6 +13,16 @@ class DiscoveryDetail extends StatefulWidget {
 
 class _DiscoveryDetailState extends State<DiscoveryDetail> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Material(
         child: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
