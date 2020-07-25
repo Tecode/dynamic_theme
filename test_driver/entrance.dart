@@ -62,6 +62,7 @@ void entrance() {
   });
 
   test('返回页面', () async {
+    await Future.delayed(Duration(seconds: 5));
     final buttonFinder = find.byValueKey('back');
     // First, tap the button.
     await driver.tap(buttonFinder);
