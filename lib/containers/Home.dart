@@ -65,6 +65,7 @@ class _HomeState extends State<Home> {
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: Platform.isIOS,
         trailing: GestureDetector(
+          key: ValueKey('jump_list'),
           behavior: HitTestBehavior.opaque,
           onTap: () => _launchRouter(context),
           child: Icon(
@@ -82,6 +83,7 @@ class _HomeState extends State<Home> {
         child: ScrollConfiguration(
           behavior: CustomBehavior(),
           child: EasyRefresh.custom(
+            key: Key('message_list'),
             enableControlFinishRefresh: true,
             enableControlFinishLoad: true,
             controller: _controller,
@@ -92,7 +94,9 @@ class _HomeState extends State<Home> {
               refreshReadyText: '小暑金将伏，微凉麦正秋',
               refreshText: '小暑金将伏，微凉麦正秋',
             ),
-            footer: RefreshFooter(),
+            footer: RefreshFooter(
+              key: Key('home_footer'),
+            ),
             onRefresh: _enableRefresh
                 ? () async {
                     await Future.delayed(Duration(seconds: 2), () {

@@ -28,6 +28,10 @@ Tools • Dart 2.8.4
 flutter build apk --relese
 flutter run --profile --trace-skia
 flutter screenshot --type=skia --observatory-uri=http://127.0.0.1:49368/s4vbW7Mp_KE=/#/timeline
+
+测试
+flutter drive --target=test_driver/app.dart
+
 ```
 
 ## 路由(命名路由)
@@ -125,3 +129,7 @@ CustomColors.of(context).borderColor
 ```dart
 Navigator.of(context, rootNavigator: true).maybePop();
 ```
+
+### 资料
+
+[flutter_driver 说明文档](https://developers.weixin.qq.com/community/develop/doc/000e08cc27c6405601a9f13ec5a400)
