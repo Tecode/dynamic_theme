@@ -94,101 +94,99 @@ class _DiscoveryState extends State<Discovery>
           padding: EdgeInsets.only(
             top: MediaQuery.of(context).padding.top + 44.0,
           ),
-          child: ScrollConfiguration(
-              behavior: CustomBehavior(),
-              child: EasyRefresh.custom(
-                enableControlFinishRefresh: true,
-                enableControlFinishLoad: true,
-                controller: _controller,
-                scrollController: _scrollController,
-                header: RefreshHeader(
-                  refreshedText: '小暑金将伏，微凉麦正秋',
-                  refreshingText: '小暑金将伏，微凉麦正秋',
-                  refreshReadyText: '小暑金将伏，微凉麦正秋',
-                  refreshText: '小暑金将伏，微凉麦正秋',
+          child: EasyRefresh.custom(
+            enableControlFinishRefresh: true,
+            enableControlFinishLoad: true,
+            controller: _controller,
+            scrollController: _scrollController,
+            header: RefreshHeader(
+              refreshedText: '小暑金将伏，微凉麦正秋',
+              refreshingText: '小暑金将伏，微凉麦正秋',
+              refreshReadyText: '小暑金将伏，微凉麦正秋',
+              refreshText: '小暑金将伏，微凉麦正秋',
+            ),
+            footer: RefreshFooter(),
+            onRefresh: _enableRefresh
+                ? () async {
+                    await Future.delayed(Duration(seconds: 1), () {
+                      if (mounted) {
+                        _index = 1;
+                        if (!_enableControlFinish) {
+                          _controller.resetLoadState();
+                          _controller.finishRefresh();
+                        }
+                        _pagination();
+                      }
+                    });
+                  }
+                : null,
+            onLoad: _enableLoad
+                ? () async {
+                    await Future.delayed(Duration(seconds: 1), () {
+                      if (mounted) {
+                        _index++;
+                        if (!_enableControlFinish) {
+                          _controller.finishLoad(
+                              noMore:
+                                  _index >= (totalElements / _count).ceil());
+                        }
+                        _pagination();
+                      }
+                    });
+                  }
+                : null,
+            slivers: <Widget>[
+              SliverGrid(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 120.0,
+                  mainAxisSpacing: 4.0,
+                  crossAxisSpacing: 4.0,
+                  childAspectRatio: 1.0,
                 ),
-                footer: RefreshFooter(),
-                onRefresh: _enableRefresh
-                    ? () async {
-                        await Future.delayed(Duration(seconds: 1), () {
-                          if (mounted) {
-                            _index = 1;
-                            if (!_enableControlFinish) {
-                              _controller.resetLoadState();
-                              _controller.finishRefresh();
-                            }
-                            _pagination();
-                          }
-                        });
-                      }
-                    : null,
-                onLoad: _enableLoad
-                    ? () async {
-                        await Future.delayed(Duration(seconds: 1), () {
-                          if (mounted) {
-                            _index++;
-                            if (!_enableControlFinish) {
-                              _controller.finishLoad(
-                                  noMore: _index >=
-                                      (totalElements / _count).ceil());
-                            }
-                            _pagination();
-                          }
-                        });
-                      }
-                    : null,
-                slivers: <Widget>[
-                  SliverGrid(
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 120.0,
-                      mainAxisSpacing: 4.0,
-                      crossAxisSpacing: 4.0,
-                      childAspectRatio: 1.0,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        final  _data = _imageList[index];
-                        return Hero(
-                          tag: '$index TAG${_data.imgId}',
-                          child: GestureDetector(
-                            onTap: () => Navigator.of(context).push(
-                              PageRouteBuilder<void>(pageBuilder: (
-                                BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secondaryAnimation,
-                              ) {
-                                const opacityCurve = Interval(0.0, 0.75,
-                                    curve: Curves.fastOutSlowIn);
-                                // 过渡动画
-                                return AnimatedBuilder(
-                                  animation: animation,
-                                  builder:
-                                      (BuildContext context, Widget child) => Opacity(
-                                      opacity: opacityCurve
-                                          .transform(animation.value),
-                                      child: DiscoveryDetail(
-                                        tag: '$index TAG${_data.imgId}',
-                                        url: _data.url,
-                                      ),
-                                    ),
-                                );
-                              }),
-                            ),
-                            behavior: HitTestBehavior.opaque,
-                            child: FadeInImage.assetNetwork(
-                              placeholder: 'assets/images/loading.gif',
-                              image: _data.url,
-                              imageCacheWidth: 80,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                      childCount: _imageList.length,
-                    ),
-                  ),
-                ],
-              )),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    final _data = _imageList[index];
+                    return Hero(
+                      tag: '$index TAG${_data.imgId}',
+                      child: GestureDetector(
+                        onTap: () => Navigator.of(context).push(
+                          PageRouteBuilder<void>(pageBuilder: (
+                            BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation,
+                          ) {
+                            const opacityCurve = Interval(0.0, 0.75,
+                                curve: Curves.fastOutSlowIn);
+                            // 过渡动画
+                            return AnimatedBuilder(
+                              animation: animation,
+                              builder: (BuildContext context, Widget child) =>
+                                  Opacity(
+                                opacity:
+                                    opacityCurve.transform(animation.value),
+                                child: DiscoveryDetail(
+                                  tag: '$index TAG${_data.imgId}',
+                                  url: _data.url,
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                        behavior: HitTestBehavior.opaque,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/loading.gif',
+                          image: _data.url,
+                          imageCacheWidth: 80,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
+                  childCount: _imageList.length,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

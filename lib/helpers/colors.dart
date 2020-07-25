@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorTheme {
-  Color borderColor;
-  Color cubeColor;
+  Color borderColor, cubeColor;
   Color activeNavColor;
   Color navBarColor;
   Color colorF3F3F6;
@@ -19,7 +18,7 @@ class ColorTheme {
       color202326 = Color(0xff4e5156);
       return;
     }
-//    明亮色
+//  明亮色
     borderColor = Color(0xffdedede);
     cubeColor = Colors.black38;
     activeNavColor = Colors.amberAccent;
