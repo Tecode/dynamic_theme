@@ -53,8 +53,12 @@ class _NewViewState extends State<NewView> with RouteAware {
       navigationBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.only(start: 0.0),
         transitionBetweenRoutes: Platform.isIOS,
-        middle: Text('NewList-${param.content}'),
+        middle: Text(
+          'NewList-${param.content}',
+          key: ValueKey('title'),
+        ),
         leading: GestureDetector(
+          key: Key('back'),
           behavior: HitTestBehavior.opaque,
           onTap: () => Navigator.pop(context, '数据传参'),
           child: Container(

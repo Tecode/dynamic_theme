@@ -32,6 +32,7 @@ class NavigationBar extends StatelessWidget {
             .map(
               (int index) => Expanded(
                 child: GestureDetector(
+                  key: ValueKey('tab_$index'),
                   onTap: () => onChange.call(index),
                   behavior: HitTestBehavior.opaque,
                   child: Column(

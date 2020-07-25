@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     if (index == 0) return SizedBox(height: 15.0);
-                    return const AvatarWrapBox();
+                    return AvatarWrapBox(key: Key('item_$index'));
                   },
                   childCount: _count + 1,
                 ),
@@ -145,7 +145,9 @@ class _HomeState extends State<Home> {
 }
 
 class AvatarWrapBox extends StatelessWidget {
-  const AvatarWrapBox();
+  @override
+  final Key key;
+  const AvatarWrapBox({this.key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
