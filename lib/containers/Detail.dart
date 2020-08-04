@@ -25,10 +25,29 @@ class Detail extends StatelessWidget {
   }
 
   void _onAlertWithTitlePress(BuildContext context) {
-    Navigator.of(context).push(
-      showDialogRouter(
-        DialogBox(),
-      ),
+    showGeneralDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.5),
+      barrierDismissible: true,
+      barrierLabel: '',
+      transitionDuration: Duration(milliseconds: 220),
+      pageBuilder: (
+        BuildContext buildContext,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+      ) {
+        return Builder(
+          builder: (BuildContext context) => ScaleTransition(
+            scale: Tween<double>(begin: 0.5, end: 1.0).animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.fastOutSlowIn,
+              ),
+            ),
+            child: DialogBox(),
+          ),
+        );
+      },
     );
   }
 
