@@ -30,7 +30,7 @@ class Detail extends StatelessWidget {
       barrierColor: Colors.black.withOpacity(0.5),
       barrierDismissible: true,
       barrierLabel: '',
-      transitionDuration: Duration(milliseconds: 220),
+      transitionDuration: Duration(milliseconds: 200),
       pageBuilder: (
         BuildContext buildContext,
         Animation<double> animation,
