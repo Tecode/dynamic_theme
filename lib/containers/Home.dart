@@ -6,6 +6,7 @@ import 'package:dynamic_theme/helpers/customBehavior.dart';
 import 'package:dynamic_theme/widgets/common/RefreshFooter.dart';
 import 'package:dynamic_theme/widgets/common/RefreshHeader.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -145,9 +146,7 @@ class _HomeState extends State<Home> {
 }
 
 class AvatarWrapBox extends StatelessWidget {
-  @override
-  final Key key;
-  const AvatarWrapBox({this.key}) : super(key: key);
+  const AvatarWrapBox({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -185,5 +184,11 @@ class AvatarWrapBox extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<Key>('key', key));
   }
 }

@@ -24,6 +24,7 @@ class TextThemeStyle with Diagnosticable {
     this.font12,
   });
 
+  // ignore: prefer_constructors_over_static_methods
   static TextThemeStyle of(BuildContext context) {
 //    final String _fontFamilyDisplay =
 //        Platform.isIOS ? '.SF UI Display' : 'Roboto';

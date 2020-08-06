@@ -1,15 +1,29 @@
 # Dynamic Theme
 
-## Android版本下载
+## Android版本下载（iOS下载代码打包📦）
 <p align="center">
-    <img width="200" title="Flutter" src="./assets/preview/QRCode_258.png">
+    <img width="200" title="预览截图" src="./assets/preview/QRCode_258.png">
 </p>
 
 
-## 效果预览
+## 暗黑模式&亮白模式
 
 <p align="center">
-    <img width="375" title="Flutter" src="./assets/preview/iOS_DynamicTheme.gif">
+    <img width="375" title="预览截图" src="./assets/preview/iOS_DynamicTheme.gif">
+</p>
+
+
+<p align="center">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.21.58.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.07.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.21.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.27.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.32.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.43.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.50.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.22.57.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.23.05.png">
+    <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.23.10.png">
 </p>
 
 
@@ -31,7 +45,7 @@ flutter drive --target=test_driver/app.dart
 ## Flutter 打包
 
 ```bash
-flutter build apk --relese
+flutter build apk --release
 ```
 
 ## Flutter 性能调试

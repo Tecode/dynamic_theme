@@ -41,15 +41,15 @@ void main() {
     // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
       if (driver != null) {
-        driver.close();
+        await driver.close();
       }
     });
 
     test('noReceipts', () async {
-      expect(await driver.getText(find.byValueKey('NoReceipts')), "אין קבלות");
+      expect(await driver.getText(find.byValueKey('NoReceipts')), 'אין קבלות');
     });
     test('searchTitle', () async {
-      expect(await driver.getText(find.byValueKey('searchTitle')), "חפש קבלה");
+      expect(await driver.getText(find.byValueKey('searchTitle')), 'חפש קבלה');
     });
     test('add 10 receipt', () async {
       var names = <String>[
@@ -65,7 +65,7 @@ void main() {
         'receipt 10',
       ];
       for (var name in names) {
-        await driver.waitFor(find.byValueKey("gotoTakePictureScreen"));
+        await driver.waitFor(find.byValueKey('gotoTakePictureScreen'));
 
         await driver.tap(find.byValueKey('gotoTakePictureScreen'));
 
@@ -77,7 +77,7 @@ void main() {
         await driver.waitFor(find.byValueKey('addManuallyButton'));
         await driver.tap(find.byValueKey('addManuallyButton'));
 
-        await driver.waitFor(find.text("כותרת החשבונית"));
+        await driver.waitFor(find.text('כותרת החשבונית'));
         await driver.waitFor(find.byValueKey('receiptPrice'));
         await driver.waitFor(find.byValueKey('receiptPhone'));
         await driver.waitFor(find.byValueKey('receiptDate'));
