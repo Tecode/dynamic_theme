@@ -22,16 +22,23 @@ Engine • revision ee76268252
 Tools • Dart 2.8.4
 ```
 
-## Flutter 
+## Flutter 集成测试
 
-```shell script
+```bash
+flutter drive --target=test_driver/app.dart
+```
+
+## Flutter 打包
+
+```bash
 flutter build apk --relese
+```
+
+## Flutter 性能调试
+
+```bash
 flutter run --profile --trace-skia
 flutter screenshot --type=skia --observatory-uri=http://127.0.0.1:49368/s4vbW7Mp_KE=/#/timeline
-
-测试
-flutter drive --target=test_driver/app.dart
-
 ```
 
 ## 路由(命名路由)
