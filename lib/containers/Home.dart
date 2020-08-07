@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+import 'ChatList.dart';
+
 class Home extends StatefulWidget {
   const Home();
   @override
@@ -132,7 +134,11 @@ class _HomeState extends State<Home> {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     if (index == 0) return SizedBox(height: 15.0);
-                    return AvatarWrapBox(key: Key('item_$index'));
+                    return AvatarWrapBox(
+                      key: Key('item_$index'),
+                      onTap: () =>
+                          Navigator.of(context).pushNamed(ChatList.routeName),
+                    );
                   },
                   childCount: _count + 1,
                 ),
@@ -146,42 +152,47 @@ class _HomeState extends State<Home> {
 }
 
 class AvatarWrapBox extends StatelessWidget {
-  const AvatarWrapBox({Key key}) : super(key: key);
+  final GestureTapCallback onTap;
+  const AvatarWrapBox({Key key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60.0,
-      padding: EdgeInsets.symmetric(horizontal: 14.0),
-      margin: EdgeInsets.only(bottom: 10.0),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 60.0,
-            height: 60.0,
-            margin: EdgeInsets.only(right: 12.0),
-            decoration: BoxDecoration(
-              color: ColorTheme.of(context).colorF3F3F6,
-              borderRadius: BorderRadius.circular(10.0),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => onTap?.call(),
+      child: Container(
+        height: 60.0,
+        padding: EdgeInsets.symmetric(horizontal: 14.0),
+        margin: EdgeInsets.only(bottom: 10.0),
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 60.0,
+              height: 60.0,
+              margin: EdgeInsets.only(right: 12.0),
+              decoration: BoxDecoration(
+                color: ColorTheme.of(context).colorF3F3F6,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                width: 160.0,
-                height: 18.0,
-                color: ColorTheme.of(context).colorF3F3F6,
-              ),
-              Container(
-                width: 260.0,
-                height: 18.0,
-                color: ColorTheme.of(context).colorF3F3F6,
-              ),
-            ],
-          )
-        ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Container(
+                  width: 160.0,
+                  height: 18.0,
+                  color: ColorTheme.of(context).colorF3F3F6,
+                ),
+                Container(
+                  width: 260.0,
+                  height: 18.0,
+                  color: ColorTheme.of(context).colorF3F3F6,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

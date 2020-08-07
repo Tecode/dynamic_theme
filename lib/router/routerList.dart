@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/containers/ChatList.dart';
 import 'package:dynamic_theme/containers/Detail.dart';
 import 'package:dynamic_theme/containers/NewView.dart';
 import 'package:dynamic_theme/containers/app.dart';
@@ -20,6 +21,11 @@ List<RouterUnit> _buildRouter() {
       title: '详情',
       routeName: Detail.routeName,
       buildRoute: (BuildContext context) => const Detail(),
+    ),
+    RouterUnit(
+      title: '聊天信息',
+      routeName: ChatList.routeName,
+      buildRoute: (BuildContext context) => const ChatList(),
     ),
   ];
   return routerList;
