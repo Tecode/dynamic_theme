@@ -30,12 +30,18 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
           child: Hero(
             tag: widget.tag,
             child: Center(
-              child: CachedNetworkImage(
-                progressIndicatorBuilder: (context, url, progress) => Container(
-                  color: Theme.of(context).backgroundColor,
+              child: InteractiveViewer(
+                boundaryMargin: EdgeInsets.all(20.0),
+                minScale: 0.1,
+                maxScale: 1.6,
+                child: CachedNetworkImage(
+                  progressIndicatorBuilder: (context, url, progress) =>
+                      Container(
+                    color: Theme.of(context).backgroundColor,
+                  ),
+                  imageUrl: widget.url,
+                  fit: BoxFit.contain,
                 ),
-                imageUrl: widget.url,
-                fit: BoxFit.contain,
               ),
             ),
           ),
