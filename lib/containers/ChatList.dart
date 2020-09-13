@@ -17,7 +17,7 @@ class _ChatListState extends State<ChatList> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        padding: EdgeInsetsDirectional.only(start: 0.0),
+        padding: EdgeInsetsDirectional.only(),
         transitionBetweenRoutes: Platform.isIOS,
         middle: Text('45'),
         leading: GestureDetector(

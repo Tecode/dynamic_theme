@@ -51,7 +51,7 @@ class _NewViewState extends State<NewView> with RouteAware {
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        padding: EdgeInsetsDirectional.only(start: 0.0),
+        padding: EdgeInsetsDirectional.only(),
         transitionBetweenRoutes: Platform.isIOS,
         middle: Text(
           'NewList-${param.content}',

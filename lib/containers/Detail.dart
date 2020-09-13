@@ -56,7 +56,7 @@ class Detail extends StatelessWidget {
     final arguments = ModalRoute.of(context).settings.arguments as Detail;
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        padding: EdgeInsetsDirectional.only(start: 0.0),
+        padding: EdgeInsetsDirectional.zero,
         transitionBetweenRoutes: Platform.isIOS,
         middle: Text(arguments.value),
         leading: GestureDetector(
@@ -77,7 +77,6 @@ class Detail extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('TITLE', style: Theme.of(context).textTheme.headline4),

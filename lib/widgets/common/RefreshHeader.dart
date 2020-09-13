@@ -413,12 +413,10 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
             child: _refreshState == RefreshMode.refresh ||
                     _refreshState == RefreshMode.armed
                 ? CircularProgressIndicator(
-                    strokeWidth: 4.0,
                     backgroundColor: Color(0xffff4b6e),
                     valueColor: AlwaysStoppedAnimation(Color(0xff0096fa)),
                   )
                 : CircularProgressIndicator(
-                    strokeWidth: 4.0,
                     backgroundColor: Color(0xffff4b6e),
                     value: min(_pulledExtent, widget.extent) / 60.0,
                   ),

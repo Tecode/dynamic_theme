@@ -36,7 +36,6 @@ class NavigationBar extends StatelessWidget {
                   onTap: () => onChange.call(index),
                   behavior: HitTestBehavior.opaque,
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Container(

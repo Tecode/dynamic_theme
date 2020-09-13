@@ -317,7 +317,6 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                     width: 16.0,
                     height: 16.0,
                     child: CircularProgressIndicator(
-                      strokeWidth: 4.0,
                       backgroundColor: Color(0xffff4b6e),
                       valueColor: AlwaysStoppedAnimation(Color(0xff0096fa)),
                     ),

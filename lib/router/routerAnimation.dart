@@ -8,7 +8,6 @@ Route bottomPopRouter(
 }) =>
     PageRouteBuilder(
       opaque: opaque as bool,
-      barrierColor: null,
       pageBuilder: (context, animation, secondaryAnimation) => widget,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         var begin = Offset(0.0, 1.0);

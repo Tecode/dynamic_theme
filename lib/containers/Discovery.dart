@@ -141,7 +141,6 @@ class _DiscoveryState extends State<Discovery>
                   maxCrossAxisExtent: 120.0,
                   mainAxisSpacing: 4.0,
                   crossAxisSpacing: 4.0,
-                  childAspectRatio: 1.0,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {

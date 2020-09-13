@@ -38,7 +38,6 @@ class _MineState extends State<Mine> {
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     'TEXT',
