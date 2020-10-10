@@ -75,9 +75,8 @@ class _NewViewState extends State<NewView> with RouteAware {
         child: ScrollConfiguration(
           behavior: CustomBehavior(),
           child: ListView.builder(
-            reverse: true,
             primary: true,
-            itemCount: 60,
+            itemCount: 1000,
             itemBuilder: (BuildContext context, int index) {
               return Ink(
                 child: InkWell(
@@ -87,13 +86,24 @@ class _NewViewState extends State<NewView> with RouteAware {
                     arguments: Detail(value: 'NewView参数'),
                   ),
                   child: Container(
-                    height: 44.0,
+                    height: 2.0,
                     width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: Text(
-                        '${param.content}-${index.toRadixString(2)}',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 20,
+                          child: FractionallySizedBox(
+                            heightFactor: 1.0,
+                            child: Container(color: Colors.red),
+                          ),
+                        ),
+                        Flexible(
+                          flex: index,
+                          child: FractionallySizedBox(
+                              heightFactor: 1.0,
+                              child: Container(color: Colors.blue)),
+                        ),
+                      ],
                     ),
                   ),
                 ),

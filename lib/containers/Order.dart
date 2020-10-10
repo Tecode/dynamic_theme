@@ -28,12 +28,14 @@ class _OrderState extends State<Order> {
               SliverToBoxAdapter(
                 child: Container(
                   color: ColorTheme.of(context).colorF3F3F6,
+                  width: MediaQuery.of(context).size.width,
                   height: 160.0,
                   child: Center(
-                      child: Text(
-                    '广告位',
-                    style: Theme.of(context).textTheme.headline4,
-                  )),
+                    child: Text(
+                      '广告位',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                  ),
                 ),
               ),
               SliverList(
