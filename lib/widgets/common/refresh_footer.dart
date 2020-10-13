@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/textThemeStyle.dart';
+import 'package:dynamic_theme/helpers/text_theme_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 

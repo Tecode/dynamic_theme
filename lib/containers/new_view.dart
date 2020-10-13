@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:dynamic_theme/containers/Detail.dart';
+import 'package:dynamic_theme/containers/detail.dart';
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/customBehavior.dart';
+import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

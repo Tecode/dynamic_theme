@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:dynamic_theme/containers/Discovery.dart';
-import 'package:dynamic_theme/containers/Home.dart';
-import 'package:dynamic_theme/containers/Mine.dart';
-import 'package:dynamic_theme/containers/Order.dart';
+import 'package:dynamic_theme/containers/discovery.dart';
+import 'package:dynamic_theme/containers/home.dart';
+import 'package:dynamic_theme/containers/mine.dart';
+import 'package:dynamic_theme/containers/order.dart';
 import 'package:dynamic_theme/helpers/helpers.dart';
 import 'package:dynamic_theme/helpers/options.dart';
-import 'package:dynamic_theme/widgets/Entrance/NavigationBar.dart';
+import 'package:dynamic_theme/widgets/Entrance/navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

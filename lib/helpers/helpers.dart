@@ -1,4 +1,4 @@
-import 'package:dynamic_theme/containers/Detail.dart';
+import 'package:dynamic_theme/containers/detail.dart';
 import 'package:flutter/widgets.dart';
 
 /// 路由跳转 context schemeUrl

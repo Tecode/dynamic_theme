@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:dynamic_theme/containers/Entrance.dart';
+import 'package:dynamic_theme/containers/entrance.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
 import 'package:dynamic_theme/helpers/themes.dart';
-import 'package:dynamic_theme/router/routerList.dart';
+import 'package:dynamic_theme/router/router_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
