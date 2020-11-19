@@ -1,4 +1,4 @@
-# Dynamic Theme（Flutter 1.20.x）
+# Dynamic Theme（Flutter 1.22.x）
 
 ## [flutter-1.17.x可以运行的版本](https://github.com/Tecode/dynamic_theme/tree/flutter-1.17.x)
 
