@@ -32,10 +32,10 @@
 ## Flutter version
 
 ```bash
-Flutter 1.20.1 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 2ae34518b8 (2 days ago) • 2020-08-05 19:53:19 -0700
-Engine • revision c8e3b94853
-Tools • Dart 2.9.0
+Flutter 1.22.4 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 1aafb3a8b9 (6 days ago) • 2020-11-13 09:59:28 -0800
+Engine • revision 2c956a31c0
+Tools • Dart 2.10.4
 ```
 
 ## Flutter 集成测试
