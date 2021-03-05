@@ -1,6 +1,6 @@
 # Dynamic Theme（Flutter 1.22.x）
 
-## [flutter-1.17.x可以运行的版本](https://github.com/Tecode/dynamic_theme/tree/flutter-1.17.x)
+## [flutter-2.0.x可以运行的版本](https://github.com/Tecode/dynamic_theme/tree/flutter-1.17.x)
 
 ## Android版本下载（iOS下载代码打包📦）
 <p align="center">
@@ -32,10 +32,10 @@
 ## Flutter version
 
 ```bash
-Flutter 1.22.4 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 1aafb3a8b9 (6 days ago) • 2020-11-13 09:59:28 -0800
-Engine • revision 2c956a31c0
-Tools • Dart 2.10.4
+Flutter 2.0.0 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 60bd88df91 (2 days ago) • 2021-03-03 09:13:17 -0800
+Engine • revision 40441def69
+Tools • Dart 2.12.0
 ```
 
 ## Flutter 集成测试

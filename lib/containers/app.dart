@@ -98,8 +98,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
                 children: <Widget>[
                   Text('404', style: Theme.of(context).textTheme.headline4),
                   CupertinoButton(
-                    child: Text('Back'),
                     onPressed: () => Navigator.of(context).pop(),
+                    child: Text('Back'),
                   )
                 ],
               ),

@@ -56,8 +56,8 @@ class BottomButton extends StatelessWidget {
             child: CupertinoButton(
               padding: EdgeInsets.all(0.0),
               minSize: 52.0,
-              child: Text('取消'),
               onPressed: () => Navigator.of(context).pop(),
+              child: Text('取消'),
             ),
           ),
           Container(
@@ -69,8 +69,8 @@ class BottomButton extends StatelessWidget {
             child: CupertinoButton(
               padding: EdgeInsets.all(0.0),
               minSize: 52.0,
-              child: Text('确定'),
               onPressed: () => Navigator.of(context).pop(),
+              child: Text('确定'),
             ),
           ),
         ],
@@ -78,8 +78,8 @@ class BottomButton extends StatelessWidget {
     }
     return CupertinoButton(
       padding: EdgeInsets.all(0.0),
-      child: Center(child: Text('确定')),
       onPressed: () => Navigator.of(context).pop(),
+      child: Center(child: Text('确定')),
     );
   }
 

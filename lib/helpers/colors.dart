@@ -10,7 +10,7 @@ class ColorTheme {
   ColorTheme.of(BuildContext context) {
 //  暗黑色
     if (Theme.of(context).brightness == Brightness.dark) {
-      borderColor = Color(0xfff161617);
+      borderColor = Color(0xff161617);
       cubeColor = Colors.white70;
       activeNavColor = Colors.brown;
       navBarColor = Color(0xff161616);

@@ -48,7 +48,7 @@ class _MineState extends State<Mine> {
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   ButtonColor(),
-                  FlatButton(
+                  TextButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
                       '404',
@@ -59,7 +59,7 @@ class _MineState extends State<Mine> {
                           ),
                     ),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () => widget.handleOptionsChanged(
                       widget.options.copyWith(
                         themeMode: isDark ? ThemeMode.light : ThemeMode.dark,

@@ -82,37 +82,37 @@ class Detail extends StatelessWidget {
                 Text('TITLE', style: Theme.of(context).textTheme.headline4),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('弹窗'),
                   onPressed: () => _onAlertWithTitlePress(context),
+                  child: Text('弹窗'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('Detail'),
                   onPressed: () => Navigator.of(context).pushNamed(
                     Detail.routeName,
                     arguments: Detail(value: 'Detail参数'),
                   ),
+                  child: Text('Detail'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('返回NewList'),
                   onPressed: () => Navigator.of(context).popUntil(
                     ModalRoute.withName(NewView.routeName),
                   ),
+                  child: Text('返回NewList'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('底部弹窗'),
                   onPressed: () => Navigator.of(context).push(
                     bottomPopRouter(Scaffold(
                       body: Center(
                         child: CupertinoButton(
-                          child: Text('返回'),
                           onPressed: () => Navigator.pop(context),
+                          child: Text('返回'),
                         ),
                       ),
                     )),
                   ),
+                  child: Text('底部弹窗'),
                 ),
               ],
             ),

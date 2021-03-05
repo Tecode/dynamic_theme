@@ -259,17 +259,37 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
     overTriggerDistance = widget.loadState != LoadMode.inactive &&
         widget.pulledExtent >= widget.loadTriggerPullDistance;
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       children: <Widget>[
         Positioned(
-          top: !isVertical ? 0.0 : !isReverse ? 0.0 : null,
-          bottom: !isVertical ? 0.0 : isReverse ? 0.0 : null,
-          left: isVertical ? 0.0 : !isReverse ? 0.0 : null,
-          right: isVertical ? 0.0 : isReverse ? 0.0 : null,
+          top: !isVertical
+              ? 0.0
+              : !isReverse
+                  ? 0.0
+                  : null,
+          bottom: !isVertical
+              ? 0.0
+              : isReverse
+                  ? 0.0
+                  : null,
+          left: isVertical
+              ? 0.0
+              : !isReverse
+                  ? 0.0
+                  : null,
+          right: isVertical
+              ? 0.0
+              : isReverse
+                  ? 0.0
+                  : null,
           child: Container(
             alignment: (widget.classicalFooter.alignment ?? isVertical) as bool
-                ? !isReverse ? Alignment.topCenter : Alignment.bottomCenter
-                : isReverse ? Alignment.centerRight : Alignment.centerLeft,
+                ? !isReverse
+                    ? Alignment.topCenter
+                    : Alignment.bottomCenter
+                : isReverse
+                    ? Alignment.centerRight
+                    : Alignment.centerLeft,
             width: !isVertical
                 ? widget.loadIndicatorExtent > widget.pulledExtent
                     ? widget.loadIndicatorExtent
@@ -328,13 +348,13 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                         widget.noMore
                     ? SizedBox()
                     : Transform.rotate(
+                        angle: 2 * pi * _iconRotationValue,
                         child: Icon(
                           !isReverse
                               ? Icons.arrow_upward
                               : Icons.arrow_downward,
                           color: widget.classicalFooter.textColor,
                         ),
-                        angle: 2 * pi * _iconRotationValue,
                       ),
           ),
           Text(
@@ -368,11 +388,11 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                         color: widget.classicalFooter.textColor,
                       )
                     : Transform.rotate(
+                        angle: 2 * pi * _iconRotationValue,
                         child: Icon(
                           !isReverse ? Icons.arrow_back : Icons.arrow_forward,
                           color: widget.classicalFooter.textColor,
                         ),
-                        angle: 2 * pi * _iconRotationValue,
                       ),
           ),
         ];
