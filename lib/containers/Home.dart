@@ -19,8 +19,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  EasyRefreshController _controller;
-  ScrollController _scrollController;
+  late EasyRefreshController _controller;
+  late ScrollController _scrollController;
   int _count = 20;
   // 是否开启加载
   final bool _enableLoad = true;
@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    _scrollController = PrimaryScrollController.of(context);
+    _scrollController = PrimaryScrollController.of(context)!;
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: Platform.isIOS,
@@ -152,8 +152,8 @@ class _HomeState extends State<Home> {
 }
 
 class AvatarWrapBox extends StatelessWidget {
-  final GestureTapCallback onTap;
-  const AvatarWrapBox({Key key, this.onTap}) : super(key: key);
+  final GestureTapCallback? onTap;
+  const AvatarWrapBox({Key? key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -7,10 +7,10 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class RefreshFooter extends Footer {
   /// Key
-  final Key key;
+  final Key? key;
 
   /// 方位
-  final AlignmentGeometry alignment;
+  final AlignmentGeometry? alignment;
 
   /// 提示加载文字
   final String loadText;
@@ -76,32 +76,32 @@ class RefreshFooter extends Footer {
 
   @override
   Widget contentBuilder(
-      BuildContext context,
-      LoadMode loadState,
-      double pulledExtent,
-      double loadTriggerPullDistance,
-      double loadIndicatorExtent,
-      AxisDirection axisDirection,
-      bool float,
-      Duration completeDuration,
-      bool enableInfiniteLoad,
-      bool success,
-      bool noMore) {
-    return ClassicalFooterWidget(
-      key: key,
-      classicalFooter: this,
-      loadState: loadState,
-      pulledExtent: pulledExtent,
-      loadTriggerPullDistance: loadTriggerPullDistance,
-      loadIndicatorExtent: loadIndicatorExtent,
-      axisDirection: axisDirection,
-      float: float,
-      completeDuration: completeDuration,
-      enableInfiniteLoad: enableInfiniteLoad,
-      success: success,
-      noMore: noMore,
-    );
-  }
+    BuildContext context,
+    LoadMode loadState,
+    double pulledExtent,
+    double loadTriggerPullDistance,
+    double loadIndicatorExtent,
+    AxisDirection axisDirection,
+    bool float,
+    Duration? completeDuration,
+    bool enableInfiniteLoad,
+    bool success,
+    bool noMore,
+  ) =>
+      ClassicalFooterWidget(
+        key,
+        classicalFooter: this,
+        loadState: loadState,
+        pulledExtent: pulledExtent,
+        loadTriggerPullDistance: loadTriggerPullDistance,
+        loadIndicatorExtent: loadIndicatorExtent,
+        axisDirection: axisDirection,
+        float: float,
+        completeDuration: completeDuration ?? Duration(milliseconds: 300),
+        enableInfiniteLoad: enableInfiniteLoad,
+        success: success,
+        noMore: noMore,
+      );
 }
 
 /// 经典Footer组件
@@ -119,19 +119,19 @@ class ClassicalFooterWidget extends StatefulWidget {
   final bool noMore;
 
   const ClassicalFooterWidget(
-      {Key key,
-      this.loadState,
-      this.classicalFooter,
-      this.pulledExtent,
-      this.loadTriggerPullDistance,
-      this.loadIndicatorExtent,
-      this.axisDirection,
-      this.float,
-      this.completeDuration,
-      this.enableInfiniteLoad,
-      this.success,
-      this.noMore})
-      : super(key: key);
+    Key? key, {
+    required this.loadState,
+    required this.classicalFooter,
+    required this.pulledExtent,
+    required this.loadTriggerPullDistance,
+    required this.loadIndicatorExtent,
+    required this.axisDirection,
+    required this.float,
+    required this.completeDuration,
+    required this.enableInfiniteLoad,
+    required this.success,
+    required this.noMore,
+  }) : super(key: key);
 
   @override
   ClassicalFooterWidgetState createState() => ClassicalFooterWidgetState();
@@ -152,10 +152,10 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
   }
 
   // 动画
-  AnimationController _readyController;
-  Animation<double> _readyAnimation;
-  AnimationController _restoreController;
-  Animation<double> _restoreAnimation;
+  late AnimationController _readyController;
+  late Animation<double> _readyAnimation;
+  late AnimationController _restoreController;
+  late Animation<double> _restoreAnimation;
 
   // Icon旋转度
   double _iconRotationValue = 1.0;
@@ -259,17 +259,37 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
     overTriggerDistance = widget.loadState != LoadMode.inactive &&
         widget.pulledExtent >= widget.loadTriggerPullDistance;
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       children: <Widget>[
         Positioned(
-          top: !isVertical ? 0.0 : !isReverse ? 0.0 : null,
-          bottom: !isVertical ? 0.0 : isReverse ? 0.0 : null,
-          left: isVertical ? 0.0 : !isReverse ? 0.0 : null,
-          right: isVertical ? 0.0 : isReverse ? 0.0 : null,
+          top: !isVertical
+              ? 0.0
+              : !isReverse
+                  ? 0.0
+                  : null,
+          bottom: !isVertical
+              ? 0.0
+              : isReverse
+                  ? 0.0
+                  : null,
+          left: isVertical
+              ? 0.0
+              : !isReverse
+                  ? 0.0
+                  : null,
+          right: isVertical
+              ? 0.0
+              : isReverse
+                  ? 0.0
+                  : null,
           child: Container(
             alignment: (widget.classicalFooter.alignment ?? isVertical) as bool
-                ? !isReverse ? Alignment.topCenter : Alignment.bottomCenter
-                : isReverse ? Alignment.centerRight : Alignment.centerLeft,
+                ? !isReverse
+                    ? Alignment.topCenter
+                    : Alignment.bottomCenter
+                : isReverse
+                    ? Alignment.centerRight
+                    : Alignment.centerLeft,
             width: !isVertical
                 ? widget.loadIndicatorExtent > widget.pulledExtent
                     ? widget.loadIndicatorExtent
@@ -328,19 +348,19 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                         widget.noMore
                     ? SizedBox()
                     : Transform.rotate(
+                        angle: 2 * pi * _iconRotationValue,
                         child: Icon(
                           !isReverse
                               ? Icons.arrow_upward
                               : Icons.arrow_downward,
                           color: widget.classicalFooter.textColor,
                         ),
-                        angle: 2 * pi * _iconRotationValue,
                       ),
           ),
           Text(
             _showText,
             style: TextThemeStyle.of(context)
-                .font12
+                .font12!
                 .copyWith(color: ColorTheme.of(context).cubeColor),
           ),
         ]
@@ -368,11 +388,11 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                         color: widget.classicalFooter.textColor,
                       )
                     : Transform.rotate(
+                        angle: 2 * pi * _iconRotationValue,
                         child: Icon(
                           !isReverse ? Icons.arrow_back : Icons.arrow_forward,
                           color: widget.classicalFooter.textColor,
                         ),
-                        angle: 2 * pi * _iconRotationValue,
                       ),
           ),
         ];

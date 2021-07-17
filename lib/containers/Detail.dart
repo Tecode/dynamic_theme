@@ -8,16 +8,16 @@ import 'package:dynamic_theme/router/routerAnimation.dart';
 import 'package:dynamic_theme/widgets/common/DialogBox.dart';
 
 class Detail extends StatelessWidget {
-  final String value;
+  final String? value;
   static String routeName = '/detail';
 
   const Detail({this.value});
 
-  void showDialog({BuildContext context, Widget child}) {
+  void showDialog({required BuildContext context, required Widget child}) {
     showCupertinoDialog<String>(
       context: context,
       builder: (BuildContext context) => child,
-    ).then((String value) {
+    ).then((value) {
 //      if (value != null) {
 //        setState(() { lastSelectedValue = value; });
 //      }
@@ -53,12 +53,12 @@ class Detail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context).settings.arguments as Detail;
+    final arguments = ModalRoute.of(context)!.settings.arguments as Detail;
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.zero,
         transitionBetweenRoutes: Platform.isIOS,
-        middle: Text(arguments.value),
+        middle: Text(arguments.value ?? ''),
         leading: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => Navigator.pop(context, '数据传参'),
@@ -82,37 +82,37 @@ class Detail extends StatelessWidget {
                 Text('TITLE', style: Theme.of(context).textTheme.headline4),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('弹窗'),
                   onPressed: () => _onAlertWithTitlePress(context),
+                  child: Text('弹窗'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('Detail'),
                   onPressed: () => Navigator.of(context).pushNamed(
                     Detail.routeName,
                     arguments: Detail(value: 'Detail参数'),
                   ),
+                  child: Text('Detail'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('返回NewList'),
                   onPressed: () => Navigator.of(context).popUntil(
                     ModalRoute.withName(NewView.routeName),
                   ),
+                  child: Text('返回NewList'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                  child: Text('底部弹窗'),
                   onPressed: () => Navigator.of(context).push(
                     bottomPopRouter(Scaffold(
                       body: Center(
                         child: CupertinoButton(
-                          child: Text('返回'),
                           onPressed: () => Navigator.pop(context),
+                          child: Text('返回'),
                         ),
                       ),
                     )),
                   ),
+                  child: Text('底部弹窗'),
                 ),
               ],
             ),

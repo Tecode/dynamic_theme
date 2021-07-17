@@ -11,10 +11,15 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class NetworkSource {
   final String url;
-  final int width;
-  final int height;
-  final int imgId;
-  NetworkSource({this.url, this.width, this.height, this.imgId});
+  final int? width;
+  final int? height;
+  final int? imgId;
+  NetworkSource({
+    required this.url,
+    this.width,
+    this.height,
+    this.imgId,
+  });
 }
 
 class Discovery extends StatefulWidget {
@@ -24,9 +29,9 @@ class Discovery extends StatefulWidget {
 
 class _DiscoveryState extends State<Discovery>
     with AutomaticKeepAliveClientMixin {
-  EasyRefreshController _controller;
+  late EasyRefreshController _controller;
 
-  ScrollController _scrollController;
+  late ScrollController _scrollController;
 
   final int _count = 100;
   int _index = 1;
@@ -159,7 +164,7 @@ class _DiscoveryState extends State<Discovery>
                             // 过渡动画
                             return AnimatedBuilder(
                               animation: animation,
-                              builder: (BuildContext context, Widget child) =>
+                              builder: (BuildContext context, Widget? child) =>
                                   Opacity(
                                 opacity:
                                     opacityCurve.transform(animation.value),

@@ -15,21 +15,21 @@ import 'package:uni_links/uni_links.dart';
 enum UniLinksType { string, uri }
 
 class Entrance extends StatefulWidget {
-  final Options options;
+  final Options? options;
   final Function handleOptionsChanged;
   const Entrance({
-    this.handleOptionsChanged,
+    required this.handleOptionsChanged,
     this.options,
   });
   static String routeName = '/';
 
 //  路由页面
   static List<Map<String, dynamic>> get navList => [
-      {'value': '消息', 'key': 'HOME'},
-      {'value': '发现', 'key': 'DISCOVERY'},
-      {'value': '订单', 'key': 'ORDER'},
-      {'value': '功能', 'key': 'MINE'},
-    ];
+        {'value': '消息', 'key': 'HOME'},
+        {'value': '发现', 'key': 'DISCOVERY'},
+        {'value': '订单', 'key': 'ORDER'},
+        {'value': '功能', 'key': 'MINE'},
+      ];
 
   @override
   _EntranceState createState() => _EntranceState();
@@ -38,7 +38,7 @@ class Entrance extends StatefulWidget {
 class _EntranceState extends State<Entrance> {
   int activeIndex = 0;
   final UniLinksType _type = UniLinksType.string;
-  StreamSubscription _sub;
+  late StreamSubscription _sub;
 
   @override
   void initState() {
@@ -61,60 +61,58 @@ class _EntranceState extends State<Entrance> {
     String initialLink;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      initialLink = await getInitialLink();
+      initialLink = await getInitialLink() ?? '';
       print('initial link: $initialLink');
-      if (initialLink != null) {
-        print('initialLink--$initialLink');
-        //  跳转到指定页面
-        schemeJump(context, initialLink);
-      }
+      print('initialLink--$initialLink');
+      //  跳转到指定页面
+      schemeJump(context, initialLink);
     } on PlatformException {
       initialLink = 'Failed to get initial link.';
     } on FormatException {
       initialLink = 'Failed to parse the initial link as Uri.';
     }
     // Attach a listener to the links stream
-    _sub = getLinksStream().listen((String link) {
-      if (!mounted || link == null) return;
-      print('link--$link');
-      //  跳转到指定页面
-      schemeJump(context, link);
-    }, onError: (Object err) {
-      if (!mounted) return;
-    });
+    // _sub = getLinksStream().listen((String link) {
+    //   if (!mounted) return;
+    //   print('link--$link');
+    //   //  跳转到指定页面
+    //   schemeJump(context, link);
+    // }, onError: (Object err) {
+    //   if (!mounted) return;
+    // });
   }
 
   @override
   void dispose() {
     super.dispose();
-    if (_sub != null) _sub.cancel();
+    _sub.cancel();
   }
 
   @override
   Widget build(BuildContext context) => Material(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: IndexedStack(
-              index: activeIndex,
-              children: <Widget>[
-                Home(),
-                Discovery(),
-                Order(),
-                Mine(
-                  options: widget.options,
-                  handleOptionsChanged: widget.handleOptionsChanged,
-                ),
-              ],
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: IndexedStack(
+                index: activeIndex,
+                children: <Widget>[
+                  Home(),
+                  Discovery(),
+                  Order(),
+                  Mine(
+                    options: widget.options ?? Options(),
+                    handleOptionsChanged: widget.handleOptionsChanged,
+                  ),
+                ],
+              ),
             ),
-          ),
-          NavigationBar(
-            activeKey: Entrance.navList[activeIndex]['key'] as String,
-            onChange: (int index) => setState(() {
-              activeIndex = index;
-            }),
-          ),
-        ],
-      ),
-    );
+            NavigationBar(
+              activeKey: Entrance.navList[activeIndex]['key'] as String,
+              onChange: (int index) => setState(() {
+                activeIndex = index;
+              }),
+            ),
+          ],
+        ),
+      );
 }

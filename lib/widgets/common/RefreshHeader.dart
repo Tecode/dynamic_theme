@@ -11,10 +11,10 @@ class RefreshHeader extends Header {
   final LinkHeaderNotifier linkNotifier = LinkHeaderNotifier();
 
   /// Key
-  final Key key;
+  final Key? key;
 
   /// 方位
-  final AlignmentGeometry alignment;
+  final AlignmentGeometry? alignment;
 
   /// 提示刷新文字
   final String refreshText;
@@ -73,15 +73,10 @@ class RefreshHeader extends Header {
           extent: extent as double,
           triggerDistance: triggerDistance as double,
           float: float as bool,
-          completeDuration: (float as bool
+          completeDuration: (float
               ? completeDuration == null
-                  ? Duration(
-                      milliseconds: 400,
-                    )
-                  : completeDuration +
-                      Duration(
-                        milliseconds: 400,
-                      )
+                  ? Duration(milliseconds: 400)
+                  : completeDuration + Duration(milliseconds: 400)
               : completeDuration) as Duration,
           enableInfiniteRefresh: enableInfiniteRefresh as bool,
           enableHapticFeedback: enableHapticFeedback as bool,
@@ -96,7 +91,7 @@ class RefreshHeader extends Header {
     double refreshIndicatorExtent,
     AxisDirection axisDirection,
     bool float,
-    Duration completeDuration,
+    Duration? completeDuration,
     bool enableInfiniteRefresh,
     bool success,
     bool noMore,
@@ -115,7 +110,7 @@ class RefreshHeader extends Header {
       noMore,
     );
     return ClassicalHeaderWidget(
-      key: key,
+      key,
       classicalHeader: this,
       refreshState: refreshState,
       pulledExtent: pulledExtent,
@@ -123,7 +118,7 @@ class RefreshHeader extends Header {
       refreshIndicatorExtent: refreshIndicatorExtent,
       axisDirection: axisDirection,
       float: float,
-      completeDuration: completeDuration,
+      completeDuration: completeDuration ?? Duration(milliseconds: 300),
       enableInfiniteRefresh: enableInfiniteRefresh,
       success: success,
       noMore: noMore,
@@ -148,21 +143,21 @@ class ClassicalHeaderWidget extends StatefulWidget {
   final bool noMore;
   final double extent;
 
-  const ClassicalHeaderWidget({
-    Key key,
-    this.refreshState,
-    this.classicalHeader,
-    this.pulledExtent,
-    this.refreshTriggerPullDistance,
-    this.refreshIndicatorExtent,
-    this.axisDirection,
-    this.float,
-    this.completeDuration,
-    this.enableInfiniteRefresh,
-    this.success,
-    this.noMore,
-    this.linkNotifier,
-    this.extent,
+  const ClassicalHeaderWidget(
+    Key? key, {
+    required this.refreshState,
+    required this.classicalHeader,
+    required this.pulledExtent,
+    required this.refreshTriggerPullDistance,
+    required this.refreshIndicatorExtent,
+    required this.axisDirection,
+    required this.float,
+    required this.completeDuration,
+    required this.enableInfiniteRefresh,
+    required this.success,
+    required this.noMore,
+    required this.linkNotifier,
+    required this.extent,
   }) : super(key: key);
 
   @override
@@ -203,7 +198,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
           }
         });
         Future.delayed(widget.completeDuration, () {
-          _floatBackDistance = null;
+          _floatBackDistance = 0.0;
           _refreshFinish = false;
         });
       }
@@ -212,15 +207,15 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   }
 
   // 动画
-  AnimationController _readyController;
-  Animation<double> _readyAnimation;
-  AnimationController _restoreController;
-  Animation<double> _restoreAnimation;
-  AnimationController _floatBackController;
-  Animation<double> _floatBackAnimation;
+  late AnimationController _readyController;
+  late Animation<double> _readyAnimation;
+  late AnimationController _restoreController;
+  late Animation<double> _restoreAnimation;
+  late AnimationController _floatBackController;
+  late Animation<double> _floatBackAnimation;
 
   // 浮动时,收起距离
-  double _floatBackDistance;
+  late double _floatBackDistance;
 
   // 显示文字
   String get _showText {
@@ -341,44 +336,48 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
           top: !isVertical
               ? 0.0
               : isReverse
-                  ? _floatBackDistance == null
+                  ? _floatBackDistance == 0.0
                       ? 0.0
                       : (widget.refreshIndicatorExtent - _floatBackDistance)
                   : null,
           bottom: !isVertical
               ? 0.0
               : !isReverse
-                  ? _floatBackDistance == null
+                  ? _floatBackDistance == 0.0
                       ? 0.0
                       : (widget.refreshIndicatorExtent - _floatBackDistance)
                   : null,
           left: isVertical
               ? 0.0
               : isReverse
-                  ? _floatBackDistance == null
+                  ? _floatBackDistance == 0.0
                       ? 0.0
                       : (widget.refreshIndicatorExtent - _floatBackDistance)
                   : null,
           right: isVertical
               ? 0.0
               : !isReverse
-                  ? _floatBackDistance == null
+                  ? _floatBackDistance == 0.0
                       ? 0.0
                       : (widget.refreshIndicatorExtent - _floatBackDistance)
                   : null,
           child: Container(
             alignment: (widget.classicalHeader.alignment ?? isVertical) as bool
-                ? isReverse ? Alignment.topCenter : Alignment.bottomCenter
-                : !isReverse ? Alignment.centerRight : Alignment.centerLeft,
+                ? isReverse
+                    ? Alignment.topCenter
+                    : Alignment.bottomCenter
+                : !isReverse
+                    ? Alignment.centerRight
+                    : Alignment.centerLeft,
             width: isVertical
                 ? double.infinity
-                : _floatBackDistance == null
+                : _floatBackDistance == 0.0
                     ? (widget.refreshIndicatorExtent > widget.pulledExtent
                         ? widget.refreshIndicatorExtent
                         : widget.pulledExtent)
                     : widget.refreshIndicatorExtent,
             height: isVertical
-                ? _floatBackDistance == null
+                ? _floatBackDistance == 0.0
                     ? (widget.refreshIndicatorExtent > widget.pulledExtent
                         ? widget.refreshIndicatorExtent
                         : widget.pulledExtent)
@@ -425,14 +424,12 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
       ),
       Expanded(
         flex: 2,
-        child: _showText == null
-            ? SizedBox()
-            : Text(
-                _showText,
-                style: TextThemeStyle.of(context)
-                    .font12
-                    .copyWith(color: ColorTheme.of(context).cubeColor),
-              ),
+        child: Text(
+          '$_showText',
+          style: TextThemeStyle.of(context)
+              .font12!
+              .copyWith(color: ColorTheme.of(context).cubeColor),
+        ),
       ),
     ];
   }

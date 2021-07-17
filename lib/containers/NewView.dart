@@ -8,10 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewView extends StatefulWidget {
-  final String content;
-  const NewView({
-    this.content,
-  });
+  final String? content;
+  const NewView({this.content});
   static const String routeName = '/newView';
 
   @override
@@ -47,7 +45,7 @@ class _NewViewState extends State<NewView> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
-    final param = ModalRoute.of(context).settings.arguments as NewView;
+    final param = ModalRoute.of(context)!.settings.arguments as NewView;
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(

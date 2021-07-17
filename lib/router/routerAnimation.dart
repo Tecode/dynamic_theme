@@ -25,7 +25,7 @@ Route bottomPopRouter(
     );
 
 // AlertBox
-Route showDialogRouter(Widget widget, {Color barrierColor}) => PageRouteBuilder(
+Route showDialogRouter(Widget widget, {Color? barrierColor}) => PageRouteBuilder(
       opaque: false,
       barrierColor: barrierColor ?? Colors.black.withOpacity(0.5),
       transitionDuration: Duration(milliseconds: 120),

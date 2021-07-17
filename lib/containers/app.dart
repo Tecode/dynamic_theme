@@ -19,8 +19,8 @@ class DynamicTheme extends StatefulWidget {
 }
 
 class _DynamicThemeState extends State<DynamicTheme> {
-  Options _options;
-  Timer _timeDilationTimer;
+  late Options _options;
+  late Timer _timeDilationTimer;
 
   @override
   void initState() {
@@ -41,8 +41,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
   void _handleOptionsChanged(Options newOptions) {
     setState(() {
       if (_options.timeDilation != newOptions.timeDilation) {
-        _timeDilationTimer?.cancel();
-        _timeDilationTimer = null;
+        _timeDilationTimer.cancel();
+        // _timeDilationTimer = null;
         if (newOptions.timeDilation > 1.0) {
           // We delay the time dilation change long enough that the user can see
           // that UI has started reacting and then we slam on the brakes so that
@@ -64,7 +64,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
       builder: (BuildContext context) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
-            textScaleFactor: _options.textScaleFactor.scale,
+            textScaleFactor: _options.textScaleFactor!.scale,
           ),
           child: child,
         );
@@ -74,8 +74,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
 
   @override
   void dispose() {
-    _timeDilationTimer?.cancel();
-    _timeDilationTimer = null;
+    _timeDilationTimer.cancel();
+    // _timeDilationTimer = null;
     super.dispose();
   }
 
@@ -98,8 +98,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
                 children: <Widget>[
                   Text('404', style: Theme.of(context).textTheme.headline4),
                   CupertinoButton(
-                    child: Text('Back'),
                     onPressed: () => Navigator.of(context).pop(),
+                    child: Text('Back'),
                   )
                 ],
               ),
@@ -123,7 +123,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
         options: _options,
         handleOptionsChanged: _handleOptionsChanged,
       ),
-      builder: (BuildContext context, Widget child) {
+      builder: (context, Widget? child) {
         return _applyTextScaleFactor(
           // Specifically use a blank Cupertino theme here and do not transfer
           // over the Material primary color etc except the brightness to
@@ -133,7 +133,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
               data: CupertinoThemeData(
                 brightness: Theme.of(context).brightness,
               ),
-              child: child,
+              child: child ?? const Text('找不到模块'),
             );
           }),
         );

@@ -3,34 +3,34 @@ import 'scales.dart';
 
 class Options {
   Options({
-    this.themeMode,
     this.textScaleFactor,
+    this.themeMode,
+    this.platform,
     this.textDirection = TextDirection.ltr,
     this.timeDilation = 1.0,
-    this.platform,
     this.showOffscreenLayersCheckerboard = false,
     this.showRasterCacheImagesCheckerboard = false,
     this.showPerformanceOverlay = false,
   });
 
-  final ThemeMode themeMode;
-  final TextScaleValue textScaleFactor;
+  final ThemeMode? themeMode;
+  final TextScaleValue? textScaleFactor;
   final TextDirection textDirection;
   final double timeDilation;
-  final TargetPlatform platform;
+  final TargetPlatform? platform;
   final bool showPerformanceOverlay;
   final bool showRasterCacheImagesCheckerboard;
   final bool showOffscreenLayersCheckerboard;
 
   Options copyWith({
-    ThemeMode themeMode,
-    TextScaleValue textScaleFactor,
-    TextDirection textDirection,
-    double timeDilation,
-    TargetPlatform platform,
-    bool showPerformanceOverlay,
-    bool showRasterCacheImagesCheckerboard,
-    bool showOffscreenLayersCheckerboard,
+    ThemeMode? themeMode,
+    TextScaleValue? textScaleFactor,
+    TextDirection? textDirection,
+    double? timeDilation,
+    TargetPlatform? platform,
+    bool? showPerformanceOverlay,
+    bool? showRasterCacheImagesCheckerboard,
+    bool? showOffscreenLayersCheckerboard,
   }) {
     return Options(
       themeMode: themeMode ?? this.themeMode,
@@ -50,7 +50,7 @@ class Options {
   @override
   bool operator ==(other) {
     if (runtimeType != other.runtimeType) return false;
-    final typedOther = other;
+    final dynamic typedOther = other;
     return themeMode == typedOther.themeMode &&
         textScaleFactor == typedOther.textScaleFactor &&
         textDirection == typedOther.textDirection &&

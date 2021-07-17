@@ -8,12 +8,12 @@ import 'colors.dart';
 
 @immutable
 class TextThemeStyle with Diagnosticable {
-  final TextStyle font17;
-  final TextStyle fontBold17;
-  final TextStyle font16;
-  final TextStyle fontBold16;
-  final TextStyle font14;
-  final TextStyle font12;
+  final TextStyle? font17;
+  final TextStyle? fontBold17;
+  final TextStyle? font16;
+  final TextStyle? fontBold16;
+  final TextStyle? font14;
+  final TextStyle? font12;
 
   const TextThemeStyle({
     this.font17,

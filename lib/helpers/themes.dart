@@ -1,11 +1,11 @@
-import 'package:dynamic_theme/helpers/route.dart';
+// import 'package:dynamic_theme/helpers/route.dart';
 import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = _buildLightTheme();
 final ThemeData darkTheme = _buildDarkTheme();
 
 TextTheme _buildTextTheme(TextTheme base) => base.copyWith(
-    bodyText1: base.bodyText1.copyWith(
+    bodyText1: base.bodyText1!.copyWith(
       fontFamily: 'GoogleSans',
     ),
   );
@@ -19,7 +19,7 @@ ThemeData _buildDarkTheme() {
   );
   final base = ThemeData(
     pageTransitionsTheme: PageTransitionsTheme(builders: {
-      TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+      // TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.dark,
     accentColorBrightness: Brightness.dark,
@@ -55,7 +55,7 @@ ThemeData _buildLightTheme() {
   );
   final base = ThemeData(
     pageTransitionsTheme: PageTransitionsTheme(builders: {
-      TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+      // TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.light,
     accentColorBrightness: Brightness.dark,

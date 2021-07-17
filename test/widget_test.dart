@@ -15,7 +15,7 @@ void main() {
     await tester.pumpWidget(DynamicTheme());
 
     // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byType(FlatButton));
+    await tester.tap(find.byType(TextButton));
     await tester.pump();
 
     // Verify that our counter has incremented.

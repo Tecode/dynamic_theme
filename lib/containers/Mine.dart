@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Mine extends StatefulWidget {
-  final Options options;
-  final Function handleOptionsChanged;
+  final Options? options;
+  final Function? handleOptionsChanged;
   const Mine({
     this.handleOptionsChanged,
     this.options,
@@ -48,20 +48,20 @@ class _MineState extends State<Mine> {
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   ButtonColor(),
-                  FlatButton(
+                  TextButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
                       '404',
-                      style: Theme.of(context).textTheme.bodyText2.merge(
+                      style: Theme.of(context).textTheme.bodyText2!.merge(
                             TextStyle(
                               color: isDark ? Colors.white : Colors.black,
                             ),
                           ),
                     ),
                   ),
-                  FlatButton(
-                    onPressed: () => widget.handleOptionsChanged(
-                      widget.options.copyWith(
+                  TextButton(
+                    onPressed: () => widget.handleOptionsChanged!(
+                      widget.options!.copyWith(
                         themeMode: isDark ? ThemeMode.light : ThemeMode.dark,
                       ),
                     ),

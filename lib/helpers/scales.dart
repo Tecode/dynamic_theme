@@ -13,7 +13,7 @@ class TextScaleValue {
   @override
   bool operator ==(other) {
     if (runtimeType != other.runtimeType) return false;
-    final typedOther = other;
+    final dynamic typedOther = other;
     return scale == typedOther.scale && label == typedOther.label;
   }
 
@@ -25,7 +25,7 @@ class TextScaleValue {
 }
 
 const List<TextScaleValue> textScaleValues = <TextScaleValue>[
-  TextScaleValue(null, 'System Default'),
+  TextScaleValue(1.0, 'System Default'),
   TextScaleValue(0.8, 'Small'),
   TextScaleValue(1.0, 'Normal'),
   TextScaleValue(1.3, 'Large'),

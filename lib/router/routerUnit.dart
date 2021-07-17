@@ -2,24 +2,22 @@ import 'package:flutter/material.dart';
 
 class RouterUnit {
   const RouterUnit({
-    @required this.title,
-    @required this.buildRoute,
-    @required this.routeName,
+    required this.title,
+    required this.buildRoute,
+    required this.routeName,
     this.icon,
     this.subtitle,
     this.category,
     this.documentationUrl,
-  })  : assert(title != null),
-        assert(routeName != null),
-        assert(buildRoute != null);
+  });
 
   final String title;
-  final IconData icon;
-  final String subtitle;
-  final RouterCategory category;
+  final IconData? icon;
+  final String? subtitle;
+  final RouterCategory? category;
   final String routeName;
   final WidgetBuilder buildRoute;
-  final String documentationUrl;
+  final String? documentationUrl;
 
   @override
   String toString() => '$runtimeType($title $routeName)';
@@ -27,8 +25,8 @@ class RouterUnit {
 
 class RouterCategory {
   const RouterCategory._({
-    @required this.name,
-    @required this.icon,
+    required this.name,
+    required this.icon,
   });
 
   final String name;
@@ -38,7 +36,7 @@ class RouterCategory {
   bool operator ==(other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final typedOther = other;
+    final dynamic typedOther = other;
     return typedOther.name == name && typedOther.icon == icon;
   }
 

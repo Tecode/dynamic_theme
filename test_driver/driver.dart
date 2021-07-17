@@ -11,13 +11,13 @@ void main() {
     // test suite. Note: the Strings provided to the `byValueKey` method must
     // be the same as the Strings we used for the Keys in step 1.
 
-    FlutterDriver driver;
+    late FlutterDriver driver;
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
       final envVars = Platform.environment;
       final adbPath = join(
-        envVars['ANDROID_SDK_ROOT'] ?? envVars['ANDROID_HOME'],
+        envVars['ANDROID_SDK_ROOT'] ?? envVars['ANDROID_HOME']!,
         'platform-tools',
         Platform.isWindows ? 'adb.exe' : 'adb',
       );
@@ -40,9 +40,7 @@ void main() {
 
     // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
-      if (driver != null) {
-        await driver.close();
-      }
+      await driver.close();
     });
 
     test('noReceipts', () async {

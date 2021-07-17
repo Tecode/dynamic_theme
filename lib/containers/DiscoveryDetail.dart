@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DiscoveryDetail extends StatefulWidget {
-  final String tag;
-  final String url;
+  final String? tag;
+  final String? url;
   const DiscoveryDetail({this.tag, this.url});
 
   @override
@@ -28,7 +28,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
           onTap: () => Navigator.of(context).pop(),
           behavior: HitTestBehavior.opaque,
           child: Hero(
-            tag: widget.tag,
+            tag: widget.tag ?? '',
             child: Center(
               child: InteractiveViewer(
                 boundaryMargin: EdgeInsets.all(20.0),
@@ -39,7 +39,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> {
                       Container(
                     color: Theme.of(context).backgroundColor,
                   ),
-                  imageUrl: widget.url,
+                  imageUrl: widget.url ?? '',
                   fit: BoxFit.contain,
                 ),
               ),
