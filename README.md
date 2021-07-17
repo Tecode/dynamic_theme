@@ -1,4 +1,4 @@
-# Dynamic Theme（Flutter 1.20.x）
+# Dynamic Theme（Flutter 2.2.x）
 
 ## 运行版本flutter2.2.x
 

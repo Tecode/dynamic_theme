@@ -31,7 +31,7 @@ class _DiscoveryState extends State<Discovery>
     with AutomaticKeepAliveClientMixin {
   late EasyRefreshController _controller;
 
-  late ScrollController _scrollController;
+  // late ScrollController _scrollController;
 
   final int _count = 100;
   int _index = 1;
@@ -103,7 +103,7 @@ class _DiscoveryState extends State<Discovery>
             enableControlFinishRefresh: true,
             enableControlFinishLoad: true,
             controller: _controller,
-            scrollController: _scrollController,
+            // scrollController: _scrollController,
             header: RefreshHeader(
               refreshedText: '小暑金将伏，微凉麦正秋',
               refreshingText: '小暑金将伏，微凉麦正秋',

@@ -215,7 +215,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   late Animation<double> _floatBackAnimation;
 
   // 浮动时,收起距离
-  late double _floatBackDistance;
+  late double _floatBackDistance = 0.0;
 
   // 显示文字
   String get _showText {
