@@ -20,7 +20,7 @@ class _NewViewState extends State<NewView> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    DynamicTheme.routeObserver
+    App.routeObserver
         .subscribe(this, ModalRoute.of(context) as PageRoute<dynamic>);
     print(this);
   }
@@ -39,7 +39,7 @@ class _NewViewState extends State<NewView> with RouteAware {
 
   @override
   void dispose() {
-    DynamicTheme.routeObserver.unsubscribe(this);
+    App.routeObserver.unsubscribe(this);
     super.dispose();
   }
 

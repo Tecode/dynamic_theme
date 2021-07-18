@@ -10,7 +10,7 @@ List<RouterUnit> _buildRouter() {
     RouterUnit(
       title: '首页',
       routeName: NewView.routeName,
-      buildRoute: (BuildContext context) => const DynamicTheme(),
+      buildRoute: (BuildContext context) => const App(),
     ),
     RouterUnit(
       title: 'iOS跳转页面',

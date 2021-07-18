@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
+import 'package:dynamic_theme/widgets/common/DialogBox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -60,7 +62,31 @@ class _ChatListState extends State<ChatList> {
                             color: Colors.deepOrangeAccent,
                             height: 400,
                             child: Text('8998'),
-                          )
+                          ),
+                          TextButton(onPressed: () => showGeneralDialog(
+                            context: App.materialKey.currentContext!,
+                            barrierColor: Colors.black.withOpacity(0.5),
+                            barrierDismissible: true,
+                            barrierLabel: '',
+                            transitionDuration: Duration(milliseconds: 200),
+                            pageBuilder: (
+                                BuildContext buildContext,
+                                Animation<double> animation,
+                                Animation<double> secondaryAnimation,
+                                ) {
+                              return Builder(
+                                builder: (BuildContext context) => ScaleTransition(
+                                  scale: Tween<double>(begin: 0.5, end: 1.0).animate(
+                                    CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.fastOutSlowIn,
+                                    ),
+                                  ),
+                                  child: DialogBox(),
+                                ),
+                              );
+                            },
+                          ), child: Text('全局弹出窗'))
                         ],
                       ),
                     ),

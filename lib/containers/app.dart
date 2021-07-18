@@ -10,15 +10,15 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart';
 
-class DynamicTheme extends StatefulWidget {
-  const DynamicTheme();
-  static final RouteObserver<PageRoute> routeObserver =
-      RouteObserver<PageRoute>();
+class App extends StatefulWidget {
+  const App();
+  static GlobalKey<NavigatorState> materialKey = GlobalKey();
+  static RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
   @override
   _DynamicThemeState createState() => _DynamicThemeState();
 }
 
-class _DynamicThemeState extends State<DynamicTheme> {
+class _DynamicThemeState extends State<App> {
   late Options _options;
   late Timer _timeDilationTimer;
 
@@ -83,6 +83,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dynamic Theme',
+      navigatorKey: App.materialKey,
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
@@ -118,7 +119,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
           ),
         );
       },
-      navigatorObservers: [DynamicTheme.routeObserver],
+      navigatorObservers: [App.routeObserver],
       home: Entrance(
         options: _options,
         handleOptionsChanged: _handleOptionsChanged,
