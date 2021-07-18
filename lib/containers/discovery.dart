@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:dynamic_theme/containers/DiscoveryDetail.dart';
-import 'package:dynamic_theme/helpers/customBehavior.dart';
-import 'package:dynamic_theme/widgets/common/RefreshFooter.dart';
-import 'package:dynamic_theme/widgets/common/RefreshHeader.dart';
+import 'package:dynamic_theme/containers/discovery_detail.dart';
+import 'package:dynamic_theme/helpers/custom_behavior.dart';
+import 'package:dynamic_theme/widgets/common/refresh_footer.dart';
+import 'package:dynamic_theme/widgets/common/refresh_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

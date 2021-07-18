@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:dynamic_theme/containers/Entrance.dart';
+import 'package:dynamic_theme/containers/entrance.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
 import 'package:dynamic_theme/helpers/themes.dart';

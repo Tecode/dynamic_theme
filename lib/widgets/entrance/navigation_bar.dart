@@ -1,4 +1,4 @@
-import 'package:dynamic_theme/containers/Entrance.dart';
+import 'package:dynamic_theme/containers/entrance.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:flutter/material.dart';
 

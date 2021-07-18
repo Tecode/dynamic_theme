@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/widgets/common/DialogBox.dart';
+import 'package:dynamic_theme/widgets/common/dialog_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -21,7 +21,7 @@ class _ChatListState extends State<ChatList> {
       navigationBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.only(),
         transitionBetweenRoutes: Platform.isIOS,
-        middle: Text('45'),
+        middle: Text('消息详情'),
         leading: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => Navigator.pop(context, '数据传参'),

@@ -1,16 +1,16 @@
 import 'dart:io';
 
-import 'package:dynamic_theme/containers/NewView.dart';
+import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/customBehavior.dart';
-import 'package:dynamic_theme/widgets/common/RefreshFooter.dart';
-import 'package:dynamic_theme/widgets/common/RefreshHeader.dart';
+import 'package:dynamic_theme/helpers/custom_behavior.dart';
+import 'package:dynamic_theme/widgets/common/refresh_footer.dart';
+import 'package:dynamic_theme/widgets/common/refresh_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
-import 'ChatList.dart';
+import 'chat_list.dart';
 
 class Home extends StatefulWidget {
   const Home();

@@ -1,6 +1,6 @@
-import 'package:dynamic_theme/containers/ChatList.dart';
-import 'package:dynamic_theme/containers/Detail.dart';
-import 'package:dynamic_theme/containers/NewView.dart';
+import 'package:dynamic_theme/containers/chat_list.dart';
+import 'package:dynamic_theme/containers/detail.dart';
+import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/router/routerUnit.dart';
 import 'package:flutter/widgets.dart';

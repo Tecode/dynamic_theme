@@ -1,4 +1,4 @@
-import 'package:dynamic_theme/containers/NewView.dart';
+import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

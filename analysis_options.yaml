@@ -46,7 +46,7 @@ linter:
     - control_flow_in_finally
     - directives_ordering
     - empty_statements
-    #    - file_names # under review (see #1068)
+    - file_names # under review (see #1068)
     - hash_and_equals
     - implementation_imports
     - invariant_booleans
