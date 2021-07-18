@@ -106,6 +106,12 @@ Navigator.of(context).popUntil(ModalRoute.withName('/newView'))
 
 ## 最佳实践
 
+### 配置不同環境訪問不同的地址`UrlConfig`
+
+```dart
+UrlConfig.of().url
+```
+
 ### 去掉`Android`溢出拖拽的半圆效果
 
 ```dart

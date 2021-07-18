@@ -4,6 +4,7 @@ import 'package:dynamic_theme/containers/entrance.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
 import 'package:dynamic_theme/helpers/themes.dart';
+import 'package:dynamic_theme/helpers/url_config.dart';
 import 'package:dynamic_theme/router/routerList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
@@ -25,6 +26,7 @@ class _DynamicThemeState extends State<App> {
   @override
   void initState() {
     super.initState();
+    debugPrint('${UrlConfig.of().url}--KK');
     _options = Options(
       themeMode: ThemeMode.system,
       textScaleFactor: textScaleValues[0],
