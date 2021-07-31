@@ -11,36 +11,67 @@ class DiscoveryDetail extends StatefulWidget {
   _DiscoveryDetailState createState() => _DiscoveryDetailState();
 }
 
-class _DiscoveryDetailState extends State<DiscoveryDetail> {
+class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProviderStateMixin {
+  final TransformationController _transformationController = TransformationController();
+  late TapDownDetails _doubleTapDetails;
+  late AnimationController _animationController;
+  late Animation<Matrix4> _animation;
+
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 400),
+    )..addListener(() {
+        _transformationController.value = _animation.value;
+      });
   }
 
   @override
   void dispose() {
     super.dispose();
+    _animationController.dispose();
+  }
+
+  void _handleDoubleTap() {
+    Matrix4 _endMatrix;
+    if (_transformationController.value != Matrix4.identity()) {
+      _endMatrix = Matrix4.identity();
+    } else {
+      final position = _doubleTapDetails.localPosition;
+      // For a 3x zoom
+      _endMatrix = Matrix4.identity()
+        ..translate(-position.dx * 1.3, -position.dy * 1.3)
+        ..scale(2.5);
+    }
+    _animation = Matrix4Tween(
+      begin: _transformationController.value,
+      end: _endMatrix,
+    ).animate(CurveTween(curve: Curves.fastOutSlowIn).animate(_animationController));
+    _animationController.forward(from: 0);
   }
 
   @override
   Widget build(BuildContext context) => Material(
         child: GestureDetector(
-          onTap: () => Navigator.of(context).pop(),
+          onDoubleTap: _handleDoubleTap,
+          onDoubleTapDown: (details) => _doubleTapDetails = details,
+          // onTap: () => _transformationController.value,
           behavior: HitTestBehavior.opaque,
           child: Hero(
             tag: widget.tag ?? '',
             child: Center(
               child: InteractiveViewer(
-                boundaryMargin: EdgeInsets.all(20.0),
-                minScale: 0.1,
-                maxScale: 1.6,
+                alignPanAxis: true,
+                clipBehavior: Clip.none,
+                transformationController: _transformationController,
                 child: CachedNetworkImage(
-                  progressIndicatorBuilder: (context, url, progress) =>
-                      Container(
+                  progressIndicatorBuilder: (context, url, progress) => Container(
                     color: Theme.of(context).backgroundColor,
                   ),
                   imageUrl: widget.url ?? '',
-                  fit: BoxFit.contain,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
             ),
