@@ -23,6 +23,7 @@ dependencies:
   uni_links: 0.5.1
   flutter_easyrefresh: 2.2.1
   cached_network_image: 3.1.0
+  keyboard_attachable: ^2.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
