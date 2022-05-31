@@ -3,5 +3,6 @@
     "@helloWorld": {
       "description": "The conventional newborn programmer greeting"
     },
-    "message": "Message"
+    "message": "Message",
+    "order": "Order"
 }

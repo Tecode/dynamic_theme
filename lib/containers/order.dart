@@ -16,7 +16,7 @@ class _OrderState extends State<Order> {
       navigationBar: CupertinoNavigationBar(
         heroTag: 'order',
         transitionBetweenRoutes: false,
-        middle: Text(AppLocalizations.of(context)!.message),
+        middle: Text(AppLocalizations.of(context)!.order),
       ),
       child: Padding(
         padding: EdgeInsets.only(

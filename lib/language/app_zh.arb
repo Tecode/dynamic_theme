@@ -3,5 +3,6 @@
     "@helloWorld": {
       "description": "描述汉字，用于语言本地化"
     },
-    "message": "消息"
+    "message": "消息",
+    "order": "订单"
 }
