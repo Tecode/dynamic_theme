@@ -2,6 +2,7 @@ import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Order extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _OrderState extends State<Order> {
       navigationBar: CupertinoNavigationBar(
         heroTag: 'order',
         transitionBetweenRoutes: false,
-        middle: Text('订单'),
+        middle: Text(AppLocalizations.of(context)!.message),
       ),
       child: Padding(
         padding: EdgeInsets.only(

@@ -7,9 +7,10 @@ import 'package:dynamic_theme/helpers/themes.dart';
 import 'package:dynamic_theme/helpers/url_config.dart';
 import 'package:dynamic_theme/router/router_list.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatefulWidget {
   const App();
@@ -85,6 +86,9 @@ class _DynamicThemeState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dynamic Theme',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: Locale('en'),
       navigatorKey: App.materialKey,
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
@@ -110,9 +114,7 @@ class _DynamicThemeState extends State<App> {
           },
           opaque: false,
           transitionDuration: Duration(milliseconds: 200),
-          transitionsBuilder:
-              (_, Animation<double> animation, __, Widget child) =>
-                  FadeTransition(
+          transitionsBuilder: (_, Animation<double> animation, __, Widget child) => FadeTransition(
             opacity: animation,
             child: ScaleTransition(
               scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),

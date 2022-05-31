@@ -1,0 +1,7 @@
+{
+    "helloWorld": "你好，世界!",
+    "@helloWorld": {
+      "description": "描述汉字，用于语言本地化"
+    },
+    "message": "消息"
+}
