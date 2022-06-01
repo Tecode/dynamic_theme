@@ -4,5 +4,13 @@
       "description": "描述汉字，用于语言本地化"
     },
     "message": "消息",
-    "order": "订单"
+    "@message": {
+        "description": "消息描述，汉语本地化"
+    },
+    "order": "订单",
+    "notFound": "找不到模块",
+    "messageDetail": "消息详情",
+    "refreshedText": "小暑金将伏，微凉麦正秋",
+    "discover": "发现",
+    "function": "功能"
 }

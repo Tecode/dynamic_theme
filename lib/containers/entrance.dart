@@ -11,6 +11,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uni_links/uni_links.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'app.dart';
 
 enum UniLinksType { string, uri }
 
@@ -25,10 +28,13 @@ class Entrance extends StatefulWidget {
 
 //  路由页面
   static List<Map<String, dynamic>> get navList => [
-        {'value': '消息', 'key': 'HOME'},
-        {'value': '发现', 'key': 'DISCOVERY'},
-        {'value': '订单', 'key': 'ORDER'},
-        {'value': '功能', 'key': 'MINE'},
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.message, 'key': 'HOME'},
+        {
+          'value': AppLocalizations.of(App.materialKey.currentContext!)!.discover,
+          'key': 'DISCOVERY'
+        },
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.order, 'key': 'ORDER'},
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.function, 'key': 'MINE'},
       ];
 
   @override

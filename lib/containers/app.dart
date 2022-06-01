@@ -138,7 +138,7 @@ class _DynamicThemeState extends State<App> {
               data: CupertinoThemeData(
                 brightness: Theme.of(context).brightness,
               ),
-              child: child ?? const Text('找不到模块'),
+              child: child ?? Text(AppLocalizations.of(context)!.notFound),
             );
           }),
         );

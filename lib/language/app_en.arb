@@ -4,5 +4,13 @@
       "description": "The conventional newborn programmer greeting"
     },
     "message": "Message",
-    "order": "Order"
+    "@message": {
+        "description": "The conventional newborn programmer greeting"
+    },
+    "order": "Order",
+    "notFound": "Module not found",
+    "messageDetail": "Message details",
+    "refreshedText": "Small summer gold will fall, slightly cool wheat is in autumn",
+    "discover": "Discover",
+    "function": "Function"
 }

@@ -5,6 +5,7 @@ import 'package:dynamic_theme/helpers/textThemeStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import 'package:keyboard_attachable/keyboard_attachable.dart';
 
 class ChatList extends StatefulWidget {
@@ -22,7 +23,7 @@ class _ChatListState extends State<ChatList> {
       navigationBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.only(),
         transitionBetweenRoutes: Platform.isIOS,
-        middle: Text('消息详情'),
+        middle: Text(AppLocalizations.of(context)!.messageDetail),
         leading: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => Navigator.pop(context, '数据传参'),

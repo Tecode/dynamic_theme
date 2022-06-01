@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class NetworkSource {
   final String url;
@@ -87,7 +89,7 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: false,
-        middle: Text('发现'),
+        middle: Text(AppLocalizations.of(context)!.discover),
       ),
       child: ScrollConfiguration(
         behavior: CustomBehavior(),
@@ -101,10 +103,10 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
             controller: _controller,
             // scrollController: _scrollController,
             header: RefreshHeader(
-              refreshedText: '小暑金将伏，微凉麦正秋',
-              refreshingText: '小暑金将伏，微凉麦正秋',
-              refreshReadyText: '小暑金将伏，微凉麦正秋',
-              refreshText: '小暑金将伏，微凉麦正秋',
+              refreshedText: AppLocalizations.of(context)!.refreshedText,
+              refreshingText: AppLocalizations.of(context)!.refreshedText,
+              refreshReadyText: AppLocalizations.of(context)!.refreshedText,
+              refreshText: AppLocalizations.of(context)!.refreshedText,
             ),
             footer: RefreshFooter(),
             onRefresh: _enableRefresh
