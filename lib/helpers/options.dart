@@ -11,6 +11,7 @@ class Options {
     this.showOffscreenLayersCheckerboard = false,
     this.showRasterCacheImagesCheckerboard = false,
     this.showPerformanceOverlay = false,
+    this.locale = const Locale('zh'),
   });
 
   final ThemeMode? themeMode;
@@ -21,6 +22,7 @@ class Options {
   final bool showPerformanceOverlay;
   final bool showRasterCacheImagesCheckerboard;
   final bool showOffscreenLayersCheckerboard;
+  final Locale locale;
 
   Options copyWith({
     ThemeMode? themeMode,
@@ -31,6 +33,7 @@ class Options {
     bool? showPerformanceOverlay,
     bool? showRasterCacheImagesCheckerboard,
     bool? showOffscreenLayersCheckerboard,
+    Locale? locale,
   }) {
     return Options(
       themeMode: themeMode ?? this.themeMode,
@@ -38,12 +41,12 @@ class Options {
       textDirection: textDirection ?? this.textDirection,
       timeDilation: timeDilation ?? this.timeDilation,
       platform: platform ?? this.platform,
-      showPerformanceOverlay:
-          showPerformanceOverlay ?? this.showPerformanceOverlay,
-      showOffscreenLayersCheckerboard: showOffscreenLayersCheckerboard ??
-          this.showOffscreenLayersCheckerboard,
-      showRasterCacheImagesCheckerboard: showRasterCacheImagesCheckerboard ??
-          this.showRasterCacheImagesCheckerboard,
+      showPerformanceOverlay: showPerformanceOverlay ?? this.showPerformanceOverlay,
+      showOffscreenLayersCheckerboard:
+          showOffscreenLayersCheckerboard ?? this.showOffscreenLayersCheckerboard,
+      showRasterCacheImagesCheckerboard:
+          showRasterCacheImagesCheckerboard ?? this.showRasterCacheImagesCheckerboard,
+      locale: locale ?? Locale('zh'),
     );
   }
 
@@ -56,10 +59,8 @@ class Options {
         textDirection == typedOther.textDirection &&
         platform == typedOther.platform &&
         showPerformanceOverlay == typedOther.showPerformanceOverlay &&
-        showRasterCacheImagesCheckerboard ==
-            typedOther.showRasterCacheImagesCheckerboard &&
-        showOffscreenLayersCheckerboard ==
-            typedOther.showRasterCacheImagesCheckerboard;
+        showRasterCacheImagesCheckerboard == typedOther.showRasterCacheImagesCheckerboard &&
+        showOffscreenLayersCheckerboard == typedOther.showRasterCacheImagesCheckerboard;
   }
 
   @override
