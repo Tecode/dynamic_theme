@@ -88,7 +88,7 @@ class _DynamicThemeState extends State<App> {
       title: 'Dynamic Theme',
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale('en'),
+      locale: _options.locale,
       navigatorKey: App.materialKey,
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),

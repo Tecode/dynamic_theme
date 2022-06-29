@@ -32,7 +32,7 @@ class _OrderState extends State<Order> {
                   height: 160.0,
                   child: Center(
                       child: Text(
-                    '广告位',
+                        AppLocalizations.of(context)!.ad,
                     style: Theme.of(context).textTheme.headline4,
                   )),
                 ),

@@ -2,6 +2,7 @@ import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Mine extends StatefulWidget {
   final Options? options;
@@ -10,6 +11,8 @@ class Mine extends StatefulWidget {
     this.handleOptionsChanged,
     this.options,
   });
+
+  static Map<String, String> languageMap = {'zh': '汉语', 'en': 'English'};
 
   @override
   _MineState createState() => _MineState();
@@ -35,6 +38,7 @@ class _MineState extends State<Mine> {
           child: Builder(
             builder: (BuildContext context) {
               final isDark = Theme.of(context).brightness == Brightness.dark;
+              var language = Localizations.localeOf(context).toString();
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +70,29 @@ class _MineState extends State<Mine> {
                       ),
                     ),
                     child: Text(
-                      isDark ? '珍珠白' : '暗夜黑',
+                      isDark
+                          ? AppLocalizations.of(context)!.pearlWhite
+                          : AppLocalizations.of(context)!.darkNight,
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      if (language == 'zh') {
+                        widget.handleOptionsChanged!(
+                          widget.options!.copyWith(locale: Locale('en')),
+                        );
+                        return;
+                      }
+                      widget.handleOptionsChanged!(
+                        widget.options!.copyWith(locale: Locale('zh')),
+                      );
+                    },
+                    child: Text(
+                      '${AppLocalizations.of(context)!.language}${Mine.languageMap[language]}',
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black,
                         fontSize: 16.0,

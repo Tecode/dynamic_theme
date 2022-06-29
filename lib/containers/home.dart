@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'chat_list.dart';
 
@@ -77,7 +78,7 @@ class _HomeState extends State<Home> {
             color: ColorTheme.of(context).color202326,
           ),
         ),
-        middle: Text('消息'),
+        middle: Text(AppLocalizations.of(context)!.information),
       ),
       child: Padding(
         padding: EdgeInsets.only(
