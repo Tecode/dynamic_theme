@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:dynamic_theme/containers/new_view.dart';
+import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/router/router_animation.dart';
 import 'package:dynamic_theme/widgets/common/dialog_box.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
   final String? value;

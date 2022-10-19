@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:dynamic_theme/containers/detail.dart';
 import 'package:dynamic_theme/containers/app.dart';
+import 'package:dynamic_theme/containers/detail.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:flutter/cupertino.dart';
@@ -84,7 +84,7 @@ class _NewViewState extends State<NewView> with RouteAware {
                     Detail.routeName,
                     arguments: Detail(value: 'NewView参数'),
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: 44.0,
                     width: MediaQuery.of(context).size.width,
                     child: Center(

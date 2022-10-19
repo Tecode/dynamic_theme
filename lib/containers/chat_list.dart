@@ -21,7 +21,7 @@ class _ChatListState extends State<ChatList> {
     return CupertinoPageScaffold(
       // resizeToAvoidBottomInset: false,
       navigationBar: CupertinoNavigationBar(
-        padding: EdgeInsetsDirectional.only(),
+        padding: const EdgeInsetsDirectional.only(),
         transitionBetweenRoutes: Platform.isIOS,
         middle: Text(AppLocalizations.of(context)!.messageDetail),
         leading: GestureDetector(
@@ -29,7 +29,7 @@ class _ChatListState extends State<ChatList> {
           onTap: () => Navigator.pop(context, '数据传参'),
           child: Container(
             width: 42.0,
-            padding: EdgeInsets.only(left: 10.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 20.0),
             child: Image.asset(
               'assets/icons/ic_arrow_left_gray.png',
               color: ColorTheme.of(context).color202326,
@@ -46,7 +46,7 @@ class _ChatListState extends State<ChatList> {
                 onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
                 onVerticalDragDown: (_) => FocusScope.of(context).requestFocus(FocusNode()),
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.only(bottom: 40.0),
+                  padding: const EdgeInsets.only(bottom: 40.0),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
                     child: Column(
@@ -83,7 +83,7 @@ In order for this to work with animations, the resizeToAvoidBottomInset paramete
                 right: 0.0,
                 child: Container(
                   color: ColorTheme.of(context).colorF3F3F6,
-                  child: TextField(),
+                  child: const TextField(),
                 ),
               )
             ],

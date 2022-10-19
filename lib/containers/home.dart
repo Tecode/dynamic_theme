@@ -14,7 +14,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'chat_list.dart';
 
 class Home extends StatefulWidget {
-  const Home();
+  const Home({Key? key}):super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -42,9 +42,7 @@ class _HomeState extends State<Home> {
     Navigator.of(context)
         .pushNamed(
           NewView.routeName,
-          arguments: NewView(
-            content: '路由传参',
-          ),
+          arguments: const NewView(content: '路由传参'),
         )
         .then(print);
   }
@@ -69,7 +67,7 @@ class _HomeState extends State<Home> {
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: Platform.isIOS,
         trailing: GestureDetector(
-          key: ValueKey('jump_list'),
+          key: const ValueKey('jump_list'),
           behavior: HitTestBehavior.opaque,
           onTap: () => _launchRouter(context),
           child: Icon(

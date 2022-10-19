@@ -294,13 +294,13 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
         duration: const Duration(milliseconds: 300), vsync: this);
     _floatBackAnimation = Tween(begin: widget.refreshIndicatorExtent, end: 0.0)
         .animate(_floatBackController)
-          ..addListener(() {
-            setState(() {
-              if (_floatBackAnimation.status != AnimationStatus.dismissed) {
-                _floatBackDistance = _floatBackAnimation.value;
-              }
-            });
-          });
+      ..addListener(() {
+        setState(() {
+          if (_floatBackAnimation.status != AnimationStatus.dismissed) {
+            _floatBackDistance = _floatBackAnimation.value;
+          }
+        });
+      });
     _floatBackAnimation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _floatBackController.reset();
@@ -411,12 +411,12 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
             width: 22.0,
             child: _refreshState == RefreshMode.refresh ||
                     _refreshState == RefreshMode.armed
-                ? CircularProgressIndicator(
+                ? const CircularProgressIndicator(
                     backgroundColor: Color(0xffff4b6e),
                     valueColor: AlwaysStoppedAnimation(Color(0xff0096fa)),
                   )
                 : CircularProgressIndicator(
-                    backgroundColor: Color(0xffff4b6e),
+                    backgroundColor: const Color(0xffff4b6e),
                     value: min(_pulledExtent, widget.extent) / 60.0,
                   ),
           ),
@@ -425,7 +425,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
       Expanded(
         flex: 2,
         child: Text(
-          '$_showText',
+          _showText,
           style: TextThemeStyle.of(context)
               .font12!
               .copyWith(color: ColorTheme.of(context).cubeColor),

@@ -56,8 +56,8 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-      padding: EdgeInsets.only(bottom: 18.0, top: 10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+      padding: const EdgeInsets.only(bottom: 18.0, top: 10.0),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -84,7 +84,7 @@ class OrderCard extends StatelessWidget {
                   Container(
                     width: 60.0,
                     height: 24.0,
-                    margin: EdgeInsets.only(left: 10.0),
+                    margin: const EdgeInsets.only(left: 10.0),
                     color: ColorTheme.of(context).colorF3F3F6,
                   ),
                 ],
@@ -92,12 +92,12 @@ class OrderCard extends StatelessWidget {
               Container(
                 width: 60.0,
                 height: 20.0,
-                margin: EdgeInsets.only(left: 10.0),
+                margin: const EdgeInsets.only(left: 10.0),
                 color: ColorTheme.of(context).colorF3F3F6,
               ),
             ],
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Row(
             children: <Widget>[
               Container(

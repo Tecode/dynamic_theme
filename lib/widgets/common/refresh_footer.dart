@@ -327,13 +327,11 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
       ? <Widget>[
           Container(
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(
-              right: 10.0,
-            ),
+            padding: const EdgeInsets.only(right: 10.0),
             child: (widget.loadState == LoadMode.load ||
                         widget.loadState == LoadMode.armed) &&
                     !widget.noMore
-                ? SizedBox(
+                ? const SizedBox(
                     width: 16.0,
                     height: 16.0,
                     child: CircularProgressIndicator(
@@ -346,7 +344,7 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
                         (widget.enableInfiniteLoad &&
                             widget.loadState != LoadMode.loaded) ||
                         widget.noMore
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Transform.rotate(
                         angle: 2 * pi * _iconRotationValue,
                         child: Icon(
@@ -368,7 +366,7 @@ class ClassicalFooterWidgetState extends State<ClassicalFooterWidget>
           Container(
             child: widget.loadState == LoadMode.load ||
                     widget.loadState == LoadMode.armed
-                ? Container(
+                ? SizedBox(
                     width: 20.0,
                     height: 20.0,
                     child: CircularProgressIndicator(

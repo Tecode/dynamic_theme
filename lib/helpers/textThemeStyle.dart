@@ -30,7 +30,7 @@ class TextThemeStyle with Diagnosticable {
 //        Platform.isIOS ? '.SF UI Display' : 'Roboto';
     final _fontFamily = Platform.isIOS ? '.SF UI Text' : 'Roboto';
     final _fontWeight = Platform.isIOS ? FontWeight.w500 : FontWeight.w600;
-    final _lineHeight = 1.2;
+    const _lineHeight = 1.2;
 
     return TextThemeStyle(
       font17: TextStyle(

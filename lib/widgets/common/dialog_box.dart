@@ -4,44 +4,46 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DialogBox extends StatelessWidget {
+  const DialogBox({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) => Material(
-      color: Colors.transparent,
-      child: Center(
-        child: Container(
-          width: 280.0,
-          padding: EdgeInsets.only(top: 24.0),
-          decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor.withOpacity(0.98),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0)
-                    .copyWith(bottom: 10.0),
-                child: Text(
-                  '提示',
-                  style: TextThemeStyle.of(context).fontBold17,
+        color: Colors.transparent,
+        child: Center(
+          child: Container(
+            width: 280.0,
+            padding: const EdgeInsets.only(top: 24.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor.withOpacity(0.98),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0)
+                      .copyWith(bottom: 10.0),
+                  child: Text(
+                    '提示',
+                    style: TextThemeStyle.of(context).fontBold17,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0)
-                    .copyWith(bottom: 16.0),
-                child: Text(
-                  '确认选择精品小班学习吗，选择之后不可更改',
-                  textAlign: TextAlign.center,
-                  style:
-                      TextThemeStyle.of(context).font16!.copyWith(height: 1.4),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0)
+                      .copyWith(bottom: 16.0),
+                  child: Text(
+                    '确认选择精品小班学习吗，选择之后不可更改',
+                    textAlign: TextAlign.center,
+                    style: TextThemeStyle.of(context)
+                        .font16!
+                        .copyWith(height: 1.4),
+                  ),
                 ),
-              ),
-              BottomButton(),
-            ],
+                const BottomButton(),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 }
 
 class BottomButton extends StatelessWidget {
@@ -54,10 +56,10 @@ class BottomButton extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: CupertinoButton(
-              padding: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
               minSize: 52.0,
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('取消'),
+              child: const Text('取消'),
             ),
           ),
           Container(
@@ -67,19 +69,19 @@ class BottomButton extends StatelessWidget {
           ),
           Expanded(
             child: CupertinoButton(
-              padding: EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
               minSize: 52.0,
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('确定'),
+              child: const Text('确定'),
             ),
           ),
         ],
       );
     }
     return CupertinoButton(
-      padding: EdgeInsets.all(0.0),
+      padding: const EdgeInsets.all(0.0),
       onPressed: () => Navigator.of(context).pop(),
-      child: Center(child: Text('确定')),
+      child: const Center(child: Text('确定')),
     );
   }
 

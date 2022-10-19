@@ -17,13 +17,13 @@ void entrance() {
 //    });
 
   test('切换页面', () async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     await driver.tap(find.byValueKey('tab_3'));
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     await driver.tap(find.byValueKey('tab_2'));
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     await driver.tap(find.byValueKey('tab_1'));
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     await driver.tap(find.byValueKey('tab_0'));
   });
 
@@ -60,7 +60,7 @@ void entrance() {
   });
 
   test('返回页面', () async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     final buttonFinder = find.byValueKey('back');
     // First, tap the button.
     await driver.tap(buttonFinder);
