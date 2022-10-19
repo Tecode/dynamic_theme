@@ -11,8 +11,9 @@ class DiscoveryDetail extends StatefulWidget {
   _DiscoveryDetailState createState() => _DiscoveryDetailState();
 }
 
-class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProviderStateMixin {
-  final TransformationController _transformationController = TransformationController();
+class _DiscoveryDetailState extends State<DiscoveryDetail>
+    with SingleTickerProviderStateMixin {
+  final TransformationController _controller = TransformationController();
   late TapDownDetails _doubleTapDetails;
   late AnimationController _animationController;
   late Animation<Matrix4> _animation;
@@ -22,9 +23,9 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProv
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
     )..addListener(() {
-        _transformationController.value = _animation.value;
+        _controller.value = _animation.value;
       });
   }
 
@@ -36,7 +37,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProv
 
   void _handleDoubleTap() {
     Matrix4 _endMatrix;
-    if (_transformationController.value != Matrix4.identity()) {
+    if (_controller.value != Matrix4.identity()) {
       _endMatrix = Matrix4.identity();
     } else {
       final position = _doubleTapDetails.localPosition;
@@ -46,9 +47,10 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProv
         ..scale(2.5);
     }
     _animation = Matrix4Tween(
-      begin: _transformationController.value,
+      begin: _controller.value,
       end: _endMatrix,
-    ).animate(CurveTween(curve: Curves.fastOutSlowIn).animate(_animationController));
+    ).animate(
+        CurveTween(curve: Curves.fastOutSlowIn).animate(_animationController));
     _animationController.forward(from: 0);
   }
 
@@ -57,7 +59,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProv
         child: GestureDetector(
           onDoubleTap: _handleDoubleTap,
           onDoubleTapDown: (details) => _doubleTapDetails = details,
-          // onTap: () => _transformationController.value,
+          // onTap: () => _controller.value,
           behavior: HitTestBehavior.opaque,
           child: Hero(
             tag: widget.tag ?? '',
@@ -65,11 +67,10 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProv
               child: InteractiveViewer(
                 alignPanAxis: true,
                 clipBehavior: Clip.none,
-                transformationController: _transformationController,
+                transformationController: _controller,
                 child: CachedNetworkImage(
-                  progressIndicatorBuilder: (context, url, progress) => Container(
-                    color: Theme.of(context).backgroundColor,
-                  ),
+                  progressIndicatorBuilder: (context, url, progress) =>
+                      Container(color: Theme.of(context).backgroundColor),
                   imageUrl: widget.url ?? '',
                   fit: BoxFit.fitWidth,
                 ),

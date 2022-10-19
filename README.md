@@ -1,4 +1,4 @@
-# Dynamic Theme（Flutter 2.2.x）
+# Dynamic Theme 支持多语言切换（Flutter 2.2.x）
 
 ## 运行版本flutter2.2.x
 

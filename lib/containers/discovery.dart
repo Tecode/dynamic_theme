@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class NetworkSource {
   final String url;
   final int? width;
@@ -29,7 +28,8 @@ class Discovery extends StatefulWidget {
   _DiscoveryState createState() => _DiscoveryState();
 }
 
-class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixin {
+class _DiscoveryState extends State<Discovery>
+    with AutomaticKeepAliveClientMixin {
   late EasyRefreshController _controller;
 
   // late ScrollController _scrollController;
@@ -49,10 +49,12 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
 
   List<NetworkSource> _imageList = [
     NetworkSource(
-      url: 'https://c-ssl.duitang.com/uploads/item/201912/31/20191231204136_ypgdq.jpg',
+      url:
+          'https://c-ssl.duitang.com/uploads/item/201912/31/20191231204136_ypgdq.jpg',
     ),
     NetworkSource(
-      url: 'https://c-ssl.duitang.com/uploads/item/201912/31/20191231204137_xrpfz.jpg',
+      url:
+          'https://c-ssl.duitang.com/uploads/item/201912/31/20191231204137_xrpfz.jpg',
     ),
   ];
 
@@ -68,7 +70,8 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
   void _pagination() {
     rootBundle.loadString('assets/network_image.json').then((value) {
       var _json = json.decode(value);
-      var _contentList = _json['content'].sublist((_index - 1) * _count, _index * _count) as List;
+      var _contentList = _json['content']
+          .sublist((_index - 1) * _count, _index * _count) as List;
       setState(() {
         _imageList = [..._imageList, ...parseJson(_contentList)];
         totalElements = _json['totalElements'] as int;
@@ -129,7 +132,9 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                       if (mounted) {
                         _index++;
                         if (!_enableControlFinish) {
-                          _controller.finishLoad(noMore: _index >= (totalElements / _count).ceil());
+                          _controller.finishLoad(
+                              noMore:
+                                  _index >= (totalElements / _count).ceil());
                         }
                         _pagination();
                       }
@@ -155,17 +160,21 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                             Animation<double> animation,
                             Animation<double> secondaryAnimation,
                           ) {
-                            const opacityCurve = Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
+                            const opacityCurve = Interval(0.0, 0.75,
+                                curve: Curves.fastOutSlowIn);
                             // 过渡动画
                             return AnimatedBuilder(
                                 animation: animation,
-                                builder: (BuildContext context, Widget? child) => Opacity(
-                                      opacity: opacityCurve.transform(animation.value),
-                                      child: DiscoveryDetail(
-                                        tag: '$index TAG${_data.imgId}',
-                                        url: _data.url,
-                                      ),
-                                    ));
+                                builder:
+                                    (BuildContext context, Widget? child) =>
+                                        Opacity(
+                                          opacity: opacityCurve
+                                              .transform(animation.value),
+                                          child: DiscoveryDetail(
+                                            tag: '$index TAG${_data.imgId}',
+                                            url: _data.url,
+                                          ),
+                                        ));
                           }),
                         ),
                         behavior: HitTestBehavior.opaque,

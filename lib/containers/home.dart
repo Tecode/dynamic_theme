@@ -14,7 +14,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'chat_list.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}):super(key: key);
+  const Home({Key? key}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }

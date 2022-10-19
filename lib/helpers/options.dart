@@ -41,12 +41,13 @@ class Options {
       textDirection: textDirection ?? this.textDirection,
       timeDilation: timeDilation ?? this.timeDilation,
       platform: platform ?? this.platform,
-      showPerformanceOverlay: showPerformanceOverlay ?? this.showPerformanceOverlay,
-      showOffscreenLayersCheckerboard:
-          showOffscreenLayersCheckerboard ?? this.showOffscreenLayersCheckerboard,
-      showRasterCacheImagesCheckerboard:
-          showRasterCacheImagesCheckerboard ?? this.showRasterCacheImagesCheckerboard,
-      locale: locale ?? Locale('zh'),
+      showPerformanceOverlay:
+          showPerformanceOverlay ?? this.showPerformanceOverlay,
+      showOffscreenLayersCheckerboard: showOffscreenLayersCheckerboard ??
+          this.showOffscreenLayersCheckerboard,
+      showRasterCacheImagesCheckerboard: showRasterCacheImagesCheckerboard ??
+          this.showRasterCacheImagesCheckerboard,
+      locale: locale ?? const Locale('zh'),
     );
   }
 
@@ -59,8 +60,10 @@ class Options {
         textDirection == typedOther.textDirection &&
         platform == typedOther.platform &&
         showPerformanceOverlay == typedOther.showPerformanceOverlay &&
-        showRasterCacheImagesCheckerboard == typedOther.showRasterCacheImagesCheckerboard &&
-        showOffscreenLayersCheckerboard == typedOther.showRasterCacheImagesCheckerboard;
+        showRasterCacheImagesCheckerboard ==
+            typedOther.showRasterCacheImagesCheckerboard &&
+        showOffscreenLayersCheckerboard ==
+            typedOther.showRasterCacheImagesCheckerboard;
   }
 
   @override

@@ -28,13 +28,25 @@ class Entrance extends StatefulWidget {
 
 //  路由页面
   static List<Map<String, dynamic>> get navList => [
-        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.message, 'key': 'HOME'},
         {
-          'value': AppLocalizations.of(App.materialKey.currentContext!)!.discover,
+          'value':
+              AppLocalizations.of(App.materialKey.currentContext!)!.message,
+          'key': 'HOME'
+        },
+        {
+          'value':
+              AppLocalizations.of(App.materialKey.currentContext!)!.discover,
           'key': 'DISCOVERY'
         },
-        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.order, 'key': 'ORDER'},
-        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.function, 'key': 'MINE'},
+        {
+          'value': AppLocalizations.of(App.materialKey.currentContext!)!.order,
+          'key': 'ORDER'
+        },
+        {
+          'value':
+              AppLocalizations.of(App.materialKey.currentContext!)!.function,
+          'key': 'MINE'
+        },
       ];
 
   @override

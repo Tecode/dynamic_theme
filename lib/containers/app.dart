@@ -114,7 +114,9 @@ class _DynamicThemeState extends State<App> {
           },
           opaque: false,
           transitionDuration: Duration(milliseconds: 200),
-          transitionsBuilder: (_, Animation<double> animation, __, Widget child) => FadeTransition(
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) =>
+                  FadeTransition(
             opacity: animation,
             child: ScaleTransition(
               scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),

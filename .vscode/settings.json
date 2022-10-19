@@ -5,6 +5,7 @@
         "easyrefresh",
         "hotfix",
         "skia",
-        "Unsynchronized"
+        "Unsynchronized",
+        "vsync"
     ]
 }

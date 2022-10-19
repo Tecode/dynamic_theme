@@ -5,10 +5,10 @@ final ThemeData lightTheme = _buildLightTheme();
 final ThemeData darkTheme = _buildDarkTheme();
 
 TextTheme _buildTextTheme(TextTheme base) => base.copyWith(
-    bodyText1: base.bodyText1!.copyWith(
-      fontFamily: 'GoogleSans',
-    ),
-  );
+      bodyText1: base.bodyText1!.copyWith(
+        fontFamily: 'GoogleSans',
+      ),
+    );
 
 ThemeData _buildDarkTheme() {
   const primaryColor = Color(0xFF0175c2);
@@ -18,7 +18,7 @@ ThemeData _buildDarkTheme() {
     secondary: secondaryColor,
   );
   final base = ThemeData(
-    pageTransitionsTheme: PageTransitionsTheme(builders: const {
+    pageTransitionsTheme: const PageTransitionsTheme(builders: {
       // TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.dark,
@@ -34,7 +34,8 @@ ThemeData _buildDarkTheme() {
     buttonTheme: ButtonThemeData(
       colorScheme: colorScheme,
       textTheme: ButtonTextTheme.primary,
-    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
+    ),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: secondaryColor),
   );
   return base.copyWith(
     textTheme: _buildTextTheme(base.textTheme),
@@ -50,7 +51,7 @@ ThemeData _buildLightTheme() {
     secondary: secondaryColor,
   );
   final base = ThemeData(
-    pageTransitionsTheme: PageTransitionsTheme(builders: const {
+    pageTransitionsTheme: const PageTransitionsTheme(builders: {
       // TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.light,
@@ -66,7 +67,8 @@ ThemeData _buildLightTheme() {
     buttonTheme: ButtonThemeData(
       colorScheme: colorScheme,
       textTheme: ButtonTextTheme.primary,
-    ), colorScheme: colorScheme.copyWith(secondary: secondaryColor),
+    ),
+    colorScheme: colorScheme.copyWith(secondary: secondaryColor),
   );
   return base.copyWith(
     textTheme: _buildTextTheme(base.textTheme),
