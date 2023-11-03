@@ -13,7 +13,8 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatefulWidget {
-  const App();
+  const App({Key? key}) : super(key: key);
+
   static GlobalKey<NavigatorState> materialKey = GlobalKey();
   static RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
   @override
@@ -37,8 +38,7 @@ class _DynamicThemeState extends State<App> {
   }
 
 // 配置路由
-  Map<String, WidgetBuilder> _buildRoutes() =>
-      {for (var data in routerList) data.routeName: data.buildRoute};
+  Map<String, WidgetBuilder> _buildRoutes() => {for (var data in routerList) data.routeName: data.buildRoute};
 
 //  修改页面参数（例如字体大小、主题颜色）
   void _handleOptionsChanged(Options newOptions) {
@@ -106,17 +106,15 @@ class _DynamicThemeState extends State<App> {
                   Text('404', style: Theme.of(context).textTheme.headline4),
                   CupertinoButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text('Back'),
+                    child: const Text('Back'),
                   )
                 ],
               ),
             );
           },
           opaque: false,
-          transitionDuration: Duration(milliseconds: 200),
-          transitionsBuilder:
-              (_, Animation<double> animation, __, Widget child) =>
-                  FadeTransition(
+          transitionDuration: const Duration(milliseconds: 200),
+          transitionsBuilder: (_, Animation<double> animation, __, Widget child) => FadeTransition(
             opacity: animation,
             child: ScaleTransition(
               scale: Tween<double>(begin: 0.5, end: 1.0).animate(animation),

@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
           NewView.routeName,
           arguments: const NewView(content: '路由传参'),
         )
-        .then(print);
+        .then((error) => debugPrint("$error"));
   }
 
   @override
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
         child: ScrollConfiguration(
           behavior: CustomBehavior(),
           child: EasyRefresh.custom(
-            key: Key('message_list'),
+            key: const Key('message_list'),
             enableControlFinishRefresh: true,
             enableControlFinishLoad: true,
             controller: _controller,
@@ -97,11 +97,11 @@ class _HomeState extends State<Home> {
               refreshText: '小暑金将伏，微凉麦正秋',
             ),
             footer: RefreshFooter(
-              key: Key('home_footer'),
+              key: const Key('home_footer'),
             ),
             onRefresh: _enableRefresh
                 ? () async {
-                    await Future.delayed(Duration(seconds: 2), () {
+                    await Future.delayed(const Duration(seconds: 2), () {
                       if (mounted) {
                         setState(() {
                           _count = 20;
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                 : null,
             onLoad: _enableLoad
                 ? () async {
-                    await Future.delayed(Duration(seconds: 2), () {
+                    await Future.delayed(const Duration(seconds: 2), () {
                       if (mounted) {
                         setState(() {
                           _count += 20;
@@ -135,8 +135,7 @@ class _HomeState extends State<Home> {
                     if (index == 0) return SizedBox(height: 15.0);
                     return AvatarWrapBox(
                       key: Key('item_$index'),
-                      onTap: () =>
-                          Navigator.of(context).pushNamed(ChatList.routeName),
+                      onTap: () => Navigator.of(context).pushNamed(ChatList.routeName),
                     );
                   },
                   childCount: _count + 1,
@@ -161,14 +160,14 @@ class AvatarWrapBox extends StatelessWidget {
       onTap: () => onTap?.call(),
       child: Container(
         height: 60.0,
-        padding: EdgeInsets.symmetric(horizontal: 14.0),
-        margin: EdgeInsets.only(bottom: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+        margin: const EdgeInsets.only(bottom: 10.0),
         child: Row(
           children: <Widget>[
             Container(
               width: 60.0,
               height: 60.0,
-              margin: EdgeInsets.only(right: 12.0),
+              margin: const EdgeInsets.only(right: 12.0),
               decoration: BoxDecoration(
                 color: ColorTheme.of(context).colorF3F3F6,
                 borderRadius: BorderRadius.circular(10.0),

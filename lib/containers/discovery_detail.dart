@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 class DiscoveryDetail extends StatefulWidget {
   final String? tag;
   final String? url;
-  const DiscoveryDetail({this.tag, this.url});
+  const DiscoveryDetail({Key? key, this.tag, this.url}) : super(key: key);
 
   @override
   _DiscoveryDetailState createState() => _DiscoveryDetailState();
 }
 
-class _DiscoveryDetailState extends State<DiscoveryDetail>
-    with SingleTickerProviderStateMixin {
+class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProviderStateMixin {
   final TransformationController _controller = TransformationController();
   late TapDownDetails _doubleTapDetails;
   late AnimationController _animationController;
@@ -49,8 +48,7 @@ class _DiscoveryDetailState extends State<DiscoveryDetail>
     _animation = Matrix4Tween(
       begin: _controller.value,
       end: _endMatrix,
-    ).animate(
-        CurveTween(curve: Curves.fastOutSlowIn).animate(_animationController));
+    ).animate(CurveTween(curve: Curves.fastOutSlowIn).animate(_animationController));
     _animationController.forward(from: 0);
   }
 

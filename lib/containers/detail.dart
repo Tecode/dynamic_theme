@@ -11,7 +11,7 @@ class Detail extends StatelessWidget {
   final String? value;
   static String routeName = '/detail';
 
-  const Detail({this.value});
+  const Detail({Key? key, this.value}) : super(key: key);
 
   void showDialog({required BuildContext context, required Widget child}) {
     showCupertinoDialog<String>(
@@ -30,7 +30,7 @@ class Detail extends StatelessWidget {
       barrierColor: Colors.black.withOpacity(0.5),
       barrierDismissible: true,
       barrierLabel: '',
-      transitionDuration: Duration(milliseconds: 200),
+      transitionDuration: const Duration(milliseconds: 200),
       pageBuilder: (
         BuildContext buildContext,
         Animation<double> animation,
@@ -44,7 +44,7 @@ class Detail extends StatelessWidget {
                 curve: Curves.fastOutSlowIn,
               ),
             ),
-            child: DialogBox(),
+            child: const DialogBox(),
           ),
         );
       },
@@ -64,7 +64,7 @@ class Detail extends StatelessWidget {
           onTap: () => Navigator.pop(context, '数据传参'),
           child: Container(
             width: 42.0,
-            padding: EdgeInsets.only(left: 10.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 20.0),
             child: Image.asset(
               'assets/icons/ic_arrow_left_gray.png',
               color: ColorTheme.of(context).color202326,
@@ -83,22 +83,22 @@ class Detail extends StatelessWidget {
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => _onAlertWithTitlePress(context),
-                  child: Text('弹窗'),
+                  child: const Text('弹窗'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => Navigator.of(context).pushNamed(
                     Detail.routeName,
-                    arguments: Detail(value: 'Detail参数'),
+                    arguments: const Detail(value: 'Detail参数'),
                   ),
-                  child: Text('Detail'),
+                  child: const Text('Detail'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => Navigator.of(context).popUntil(
                     ModalRoute.withName(NewView.routeName),
                   ),
-                  child: Text('返回NewList'),
+                  child: const Text('返回NewList'),
                 ),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
@@ -107,12 +107,12 @@ class Detail extends StatelessWidget {
                       body: Center(
                         child: CupertinoButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text('返回'),
+                          child: const Text('返回'),
                         ),
                       ),
                     )),
                   ),
-                  child: Text('底部弹窗'),
+                  child: const Text('底部弹窗'),
                 ),
               ],
             ),

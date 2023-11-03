@@ -10,7 +10,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChatList extends StatefulWidget {
   static const String routeName = '/chatList';
-  const ChatList();
+  const ChatList({Key? key}) : super(key: key);
   @override
   _ChatListState createState() => _ChatListState();
 }
@@ -44,13 +44,11 @@ class _ChatListState extends State<ChatList> {
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-                onVerticalDragDown: (_) =>
-                    FocusScope.of(context).requestFocus(FocusNode()),
+                onVerticalDragDown: (_) => FocusScope.of(context).requestFocus(FocusNode()),
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.only(bottom: 40.0),
                   child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                        minHeight: MediaQuery.of(context).size.height),
+                    constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
                     child: Column(
                       children: [
                         Text(

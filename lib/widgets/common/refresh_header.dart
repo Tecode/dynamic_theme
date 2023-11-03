@@ -75,8 +75,8 @@ class RefreshHeader extends Header {
           float: float as bool,
           completeDuration: (float
               ? completeDuration == null
-                  ? Duration(milliseconds: 400)
-                  : completeDuration + Duration(milliseconds: 400)
+                  ? const Duration(milliseconds: 400)
+                  : completeDuration + const Duration(milliseconds: 400)
               : completeDuration) as Duration,
           enableInfiniteRefresh: enableInfiniteRefresh as bool,
           enableHapticFeedback: enableHapticFeedback as bool,
@@ -118,7 +118,7 @@ class RefreshHeader extends Header {
       refreshIndicatorExtent: refreshIndicatorExtent,
       axisDirection: axisDirection,
       float: float,
-      completeDuration: completeDuration ?? Duration(milliseconds: 300),
+      completeDuration: completeDuration ?? const Duration(milliseconds: 300),
       enableInfiniteRefresh: enableInfiniteRefresh,
       success: success,
       noMore: noMore,
@@ -191,7 +191,7 @@ class ClassicalHeaderWidgetState extends State<ClassicalHeaderWidget>
   set refreshFinish(bool finish) {
     if (_refreshFinish != finish) {
       if (finish && widget.float) {
-        Future.delayed(widget.completeDuration - Duration(milliseconds: 400),
+        Future.delayed(widget.completeDuration - const Duration(milliseconds: 400),
             () {
           if (mounted) {
             _floatBackController.forward();

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Order extends StatefulWidget {
+  const Order({Key? key}) : super(key: key);
   @override
   _OrderState createState() => _OrderState();
 }
@@ -117,19 +118,19 @@ class OrderCard extends StatelessWidget {
                     Container(
                       width: 160.0,
                       height: 16.0,
-                      margin: EdgeInsets.only(left: 10.0),
+                      margin: const EdgeInsets.only(left: 10.0),
                       color: ColorTheme.of(context).colorF3F3F6,
                     ),
                     Container(
                       width: 100.0,
                       height: 16.0,
-                      margin: EdgeInsets.only(left: 10.0),
+                      margin: const EdgeInsets.only(left: 10.0),
                       color: ColorTheme.of(context).colorF3F3F6,
                     ),
                     Container(
                       width: 60.0,
                       height: 16.0,
-                      margin: EdgeInsets.only(left: 10.0),
+                      margin: const EdgeInsets.only(left: 10.0),
                       color: ColorTheme.of(context).colorF3F3F6,
                     ),
                   ],
@@ -137,7 +138,7 @@ class OrderCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
@@ -149,7 +150,7 @@ class OrderCard extends StatelessWidget {
               Container(
                 width: 60.0,
                 height: 24.0,
-                margin: EdgeInsets.only(left: 10.0),
+                margin: const EdgeInsets.only(left: 10.0),
                 color: ColorTheme.of(context).colorF3F3F6,
               ),
             ],

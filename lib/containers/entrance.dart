@@ -22,31 +22,17 @@ class Entrance extends StatefulWidget {
   final Function handleOptionsChanged;
   const Entrance({
     required this.handleOptionsChanged,
+    Key? key,
     this.options,
-  });
+  }) : super(key: key);
   static String routeName = '/';
 
 //  路由页面
   static List<Map<String, dynamic>> get navList => [
-        {
-          'value':
-              AppLocalizations.of(App.materialKey.currentContext!)!.message,
-          'key': 'HOME'
-        },
-        {
-          'value':
-              AppLocalizations.of(App.materialKey.currentContext!)!.discover,
-          'key': 'DISCOVERY'
-        },
-        {
-          'value': AppLocalizations.of(App.materialKey.currentContext!)!.order,
-          'key': 'ORDER'
-        },
-        {
-          'value':
-              AppLocalizations.of(App.materialKey.currentContext!)!.function,
-          'key': 'MINE'
-        },
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.message, 'key': 'HOME'},
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.discover, 'key': 'DISCOVERY'},
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.order, 'key': 'ORDER'},
+        {'value': AppLocalizations.of(App.materialKey.currentContext!)!.function, 'key': 'MINE'},
       ];
 
   @override
@@ -80,8 +66,8 @@ class _EntranceState extends State<Entrance> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       initialLink = await getInitialLink() ?? '';
-      print('initial link: $initialLink');
-      print('initialLink--$initialLink');
+      debugPrint('initial link: $initialLink');
+      debugPrint('initialLink--$initialLink');
       //  跳转到指定页面
       schemeJump(context, initialLink);
     } on PlatformException {
@@ -114,8 +100,8 @@ class _EntranceState extends State<Entrance> {
               child: IndexedStack(
                 index: activeIndex,
                 children: <Widget>[
-                  Home(),
-                  Discovery(),
+                  const Home(),
+                  const Discovery(),
                   Order(),
                   Mine(
                     options: widget.options ?? Options(),
