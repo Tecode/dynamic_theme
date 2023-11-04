@@ -27,13 +27,13 @@ class _NewViewState extends State<NewView> with RouteAware {
   @override
   void didPopNext() {
     // Covering route was popped off the navigator.
-    print('返回NewView');
+    debugPrint('返回NewView');
   }
 
   @override
   void didPush() {
     // Route was pushed onto navigator and is now topmost route.
-    print('进入NewView');
+    debugPrint('进入NewView');
   }
 
   @override
@@ -48,7 +48,7 @@ class _NewViewState extends State<NewView> with RouteAware {
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        padding: EdgeInsetsDirectional.only(),
+        padding: const EdgeInsetsDirectional.only(),
         transitionBetweenRoutes: Platform.isIOS,
         middle: Text(
           'NewList-${param.content}',
@@ -81,7 +81,7 @@ class _NewViewState extends State<NewView> with RouteAware {
                   splashColor: Colors.transparent,
                   onTap: () => Navigator.of(context).pushNamed(
                     Detail.routeName,
-                    arguments: Detail(value: 'NewView参数'),
+                    arguments: const Detail(value: 'NewView参数'),
                   ),
                   child: SizedBox(
                     height: 44.0,

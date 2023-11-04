@@ -7,8 +7,9 @@ class NavigationBar extends StatelessWidget {
   final Function onChange;
   const NavigationBar({
     required this.onChange,
+    Key? key,
     this.activeKey = 'HOME',
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
@@ -58,9 +59,7 @@ class NavigationBar extends StatelessWidget {
                                 : ColorTheme.of(context).cubeColor,
                           ),
                         ),
-                        SizedBox(
-                          height: 4.0,
-                        )
+                        const SizedBox(height: 4.0)
                       ],
                     ),
                   ),

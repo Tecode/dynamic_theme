@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/textThemeStyle.dart';
+import 'package:dynamic_theme/helpers/text_theme_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

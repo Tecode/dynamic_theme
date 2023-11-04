@@ -8,9 +8,10 @@ class Mine extends StatefulWidget {
   final Options? options;
   final Function? handleOptionsChanged;
   const Mine({
+    Key? key,
     this.handleOptionsChanged,
     this.options,
-  });
+  }) : super(key: key);
 
   static Map<String, String> languageMap = {'zh': '汉语', 'en': 'English'};
 
@@ -24,7 +25,7 @@ class _MineState extends State<Mine> {
     Navigator.pushNamed(
       context,
       '/newView5',
-      arguments: NewView(
+      arguments: const NewView(
         content: '网络搜索结果汉语- 维基百科，自由的百科全书',
       ),
     );
@@ -51,7 +52,7 @@ class _MineState extends State<Mine> {
                     'Flutter: Dynamic Theming | Change Theme At Runtime',
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
-                  ButtonColor(),
+                  const ButtonColor(),
                   TextButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
@@ -83,12 +84,12 @@ class _MineState extends State<Mine> {
                     onPressed: () {
                       if (language == 'zh') {
                         widget.handleOptionsChanged!(
-                          widget.options!.copyWith(locale: Locale('en')),
+                          widget.options!.copyWith(locale: const Locale('en')),
                         );
                         return;
                       }
                       widget.handleOptionsChanged!(
-                        widget.options!.copyWith(locale: Locale('zh')),
+                        widget.options!.copyWith(locale: const Locale('zh')),
                       );
                     },
                     child: Text(
@@ -110,6 +111,7 @@ class _MineState extends State<Mine> {
 }
 
 class ButtonColor extends StatefulWidget {
+  const ButtonColor({Key? key}) : super(key: key);
   @override
   _ButtonColorState createState() => _ButtonColorState();
 }

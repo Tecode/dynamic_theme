@@ -102,7 +102,7 @@ class _EntranceState extends State<Entrance> {
                 children: <Widget>[
                   const Home(),
                   const Discovery(),
-                  Order(),
+                  const Order(),
                   Mine(
                     options: widget.options ?? Options(),
                     handleOptionsChanged: widget.handleOptionsChanged,

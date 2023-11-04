@@ -1,5 +1,5 @@
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/textThemeStyle.dart';
+import 'package:dynamic_theme/helpers/text_theme_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -48,7 +48,7 @@ class DialogBox extends StatelessWidget {
 
 class BottomButton extends StatelessWidget {
   final bool cancelButton;
-  const BottomButton({this.cancelButton = false});
+  const BottomButton({Key? key, this.cancelButton = false}) : super(key: key);
 
   Widget _buttonWidget(BuildContext context) {
     if (cancelButton) {

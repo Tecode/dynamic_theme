@@ -53,7 +53,7 @@ class _OrderState extends State<Order> {
 }
 
 class OrderCard extends StatelessWidget {
-  const OrderCard();
+  const OrderCard({Key? key}):super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

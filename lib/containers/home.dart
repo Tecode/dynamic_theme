@@ -132,7 +132,7 @@ class _HomeState extends State<Home> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    if (index == 0) return SizedBox(height: 15.0);
+                    if (index == 0) return const SizedBox(height: 15.0);
                     return AvatarWrapBox(
                       key: Key('item_$index'),
                       onTap: () => Navigator.of(context).pushNamed(ChatList.routeName),
