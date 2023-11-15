@@ -57,6 +57,41 @@ flutter run --profile --trace-skia
 flutter screenshot --type=skia --observatory-uri=http://127.0.0.1:49368/s4vbW7Mp_KE=/#/timeline
 ```
 
+## 监听路由变化，返回进入（pop.then不能监听iOS侧滑或Android侧滑以及物理键返回的回调）
+
+`Flutter` 中，`RouteAware` 是一个 `widget mixin`，用于监听路由的推送和弹出事件。这使得 widget 能够知道它们何时被显示或隐藏，例如当用户导航到一个页面或从一个页面返回时。这对于跟踪页面视图或执行在页面进入或离开屏幕时的操作特别有用。
+
+RouteAware 需要和 RouteObserver 一起使用，后者是一个监听 Navigator 路由堆栈变化的类。你需要在全局范围内创建一个 RouteObserver 并在整个应用中使用它，这样 `RouteAware mixin` 的 widgets 才能注册到观察者并接收路由变化的通知。
+
+```dart
+class _NewViewState extends State<NewView> with RouteAware {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    App.routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute<dynamic>);
+    debugPrint("$this");
+  }
+
+  @override
+  void didPopNext() {
+    // Covering route was popped off the navigator.
+    debugPrint('返回NewView');
+  }
+
+  @override
+  void didPush() {
+    // Route was pushed onto navigator and is now topmost route.
+    debugPrint('进入NewView');
+  }
+
+  @override
+  void dispose() {
+    App.routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+}
+```
+
 ## 路由(命名路由)
 
 ### Navigator.of(context).pushNamed
