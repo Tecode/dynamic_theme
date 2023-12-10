@@ -1,6 +1,7 @@
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/containers/chat_list.dart';
 import 'package:dynamic_theme/containers/detail.dart';
+import 'package:dynamic_theme/containers/navigation_positioning.dart';
 import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/router/router_unit.dart';
 import 'package:flutter/widgets.dart';
@@ -29,8 +30,8 @@ List<RouterUnit> _buildRouter() {
     ),
     RouterUnit(
       title: '滚动定位',
-      routeName: ChatList.routeName,
-      buildRoute: (BuildContext context) => const ChatList(),
+      routeName: NavigationPositioning.routeName,
+      buildRoute: (BuildContext context) => const NavigationPositioning(),
     ),
   ];
   return routerList;

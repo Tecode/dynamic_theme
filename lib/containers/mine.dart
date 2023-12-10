@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'navigation_positioning.dart';
+
 class Mine extends StatefulWidget {
   final Options? options;
   final Function? handleOptionsChanged;
@@ -71,9 +73,7 @@ class _MineState extends State<Mine> {
                       ),
                     ),
                     child: Text(
-                      isDark
-                          ? AppLocalizations.of(context)!.pearlWhite
-                          : AppLocalizations.of(context)!.darkNight,
+                      isDark ? AppLocalizations.of(context)!.pearlWhite : AppLocalizations.of(context)!.darkNight,
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black,
                         fontSize: 16.0,
@@ -94,6 +94,16 @@ class _MineState extends State<Mine> {
                     },
                     child: Text(
                       '${AppLocalizations.of(context)!.language}${Mine.languageMap[language]}',
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pushNamed(NavigationPositioning.routeName),
+                    child: Text(
+                      '滑动定位',
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black,
                         fontSize: 16.0,
