@@ -28,6 +28,11 @@
     <img width="375" title="预览截图" src="assets/preview/Simulator Screen Shot - iPhone 8 - 2020-08-06 at 11.23.10.png">
 </p>
 
+## 滑动定位
+<p align="center">
+    <img width="375" title="预览截图" src="./assets/preview/scroll_position.gif">
+</p>
+
 
 ## Flutter version
 
