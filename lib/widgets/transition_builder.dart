@@ -2,14 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:math';
+import 'dart:ui' show lerpDouble;
+
 // The adjustments made to this code is to disable unwanted shadow
 // of routes when used as nested routes, e.g inside of a TabsRouter
 
 import 'package:flutter/cupertino.dart' show CupertinoDynamicColor;
 import 'package:flutter/foundation.dart';
-import 'dart:math';
-import 'dart:ui' show lerpDouble;
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -75,8 +75,8 @@ mixin CustomCupertinoRouteTransitionMixin<T> on PageRoute<T> {
   /// {@template flutter.cupertino.CupertinoRouteTransitionMixin.title}
   /// A title string for this route.
   ///
-  /// Used to auto-populate [CupertinoNavigationBar] and
-  /// [CupertinoSliverNavigationBar]'s `middle`/`largeTitle` widgets when
+  /// Used to auto-populate CupertinoNavigationBar and
+  /// CupertinoSliverNavigationBar's `middle`/`largeTitle` widgets when
   /// one is not manually supplied.
   /// {@endtemplate}
   String? get title;
@@ -220,7 +220,7 @@ mixin CustomCupertinoRouteTransitionMixin<T> on PageRoute<T> {
   /// Returns a [CupertinoFullscreenDialogTransition] if [route] is a full
   /// screen dialog, otherwise a [CupertinoPageTransition] is returned.
   ///
-  /// Used by [CupertinoPageRoute.buildTransitions].
+  /// Used by CupertinoPageRoute.buildTransitions.
   ///
   /// This method can be applied to any [PageRoute], not just
   /// [CupertinoPageRoute]. It's typically used to provide a Cupertino style
@@ -290,11 +290,11 @@ mixin CustomCupertinoRouteTransitionMixin<T> on PageRoute<T> {
 ///    for this modal route.
 ///  * [MaterialPageRoute], for an adaptive [PageRoute] that uses a
 ///    platform-appropriate transition.
-///  * [CupertinoPageScaffold], for applications that have one page with a fixed
+///  * CupertinoPageScaffold, for applications that have one page with a fixed
 ///    navigation bar on top.
-///  * [CupertinoTabScaffold], for applications that have a tab bar at the
+///  * CupertinoTabScaffold, for applications that have a tab bar at the
 ///    bottom with multiple pages.
-///  * [CupertinoPage], for a [Page] version of this class.
+///  * [CupertinoPage, for a [Page] version of this class.
 class CupertinoPageRoute<T> extends PageRoute<T> with CustomCupertinoRouteTransitionMixin<T> {
   /// Creates a page route for use in an iOS designed app.
   ///
@@ -343,11 +343,11 @@ class CupertinoPageTransition extends StatelessWidget {
   ///  * `linearTransition` is whether to perform the transitions linearly.
   ///    Used to precisely track back gesture drags.
   CupertinoPageTransition({
-    Key? key,
     required Animation<double> primaryRouteAnimation,
     required Animation<double> secondaryRouteAnimation,
     required this.child,
     required bool linearTransition,
+    Key? key,
   })  : _primaryPositionAnimation = (linearTransition
                 ? primaryRouteAnimation
                 : CurvedAnimation(
@@ -376,7 +376,7 @@ class CupertinoPageTransition extends StatelessWidget {
                     parent: primaryRouteAnimation,
                     curve: Curves.linearToEaseOut,
                   ))
-            .drive(_CupertinoEdgeShadowDecoration.tween(linearTransition)),
+            .drive(_CupertinoEdgeShadowDecoration.tween(withShadow: linearTransition)),
         super(key: key);
 
   // When this page is coming in to cover another page.
@@ -423,11 +423,11 @@ class CupertinoFullscreenDialogTransition extends StatelessWidget {
   ///  * `linearTransition` is whether to perform the secondary transition linearly.
   ///    Used to precisely track back gesture drags.
   CupertinoFullscreenDialogTransition({
-    Key? key,
     required Animation<double> primaryRouteAnimation,
     required Animation<double> secondaryRouteAnimation,
     required this.child,
     required bool linearTransition,
+    Key? key,
   })  : _positionAnimation = CurvedAnimation(
           parent: primaryRouteAnimation,
           curve: Curves.linearToEaseOut,
@@ -482,10 +482,10 @@ class CupertinoFullscreenDialogTransition extends StatelessWidget {
 /// detector is associated.
 class _CupertinoBackGestureDetector<T> extends StatefulWidget {
   const _CupertinoBackGestureDetector({
-    Key? key,
     required this.enabledCallback,
     required this.onStartPopGesture,
     required this.child,
+    Key? key,
   }) : super(key: key);
 
   final Widget child;
@@ -613,14 +613,14 @@ class _CupertinoBackGestureController<T> {
   final AnimationController controller;
   final NavigatorState navigator;
 
-  /// The drag gesture has changed by [fractionalDelta]. The total range of the
+  /// The drag gesture has changed by fractionalDelta. The total range of the
   /// drag should be 0.0 to 1.0.
   void dragUpdate(double delta) {
     controller.value -= delta;
   }
 
   /// The drag gesture has ended with a horizontal motion of
-  /// [fractionalVelocity] as a fraction of screen width per second.
+  /// fractionalVelocity as a fraction of screen width per second.
   void dragEnd(double velocity) {
     // Fling in the appropriate direction.
     // AnimationController.fling is guaranteed to
@@ -686,7 +686,7 @@ class _CupertinoBackGestureController<T> {
 class _CupertinoEdgeShadowDecoration extends Decoration {
   const _CupertinoEdgeShadowDecoration._([this._colors]);
 
-  static DecorationTween tween(bool withShadow) => DecorationTween(
+  static DecorationTween tween({required bool withShadow}) => DecorationTween(
         begin: const _CupertinoEdgeShadowDecoration._(), // No decoration initially.
         end: _CupertinoEdgeShadowDecoration._(
           // Eyeballed gradient used to mimic a drop shadow on the start side only.
