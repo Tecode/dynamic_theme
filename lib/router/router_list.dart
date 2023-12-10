@@ -27,6 +27,11 @@ List<RouterUnit> _buildRouter() {
       routeName: ChatList.routeName,
       buildRoute: (BuildContext context) => const ChatList(),
     ),
+    RouterUnit(
+      title: '滚动定位',
+      routeName: ChatList.routeName,
+      buildRoute: (BuildContext context) => const ChatList(),
+    ),
   ];
   return routerList;
 }
