@@ -1,4 +1,5 @@
 import 'package:dynamic_theme/containers/new_view.dart';
+import 'package:dynamic_theme/containers/position_exchange.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +112,7 @@ class _MineState extends State<Mine> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.of(context).pushNamed(NavigationPositioning.routeName),
+                    onPressed: () => Navigator.of(context).pushNamed(PositionExchange.routeName),
                     child: Text(
                       '拖动排图',
                       style: TextStyle(
