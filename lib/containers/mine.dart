@@ -110,6 +110,16 @@ class _MineState extends State<Mine> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pushNamed(NavigationPositioning.routeName),
+                    child: Text(
+                      '拖动排图',
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
                 ],
               );
             },

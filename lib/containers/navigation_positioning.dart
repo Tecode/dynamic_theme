@@ -58,7 +58,7 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
     });
   }
 
-  handleTabChange() {
+  void handleTabChange() {
     late RenderBox box;
 
     for (var i = 0; i < keyList.length; i++) {
@@ -77,7 +77,7 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
     }
   }
 
-  handleScroll(int index) async {
+  void handleScroll(int index) async {
     _controller.removeListener(() => _debounce.run(handleTabChange));
     final _context = keyList[index].currentContext;
     if (_context == null) {
@@ -96,6 +96,7 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
 
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
+        transitionBetweenRoutes: false,
         middle: Text('滑动定位'),
       ),
       child: Material(

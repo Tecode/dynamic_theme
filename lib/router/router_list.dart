@@ -33,6 +33,11 @@ List<RouterUnit> _buildRouter() {
       routeName: NavigationPositioning.routeName,
       buildRoute: (BuildContext context) => const NavigationPositioning(),
     ),
+    RouterUnit(
+      title: '拖动排图',
+      routeName: NavigationPositioning.routeName,
+      buildRoute: (BuildContext context) => const NavigationPositioning(),
+    ),
   ];
   return routerList;
 }

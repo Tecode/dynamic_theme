@@ -1,4 +1,5 @@
 // import 'package:dynamic_theme/helpers/route.dart';
+import 'package:dynamic_theme/widgets/transition_builder.dart';
 import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = _buildLightTheme();
@@ -16,7 +17,7 @@ ThemeData _buildDarkTheme() {
   final colorScheme = const ColorScheme.dark().copyWith(primary: primaryColor, secondary: secondaryColor);
   final base = ThemeData(
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
-      // TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.dark,
     primaryColor: primaryColor,
@@ -49,7 +50,7 @@ ThemeData _buildLightTheme() {
   final colorScheme = const ColorScheme.light().copyWith(primary: primaryColor, secondary: secondaryColor);
   final base = ThemeData(
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
-      // TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.light,
     primaryColor: primaryColor,
