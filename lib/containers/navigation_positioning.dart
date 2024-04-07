@@ -26,7 +26,7 @@ class Debounce {
 
 class NavigationPositioning extends StatefulWidget {
   static const String routeName = '/navigation_positioning';
-  const NavigationPositioning({Key? key}) : super(key: key);
+  const NavigationPositioning({super.key});
 
   @override
   State<NavigationPositioning> createState() => _ScrollNavigationPositioningState();
@@ -49,8 +49,8 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
   // 加载省市数据
   void _cityListLoad() {
     rootBundle.loadString('assets/city_list.json').then((value) {
-      var _json = json.decode(value) as Map;
-      cityMap = _json;
+      var jsonValue = json.decode(value) as Map;
+      cityMap = jsonValue;
       for (int index = 0; index < cityMap.length; index++) {
         keyList.add(GlobalKey());
       }
@@ -69,7 +69,7 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
       Offset position = box.localToGlobal(Offset.zero);
 
       if ((MediaQuery.of(context).padding.top + 92) >= position.dy) {
-        DefaultTabController.of(tabContext!)!.animateTo(
+        DefaultTabController.of(tabContext!).animateTo(
           i,
           duration: const Duration(milliseconds: 100),
         );
@@ -79,12 +79,12 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
 
   void handleScroll(int index) async {
     _controller.removeListener(() => _debounce.run(handleTabChange));
-    final _context = keyList[index].currentContext;
-    if (_context == null) {
+    final context = keyList[index].currentContext;
+    if (context == null) {
       return;
     }
     await Scrollable.ensureVisible(
-      _context,
+      context,
       duration: const Duration(milliseconds: 600),
     );
     _controller.addListener(() => _debounce.run(handleTabChange));
@@ -117,11 +117,11 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
                       tabs: List.generate(
                         cityMap.keys.length,
                         (index) {
-                          var _key = cityMap.keys.toList()[index];
-                          var _list = (cityMap[_key] as List).first;
+                          var key = cityMap.keys.toList()[index];
+                          var list = (cityMap[key] as List).first;
                           return Tab(
                             child: Text(
-                              '${_list['province']}',
+                              '${list['province']}',
                               style: TextStyle(
                                 color: isDark ? Colors.white : Colors.black,
                                 fontSize: 16.0,
@@ -143,8 +143,8 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
                     children: List.generate(
                       cityMap.keys.length,
                       (index) {
-                        var _key = cityMap.keys.toList()[index];
-                        var _list = cityMap[_key] as List;
+                        var key0 = cityMap.keys.toList()[index];
+                        var list0 = cityMap[key0] as List;
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -152,7 +152,7 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
                               key: keyList[index],
                               padding: const EdgeInsets.only(top: 10.0),
                               child: Text(
-                                '${_list.first['province']}',
+                                '${list0.first['province']}',
                                 style: TextStyle(
                                   color: isDark ? Colors.white : Colors.black,
                                   fontSize: 16.0,
@@ -163,12 +163,8 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: List.generate(
-                                _list.length,
+                                list0.length,
                                 (index) => Container(
-                                  child: Text(
-                                    '${_list[index]['name']}',
-                                    style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 15.0),
-                                  ),
                                   padding: const EdgeInsets.symmetric(vertical: 15),
                                   decoration: BoxDecoration(
                                     border: Border(
@@ -176,6 +172,10 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
                                     ),
                                   ),
                                   width: double.infinity,
+                                  child: Text(
+                                    '${list0[index]['name']}',
+                                    style: TextStyle(color: isDark ? Colors.white : Colors.black, fontSize: 15.0),
+                                  ),
                                 ),
                               ),
                             ),

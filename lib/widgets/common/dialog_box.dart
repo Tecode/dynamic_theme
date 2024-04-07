@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DialogBox extends StatelessWidget {
-  const DialogBox({Key? key}) : super(key: key);
+  const DialogBox({super.key});
   @override
   Widget build(BuildContext context) => Material(
         color: Colors.transparent,
@@ -13,7 +13,7 @@ class DialogBox extends StatelessWidget {
             width: 280.0,
             padding: const EdgeInsets.only(top: 24.0),
             decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor.withOpacity(0.98),
+              color: Theme.of(context).canvasColor.withOpacity(0.98),
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
@@ -48,7 +48,7 @@ class DialogBox extends StatelessWidget {
 
 class BottomButton extends StatelessWidget {
   final bool cancelButton;
-  const BottomButton({Key? key, this.cancelButton = false}) : super(key: key);
+  const BottomButton({super.key, this.cancelButton = false});
 
   Widget _buttonWidget(BuildContext context) {
     if (cancelButton) {

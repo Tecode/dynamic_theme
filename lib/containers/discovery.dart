@@ -5,7 +5,6 @@ import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:dynamic_theme/widgets/common/refresh_footer.dart';
 import 'package:dynamic_theme/widgets/common/refresh_header.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -24,10 +23,10 @@ class NetworkSource {
 }
 
 class Discovery extends StatefulWidget {
-  const Discovery({Key? key}) : super(key: key);
+  const Discovery({super.key});
 
   @override
-  _DiscoveryState createState() => _DiscoveryState();
+  State<Discovery> createState() => _DiscoveryState();
 }
 
 class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixin {
@@ -68,11 +67,11 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
 // 分页
   void _pagination() {
     rootBundle.loadString('assets/network_image.json').then((value) {
-      var _json = json.decode(value);
-      var _contentList = _json['content'].sublist((_index - 1) * _count, _index * _count) as List;
+      var jsonValue = json.decode(value);
+      var contentList = jsonValue['content'].sublist((_index - 1) * _count, _index * _count) as List;
       setState(() {
-        _imageList = [..._imageList, ...parseJson(_contentList)];
-        totalElements = _json['totalElements'] as int;
+        _imageList = [..._imageList, ...parseJson(contentList)];
+        totalElements = jsonValue['totalElements'] as int;
       });
     });
   }
@@ -146,9 +145,9 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    final _data = _imageList[index];
+                    final data = _imageList[index];
                     return Hero(
-                      tag: '$index TAG${_data.imgId}',
+                      tag: '$index TAG${data.imgId}',
                       child: GestureDetector(
                         onTap: () => Navigator.of(context).push(
                           PageRouteBuilder<void>(pageBuilder: (
@@ -163,8 +162,8 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                                 builder: (BuildContext context, Widget? child) => Opacity(
                                       opacity: opacityCurve.transform(animation.value),
                                       child: DiscoveryDetail(
-                                        tag: '$index TAG${_data.imgId}',
-                                        url: _data.url,
+                                        tag: '$index TAG${data.imgId}',
+                                        url: data.url,
                                       ),
                                     ));
                           }),
@@ -172,7 +171,7 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                         behavior: HitTestBehavior.opaque,
                         child: FadeInImage.assetNetwork(
                           placeholder: 'assets/images/loading.gif',
-                          image: _data.url,
+                          image: data.url,
                           imageCacheWidth: 80,
                           fit: BoxFit.cover,
                         ),

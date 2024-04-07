@@ -67,7 +67,7 @@ class Options {
   }
 
   @override
-  int get hashCode => hashValues(
+  int get hashCode => Object.hash(
         themeMode,
         textScaleFactor,
         textDirection,

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Order extends StatefulWidget {
-  const Order({Key? key}) : super(key: key);
+  const Order({super.key});
   @override
-  _OrderState createState() => _OrderState();
+  State<Order> createState() => _OrderState();
 }
 
 class _OrderState extends State<Order> {
@@ -34,7 +34,7 @@ class _OrderState extends State<Order> {
                   child: Center(
                       child: Text(
                     AppLocalizations.of(context)!.ad,
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   )),
                 ),
               ),
@@ -53,7 +53,7 @@ class _OrderState extends State<Order> {
 }
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({Key? key}) : super(key: key);
+  const OrderCard({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

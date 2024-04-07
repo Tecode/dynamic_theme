@@ -3,15 +3,15 @@ import 'package:flutter/widgets.dart';
 
 /// 路由跳转 context schemeUrl
 void schemeJump(BuildContext context, String schemeUrl) {
-  final _jumpUri = Uri.parse(schemeUrl.replaceFirst(
+  final jumpUri = Uri.parse(schemeUrl.replaceFirst(
     'dynamictheme://',
     'http://path/',
   ));
-  switch (_jumpUri.path) {
+  switch (jumpUri.path) {
     case '/detail':
       Navigator.of(context).pushNamed(
         Detail.routeName,
-        arguments: Detail(value: _jumpUri.queryParameters['name'] ?? '详情'),
+        arguments: Detail(value: jumpUri.queryParameters['name'] ?? '详情'),
       );
       break;
     default:

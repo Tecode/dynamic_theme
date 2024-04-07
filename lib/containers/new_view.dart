@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 
 class NewView extends StatefulWidget {
   final String? content;
-  const NewView({Key? key, this.content}) : super(key: key);
+  const NewView({super.key, this.content});
   static const String routeName = '/newView';
 
   @override
-  _NewViewState createState() => _NewViewState();
+  State<NewView> createState() => _NewViewState();
 }
 
 class _NewViewState extends State<NewView> with RouteAware {
@@ -89,7 +89,7 @@ class _NewViewState extends State<NewView> with RouteAware {
                     child: Center(
                       child: Text(
                         '${param.content}-${index.toRadixString(2)}',
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ),

@@ -2,7 +2,7 @@ include: package:flutter_lints/flutter.yaml
 # https://dart.dev/tools/linter-rules
 analyzer:
   strong-mode:
-    implicit-casts: false
+#    implicit-casts: false
   errors:
     lines_longer_than_80_chars: ignore # 忽略默认的80字符限制
   exclude:
@@ -51,8 +51,6 @@ linter:
     - file_names # under review (see #1068)
     - hash_and_equals
     - implementation_imports
-    - invariant_booleans
-    - iterable_contains_unrelated_type
     - join_return_with_assignment
 #    - lines_longer_than_80_chars # under review (see #1068)
     - list_remove_unrelated_type

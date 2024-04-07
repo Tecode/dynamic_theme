@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/material.dart';
-
 class TextScaleValue {
   const TextScaleValue(this.scale, this.label);
 
@@ -18,7 +16,7 @@ class TextScaleValue {
   }
 
   @override
-  int get hashCode => hashValues(scale, label);
+  int get hashCode => Object.hash(scale, label);
 
   @override
   String toString() => '$runtimeType($label)';

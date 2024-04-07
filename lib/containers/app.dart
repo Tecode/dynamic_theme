@@ -13,12 +13,12 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   static GlobalKey<NavigatorState> materialKey = GlobalKey();
   static RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
   @override
-  _DynamicThemeState createState() => _DynamicThemeState();
+  State<App> createState() => _DynamicThemeState();
 }
 
 class _DynamicThemeState extends State<App> {
@@ -103,7 +103,7 @@ class _DynamicThemeState extends State<App> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('404', style: Theme.of(context).textTheme.headline4),
+                  Text('404', style: Theme.of(context).textTheme.headlineLarge),
                   CupertinoButton(
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text('Back'),

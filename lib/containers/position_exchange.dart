@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' hide ReorderableListView;
 
 class PositionExchange extends StatefulWidget {
   static const String routeName = '/position-exchange';
-  const PositionExchange({Key? key}) : super(key: key);
+  const PositionExchange({super.key});
 
   @override
   State<PositionExchange> createState() => _MyHomePageState();
@@ -12,27 +12,25 @@ class PositionExchange extends StatefulWidget {
 class _MyHomePageState extends State<PositionExchange> {
   final _listViewKey = GlobalKey();
   final ScrollController _scrollController = ScrollController();
-  int _indexOfDroppedItem = 0;
-  bool _isDragging = false;
-  int _activeItem = -1;
+  final bool _isDragging = false;
 
-  void _acceptDraggedItem(int index) {
-    setState(() {
-      _indexOfDroppedItem = index;
-    });
-  }
+  // void _acceptDraggedItem(int index) {
+  //   setState(() {
+  //     _indexOfDroppedItem = index;
+  //   });
+  // }
 
-  void _setIsDragging() {
-    setState(() {
-      _isDragging = true;
-    });
-  }
+  // void _setIsDragging() {
+  //   setState(() {
+  //     _isDragging = true;
+  //   });
+  // }
 
-  void _resetIsDragging() {
-    setState(() {
-      _isDragging = false;
-    });
-  }
+  // void _resetIsDragging() {
+  //   setState(() {
+  //     _isDragging = false;
+  //   });
+  // }
 
   void handlePointerMove(PointerMoveEvent event) {
     if (!_isDragging) {
@@ -130,7 +128,7 @@ class DragGirdList extends StatelessWidget {
   final int activeItem;
   final bool isDragging;
   const DragGirdList({
-    Key? key,
+    super.key,
     this.setIsDragging,
     this.resetIsDragging,
     this.indexOfDroppedItem = 0,
@@ -139,7 +137,7 @@ class DragGirdList extends StatelessWidget {
     this.onLeave,
     this.onAccept,
     this.onWillAccept,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -153,13 +151,6 @@ class DragGirdList extends StatelessWidget {
           child: index == indexOfDroppedItem
               ? Draggable<int>(
                   data: index,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      border: Border.all(color: Colors.blue),
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    ),
-                  ),
                   childWhenDragging: Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.blue),
@@ -174,6 +165,13 @@ class DragGirdList extends StatelessWidget {
                     height: 100,
                     decoration:
                         const BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(20))),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      border: Border.all(color: Colors.blue),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
                   ),
                 )
               : DragTarget<int>(
@@ -203,7 +201,7 @@ class DragGirdList extends StatelessWidget {
 /// 网格布局的卡片
 class GirdCardList extends StatelessWidget {
   final String title;
-  const GirdCardList({Key? key, this.title = '标题'}) : super(key: key);
+  const GirdCardList({super.key, this.title = '标题'});
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +222,6 @@ class GirdCardList extends StatelessWidget {
               (index) {
                 return Draggable<int>(
                   data: index,
-                  child: const DeleteAnimationWidget(),
                   childWhenDragging: Container(
                     margin: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
@@ -244,6 +241,7 @@ class GirdCardList extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                   ),
+                  child: const DeleteAnimationWidget(),
                 );
               },
             ),
@@ -261,10 +259,10 @@ class GirdCardList extends StatelessWidget {
 }
 
 class DeleteAnimationWidget extends StatefulWidget {
-  const DeleteAnimationWidget({Key? key}) : super(key: key);
+  const DeleteAnimationWidget({super.key});
 
   @override
-  _DeleteAnimationWidgetState createState() => _DeleteAnimationWidgetState();
+  State<DeleteAnimationWidget> createState() => _DeleteAnimationWidgetState();
 }
 
 class _DeleteAnimationWidgetState extends State<DeleteAnimationWidget> with SingleTickerProviderStateMixin {

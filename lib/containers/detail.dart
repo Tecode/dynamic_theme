@@ -11,7 +11,7 @@ class Detail extends StatelessWidget {
   final String? value;
   static String routeName = '/detail';
 
-  const Detail({Key? key, this.value}) : super(key: key);
+  const Detail({super.key, this.value});
 
   void showDialog({required BuildContext context, required Widget child}) {
     showCupertinoDialog<String>(
@@ -79,7 +79,7 @@ class Detail extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('TITLE', style: Theme.of(context).textTheme.headline4),
+                Text('TITLE', style: Theme.of(context).textTheme.headlineLarge),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => _onAlertWithTitlePress(context),

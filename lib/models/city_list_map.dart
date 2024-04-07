@@ -1,4 +1,5 @@
 /// cityEntity : [{"province":"北京市","name":"市辖区","id":"110100000000"}]
+library;
 
 class CityListMap {
   CityListMap({this.cityEntity});

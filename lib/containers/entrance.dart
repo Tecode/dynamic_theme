@@ -68,7 +68,9 @@ class _EntranceState extends State<Entrance> {
       debugPrint('initial link: $initialLink');
       debugPrint('initialLink--$initialLink');
       //  跳转到指定页面
-      schemeJump(context, initialLink);
+      if (mounted) {
+        schemeJump(context, initialLink);
+      }
     } on PlatformException {
       initialLink = 'Failed to get initial link.';
     } on FormatException {

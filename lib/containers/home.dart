@@ -14,9 +14,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'chat_list.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    _scrollController = PrimaryScrollController.of(context)!;
+    _scrollController = PrimaryScrollController.of(context);
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: Platform.isIOS,
@@ -151,7 +151,7 @@ class _HomeState extends State<Home> {
 
 class AvatarWrapBox extends StatelessWidget {
   final GestureTapCallback? onTap;
-  const AvatarWrapBox({Key? key, this.onTap}) : super(key: key);
+  const AvatarWrapBox({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {

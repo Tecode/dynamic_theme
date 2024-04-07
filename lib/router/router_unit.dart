@@ -41,7 +41,7 @@ class RouterCategory {
   }
 
   @override
-  int get hashCode => hashValues(name, icon);
+  int get hashCode => Object.hash(name, icon);
 
   @override
   String toString() => '$runtimeType($name)';

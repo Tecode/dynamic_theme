@@ -1,7 +1,6 @@
 import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/containers/position_exchange.dart';
 import 'package:dynamic_theme/helpers/options.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -11,15 +10,15 @@ class Mine extends StatefulWidget {
   final Options? options;
   final Function? handleOptionsChanged;
   const Mine({
-    Key? key,
+    super.key,
     this.handleOptionsChanged,
     this.options,
-  }) : super(key: key);
+  });
 
   static Map<String, String> languageMap = {'zh': '汉语', 'en': 'English'};
 
   @override
-  _MineState createState() => _MineState();
+  State<Mine> createState() => _MineState();
 }
 
 class _MineState extends State<Mine> {
@@ -49,18 +48,18 @@ class _MineState extends State<Mine> {
                 children: <Widget>[
                   Text(
                     'TEXT',
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   Text(
                     'Flutter: Dynamic Theming | Change Theme At Runtime',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const ButtonColor(),
                   TextButton(
                     onPressed: () => _launchRouter(context),
                     child: Text(
                       '404',
-                      style: Theme.of(context).textTheme.bodyText2!.merge(
+                      style: Theme.of(context).textTheme.bodyLarge!.merge(
                             TextStyle(
                               color: isDark ? Colors.white : Colors.black,
                             ),
@@ -132,9 +131,9 @@ class _MineState extends State<Mine> {
 }
 
 class ButtonColor extends StatefulWidget {
-  const ButtonColor({Key? key}) : super(key: key);
+  const ButtonColor({super.key});
   @override
-  _ButtonColorState createState() => _ButtonColorState();
+  State<ButtonColor> createState() => _ButtonColorState();
 }
 
 class _ButtonColorState extends State<ButtonColor> {

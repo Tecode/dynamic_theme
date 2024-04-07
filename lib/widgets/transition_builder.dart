@@ -303,13 +303,10 @@ class CupertinoPageRoute<T> extends PageRoute<T> with CustomCupertinoRouteTransi
   CupertinoPageRoute({
     required this.builder,
     this.title,
-    RouteSettings? settings,
+    super.settings,
     this.maintainState = true,
-    bool fullscreenDialog = false,
-  }) : super(
-          settings: settings,
-          fullscreenDialog: fullscreenDialog,
-        ) {
+    super.fullscreenDialog,
+  }) {
     assert(opaque);
   }
 
@@ -347,7 +344,7 @@ class CupertinoPageTransition extends StatelessWidget {
     required Animation<double> secondaryRouteAnimation,
     required this.child,
     required bool linearTransition,
-    Key? key,
+    super.key,
   })  : _primaryPositionAnimation = (linearTransition
                 ? primaryRouteAnimation
                 : CurvedAnimation(
@@ -376,8 +373,7 @@ class CupertinoPageTransition extends StatelessWidget {
                     parent: primaryRouteAnimation,
                     curve: Curves.linearToEaseOut,
                   ))
-            .drive(_CupertinoEdgeShadowDecoration.tween(withShadow: linearTransition)),
-        super(key: key);
+            .drive(_CupertinoEdgeShadowDecoration.tween(withShadow: linearTransition));
 
   // When this page is coming in to cover another page.
   final Animation<Offset> _primaryPositionAnimation;
@@ -427,7 +423,7 @@ class CupertinoFullscreenDialogTransition extends StatelessWidget {
     required Animation<double> secondaryRouteAnimation,
     required this.child,
     required bool linearTransition,
-    Key? key,
+    super.key,
   })  : _positionAnimation = CurvedAnimation(
           parent: primaryRouteAnimation,
           curve: Curves.linearToEaseOut,
@@ -442,8 +438,7 @@ class CupertinoFullscreenDialogTransition extends StatelessWidget {
                     curve: Curves.linearToEaseOut,
                     reverseCurve: Curves.easeInToLinear,
                   ))
-            .drive(_kMiddleLeftTween),
-        super(key: key);
+            .drive(_kMiddleLeftTween);
 
   final Animation<Offset> _positionAnimation;
 
@@ -485,8 +480,8 @@ class _CupertinoBackGestureDetector<T> extends StatefulWidget {
     required this.enabledCallback,
     required this.onStartPopGesture,
     required this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Widget child;
 
