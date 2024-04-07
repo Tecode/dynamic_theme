@@ -1,4 +1,4 @@
-# Dynamic Theme 支持多语言切换（Flutter 3.10.x）
+# Dynamic Theme 支持多语言切换（Flutter 3.10.x,Java 11）
 
 ## 运行版本flutter3.10.x
 ```bash
@@ -6,6 +6,13 @@ Flutter 3.10.6 • channel stable • https://github.com/flutter/flutter.git
 Framework • revision f468f3366c (9 months ago) • 2023-07-12 15:19:05 -0700
 Engine • revision cdbeda788a
 Tools • Dart 3.0.6 • DevTools 2.23.1
+```
+
+## Java 版本
+```bash
+openjdk version "11.0.22" 2024-01-16 LTS
+OpenJDK Runtime Environment Zulu11.70+15-CA (build 11.0.22+7-LTS)
+OpenJDK 64-Bit Server VM Zulu11.70+15-CA (build 11.0.22+7-LTS, mixed mode)
 ```
 
 ## Android版本下载（iOS下载代码打包📦）
