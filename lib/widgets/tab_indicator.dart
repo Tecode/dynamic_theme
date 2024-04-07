@@ -49,7 +49,7 @@ class TabIndicator extends Decoration {
   }
 
   @override
-  _BubblePainter createBoxPainter([VoidCallback? onChanged]) {
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
     return _BubblePainter(this, onChanged);
   }
 }
