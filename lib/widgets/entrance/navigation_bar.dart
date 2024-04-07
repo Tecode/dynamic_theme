@@ -1,3 +1,4 @@
+// @dart=2.14
 import 'package:dynamic_theme/containers/entrance.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class NavigationBar extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         height: 46.0 + MediaQuery.of(context).padding.bottom,
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).cardColor,
           border: Border(
             top: BorderSide(
               color: ColorTheme.of(context).borderColor,

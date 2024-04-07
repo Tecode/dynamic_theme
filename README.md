@@ -1,6 +1,12 @@
-# Dynamic Theme 支持多语言切换（Flutter 2.2.x）
+# Dynamic Theme 支持多语言切换（Flutter 3.10.x）
 
-## 运行版本flutter2.2.x
+## 运行版本flutter3.10.x
+```bash
+Flutter 3.10.6 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision f468f3366c (9 months ago) • 2023-07-12 15:19:05 -0700
+Engine • revision cdbeda788a
+Tools • Dart 3.0.6 • DevTools 2.23.1
+```
 
 ## Android版本下载（iOS下载代码打包📦）
 <p align="center">

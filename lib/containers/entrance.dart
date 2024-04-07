@@ -6,8 +6,7 @@ import 'package:dynamic_theme/containers/mine.dart';
 import 'package:dynamic_theme/containers/order.dart';
 import 'package:dynamic_theme/helpers/helpers.dart';
 import 'package:dynamic_theme/helpers/options.dart';
-import 'package:dynamic_theme/widgets/Entrance/navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dynamic_theme/widgets/Entrance/navigation_bar.dart' as nav;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,9 +21,9 @@ class Entrance extends StatefulWidget {
   final Function handleOptionsChanged;
   const Entrance({
     required this.handleOptionsChanged,
-    Key? key,
+    super.key,
     this.options,
-  }) : super(key: key);
+  });
   static String routeName = '/';
 
 //  路由页面
@@ -36,7 +35,7 @@ class Entrance extends StatefulWidget {
       ];
 
   @override
-  _EntranceState createState() => _EntranceState();
+  State<Entrance> createState() => _EntranceState();
 }
 
 class _EntranceState extends State<Entrance> {
@@ -110,7 +109,7 @@ class _EntranceState extends State<Entrance> {
                 ],
               ),
             ),
-            NavigationBar(
+            nav.NavigationBar(
               activeKey: Entrance.navList[activeIndex]['key'] as String,
               onChange: (int index) => setState(() {
                 activeIndex = index;
