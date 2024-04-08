@@ -15,6 +15,11 @@ OpenJDK Runtime Environment Zulu11.70+15-CA (build 11.0.22+7-LTS)
 OpenJDK 64-Bit Server VM Zulu11.70+15-CA (build 11.0.22+7-LTS, mixed mode)
 ```
 
+## 打包arm64,arm
+```bash
+flutter build apk --release --target-platform android-arm64,android-arm
+```
+
 ## Android版本下载（iOS下载代码打包📦）
 <p align="center">
     <img width="200" title="预览截图" src="./assets/preview/QRCode_258.png">
