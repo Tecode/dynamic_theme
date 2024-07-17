@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
+import 'package:dynamic_theme/widgets/common/nav_back_button.dart';
 import 'package:dynamic_theme/widgets/tab_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -100,9 +100,10 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
+      navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: false,
-        middle: Text('滑动定位'),
+        middle: const Text('滑动定位'),
+        leading: NavBackButton(onTap: () => Navigator.pop(context, '数据传参')),
       ),
       child: Material(
         child: SafeArea(

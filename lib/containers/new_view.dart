@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/containers/detail.dart';
-import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/helpers/custom_behavior.dart';
+import 'package:dynamic_theme/widgets/common/nav_back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,19 +54,7 @@ class _NewViewState extends State<NewView> with RouteAware {
           'NewList-${param.content}',
           key: const ValueKey('title'),
         ),
-        leading: GestureDetector(
-          key: const Key('back'),
-          behavior: HitTestBehavior.opaque,
-          onTap: () => Navigator.pop(context, '数据传参'),
-          child: Container(
-            width: 42.0,
-            padding: const EdgeInsets.only(left: 10.0, right: 20.0),
-            child: Image.asset(
-              'assets/icons/ic_arrow_left_gray.png',
-              color: ColorTheme.of(context).color202326,
-            ),
-          ),
-        ),
+        leading: NavBackButton(onTap: () => Navigator.pop(context, '数据传参')),
       ),
       child: Material(
         child: ScrollConfiguration(

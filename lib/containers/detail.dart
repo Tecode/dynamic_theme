@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dynamic_theme/containers/new_view.dart';
-import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/router/router_animation.dart';
 import 'package:dynamic_theme/widgets/common/dialog_box.dart';
+import 'package:dynamic_theme/widgets/common/nav_back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,18 +59,7 @@ class Detail extends StatelessWidget {
         padding: EdgeInsetsDirectional.zero,
         transitionBetweenRoutes: Platform.isIOS,
         middle: Text(arguments.value ?? ''),
-        leading: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => Navigator.pop(context, '数据传参'),
-          child: Container(
-            width: 42.0,
-            padding: const EdgeInsets.only(left: 10.0, right: 20.0),
-            child: Image.asset(
-              'assets/icons/ic_arrow_left_gray.png',
-              color: ColorTheme.of(context).color202326,
-            ),
-          ),
-        ),
+        leading: NavBackButton(onTap: () => Navigator.pop(context, '数据传参')),
       ),
       child: SafeArea(
         child: Material(
