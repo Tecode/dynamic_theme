@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
 import 'package:dynamic_theme/widgets/tab_indicator.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,14 +37,18 @@ class _ScrollNavigationPositioningState extends State<NavigationPositioning> {
   late Map<dynamic, dynamic> cityMap = {};
   List<GlobalKey> keyList = [];
   BuildContext? tabContext;
-  final ScrollController _controller = ScrollController();
+  late ScrollController _controller;
   final Debounce _debounce = Debounce(delay: const Duration(milliseconds: 500));
 
   @override
   void initState() {
     super.initState();
     _cityListLoad();
-    _controller.addListener(() => _debounce.run(handleTabChange));
+    // 监听状态栏点击事件
+    Future.microtask(() {
+      _controller = PrimaryScrollController.of(context);
+      _controller.addListener(() => _debounce.run(handleTabChange));
+    });
   }
 
   // 加载省市数据
