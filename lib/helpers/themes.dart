@@ -18,6 +18,7 @@ ThemeData _buildDarkTheme() {
   final base = ThemeData(
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+      TargetPlatform.android: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.dark,
     primaryColor: primaryColor,
@@ -51,6 +52,7 @@ ThemeData _buildLightTheme() {
   final base = ThemeData(
     pageTransitionsTheme: const PageTransitionsTheme(builders: {
       TargetPlatform.iOS: NoShadowCupertinoPageTransitionsBuilder(),
+      TargetPlatform.android: NoShadowCupertinoPageTransitionsBuilder(),
     }),
     brightness: Brightness.light,
     primaryColor: primaryColor,
