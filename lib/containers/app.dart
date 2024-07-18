@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dynamic_theme/containers/entrance.dart';
+import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:dynamic_theme/helpers/options.dart';
 import 'package:dynamic_theme/helpers/scales.dart';
 import 'package:dynamic_theme/helpers/themes.dart';
@@ -93,6 +94,7 @@ class _DynamicThemeState extends State<App> {
       theme: lightTheme.copyWith(platform: _options.platform),
       darkTheme: darkTheme.copyWith(platform: _options.platform),
       themeMode: _options.themeMode,
+      scrollBehavior: CustomBehavior(),
       onGenerateRoute: (_) {
         //  当通过Navigation.of(context).pushNamed跳转路由时，
         //  在routes查找不到时，会调用该方法

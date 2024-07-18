@@ -1,5 +1,4 @@
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,29 +22,26 @@ class _OrderState extends State<Order> {
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top + 44.0,
         ),
-        child: ScrollConfiguration(
-          behavior: CustomBehavior(),
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: Container(
-                  color: ColorTheme.of(context).colorF3F3F6,
-                  height: 160.0,
-                  child: Center(
-                      child: Text(
-                    AppLocalizations.of(context)!.ad,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  )),
-                ),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: Container(
+                color: ColorTheme.of(context).colorF3F3F6,
+                height: 160.0,
+                child: Center(
+                    child: Text(
+                  AppLocalizations.of(context)!.ad,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                )),
               ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) => const OrderCard(),
-                  childCount: 50,
-                ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) => const OrderCard(),
+                childCount: 50,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

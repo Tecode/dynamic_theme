@@ -51,16 +51,6 @@ flutter build apk --release --target-platform android-arm64,android-arm
     <img width="375" title="预览截图" src="./assets/preview/scroll_position.gif">
 </p>
 
-
-## Flutter version
-
-```bash
-Flutter 2.2.3 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision f4abaa0735 (2 weeks ago) • 2021-07-01 12:46:11 -0700
-Engine • revision 241c87ad80
-Tools • Dart 2.13.4
-```
-
 ## Flutter 集成测试
 
 ```bash
@@ -146,7 +136,7 @@ Navigator.of(context).pushNamedAndRemoveUntil('/screen4', ModalRoute.withName('/
 ### Navigator.of(context).popUntil
 `Navigator.of(context).popUntil`推出之前push的路由直到`/newView`路由为止
 
-```
+```dart
 Navigator.of(context).popUntil(ModalRoute.withName('/newView'))
 ```
 ## 其它路由
@@ -173,10 +163,9 @@ UrlConfig.of().url
 ### 去掉`Android`溢出拖拽的半圆效果
 
 ```dart
-class Behavior extends ScrollBehavior {
+class CustomBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }

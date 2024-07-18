@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/helpers/colors.dart';
-import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:dynamic_theme/widgets/common/refresh_footer.dart';
 import 'package:dynamic_theme/widgets/common/refresh_header.dart';
 import 'package:flutter/cupertino.dart';
@@ -82,67 +81,64 @@ class _HomeState extends State<Home> {
         padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top + 44.0,
         ),
-        child: ScrollConfiguration(
-          behavior: CustomBehavior(),
-          child: EasyRefresh.custom(
-            key: const Key('message_list'),
-            enableControlFinishRefresh: true,
-            enableControlFinishLoad: true,
-            controller: _controller,
-            scrollController: _scrollController,
-            header: RefreshHeader(
-              refreshedText: '小暑金将伏，微凉麦正秋',
-              refreshingText: '小暑金将伏，微凉麦正秋',
-              refreshReadyText: '小暑金将伏，微凉麦正秋',
-              refreshText: '小暑金将伏，微凉麦正秋',
-            ),
-            footer: RefreshFooter(
-              key: const Key('home_footer'),
-            ),
-            onRefresh: _enableRefresh
-                ? () async {
-                    await Future.delayed(const Duration(seconds: 2), () {
-                      if (mounted) {
-                        setState(() {
-                          _count = 20;
-                        });
-                        if (!_enableControlFinish) {
-                          _controller.resetLoadState();
-                          _controller.finishRefresh();
-                        }
-                      }
-                    });
-                  }
-                : null,
-            onLoad: _enableLoad
-                ? () async {
-                    await Future.delayed(const Duration(seconds: 2), () {
-                      if (mounted) {
-                        setState(() {
-                          _count += 20;
-                        });
-                        if (!_enableControlFinish) {
-                          _controller.finishLoad(noMore: _count >= 80);
-                        }
-                      }
-                    });
-                  }
-                : null,
-            slivers: <Widget>[
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    if (index == 0) return const SizedBox(height: 15.0);
-                    return AvatarWrapBox(
-                      key: Key('item_$index'),
-                      onTap: () => Navigator.of(context).pushNamed(ChatList.routeName),
-                    );
-                  },
-                  childCount: _count + 1,
-                ),
-              ),
-            ],
+        child: EasyRefresh.custom(
+          key: const Key('message_list'),
+          enableControlFinishRefresh: true,
+          enableControlFinishLoad: true,
+          controller: _controller,
+          scrollController: _scrollController,
+          header: RefreshHeader(
+            refreshedText: '小暑金将伏，微凉麦正秋',
+            refreshingText: '小暑金将伏，微凉麦正秋',
+            refreshReadyText: '小暑金将伏，微凉麦正秋',
+            refreshText: '小暑金将伏，微凉麦正秋',
           ),
+          footer: RefreshFooter(
+            key: const Key('home_footer'),
+          ),
+          onRefresh: _enableRefresh
+              ? () async {
+                  await Future.delayed(const Duration(seconds: 2), () {
+                    if (mounted) {
+                      setState(() {
+                        _count = 20;
+                      });
+                      if (!_enableControlFinish) {
+                        _controller.resetLoadState();
+                        _controller.finishRefresh();
+                      }
+                    }
+                  });
+                }
+              : null,
+          onLoad: _enableLoad
+              ? () async {
+                  await Future.delayed(const Duration(seconds: 2), () {
+                    if (mounted) {
+                      setState(() {
+                        _count += 20;
+                      });
+                      if (!_enableControlFinish) {
+                        _controller.finishLoad(noMore: _count >= 80);
+                      }
+                    }
+                  });
+                }
+              : null,
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  if (index == 0) return const SizedBox(height: 15.0);
+                  return AvatarWrapBox(
+                    key: Key('item_$index'),
+                    onTap: () => Navigator.of(context).pushNamed(ChatList.routeName),
+                  );
+                },
+                childCount: _count + 1,
+              ),
+            ),
+          ],
         ),
       ),
     );

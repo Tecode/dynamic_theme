@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/containers/detail.dart';
-import 'package:dynamic_theme/helpers/custom_behavior.dart';
 import 'package:dynamic_theme/widgets/common/nav_back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,34 +56,31 @@ class _NewViewState extends State<NewView> with RouteAware {
         leading: NavBackButton(onTap: () => Navigator.pop(context, '数据传参')),
       ),
       child: Material(
-        child: ScrollConfiguration(
-          behavior: CustomBehavior(),
-          child: ListView.builder(
-            reverse: true,
-            primary: true,
-            itemCount: 60,
-            itemBuilder: (BuildContext context, int index) {
-              return Ink(
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  onTap: () => Navigator.of(context).pushNamed(
-                    Detail.routeName,
-                    arguments: const Detail(value: 'NewView参数'),
-                  ),
-                  child: SizedBox(
-                    height: 44.0,
-                    width: MediaQuery.of(context).size.width,
-                    child: Center(
-                      child: Text(
-                        '${param.content}-${index.toRadixString(2)}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
+        child: ListView.builder(
+          reverse: true,
+          primary: true,
+          itemCount: 60,
+          itemBuilder: (BuildContext context, int index) {
+            return Ink(
+              child: InkWell(
+                splashColor: Colors.transparent,
+                onTap: () => Navigator.of(context).pushNamed(
+                  Detail.routeName,
+                  arguments: const Detail(value: 'NewView参数'),
+                ),
+                child: SizedBox(
+                  height: 44.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Text(
+                      '${param.content}-${index.toRadixString(2)}',
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
