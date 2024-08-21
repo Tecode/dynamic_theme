@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dynamic_theme/widgets/common/nav_back_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DiscoveryDetail extends StatefulWidget {
@@ -52,23 +56,33 @@ class _DiscoveryDetailState extends State<DiscoveryDetail> with SingleTickerProv
   }
 
   @override
-  Widget build(BuildContext context) => Material(
-        child: GestureDetector(
-          onDoubleTap: _handleDoubleTap,
-          onDoubleTapDown: (details) => _doubleTapDetails = details,
-          // onTap: () => _controller.value,
-          behavior: HitTestBehavior.opaque,
-          child: Hero(
-            tag: widget.tag ?? '',
-            child: Center(
-              child: InteractiveViewer(
-                clipBehavior: Clip.none,
-                transformationController: _controller,
-                child: CachedNetworkImage(
-                  progressIndicatorBuilder: (context, url, progress) =>
-                      Container(color: Theme.of(context).canvasColor),
-                  imageUrl: widget.url ?? '',
-                  fit: BoxFit.fitWidth,
+  Widget build(BuildContext context) => CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          border: null,
+          backgroundColor: Colors.transparent,
+          padding: EdgeInsetsDirectional.zero,
+          transitionBetweenRoutes: Platform.isIOS,
+          middle: const Text('Discovery Detail'),
+          leading: NavBackButton(onTap: () => Navigator.pop(context, '数据传参')),
+        ),
+        child: Material(
+          child: GestureDetector(
+            onDoubleTap: _handleDoubleTap,
+            onDoubleTapDown: (details) => _doubleTapDetails = details,
+            // onTap: () => _controller.value,
+            behavior: HitTestBehavior.opaque,
+            child: Hero(
+              tag: widget.tag ?? '',
+              child: Center(
+                child: InteractiveViewer(
+                  clipBehavior: Clip.none,
+                  transformationController: _controller,
+                  child: CachedNetworkImage(
+                    progressIndicatorBuilder: (context, url, progress) =>
+                        Container(color: Theme.of(context).canvasColor),
+                    imageUrl: widget.url ?? '',
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
             ),
