@@ -158,22 +158,23 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                             const opacityCurve = Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
                             // 过渡动画
                             return AnimatedBuilder(
-                                animation: animation,
-                                builder: (BuildContext context, Widget? child) => Opacity(
-                                      opacity: opacityCurve.transform(animation.value),
-                                      child: DiscoveryDetail(
-                                        tag: '$index TAG${data.imgId}',
-                                        url: data.url,
-                                      ),
-                                    ));
+                              animation: animation,
+                              builder: (BuildContext context, Widget? child) => Opacity(
+                                opacity: opacityCurve.transform(animation.value),
+                                child: DiscoveryDetail(
+                                  tag: '$index TAG${data.imgId}',
+                                  url: data.url,
+                                ),
+                              ),
+                            );
                           }),
                         ),
                         behavior: HitTestBehavior.opaque,
                         child: FadeInImage.assetNetwork(
                           placeholder: 'assets/images/loading.gif',
                           image: data.url,
-                          imageCacheWidth: 80,
                           fit: BoxFit.cover,
+                          imageCacheWidth: 80,
                         ),
                       ),
                     );

@@ -42,10 +42,12 @@ class _EntranceState extends State<Entrance> {
   int activeIndex = 0;
   final UniLinksType _type = UniLinksType.string;
   late StreamSubscription _sub;
+  late PageController controller;
 
   @override
   void initState() {
     super.initState();
+    controller = PageController(initialPage: activeIndex);
     //  scheme初始化，保证有上下文，需要跳转页面
     initPlatformState();
   }
@@ -98,8 +100,9 @@ class _EntranceState extends State<Entrance> {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: IndexedStack(
-                index: activeIndex,
+              child: PageView(
+                controller: controller,
+                physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
                   const Home(),
                   const Discovery(),
@@ -115,6 +118,7 @@ class _EntranceState extends State<Entrance> {
               activeKey: Entrance.navList[activeIndex]['key'] as String,
               onChange: (int index) => setState(() {
                 activeIndex = index;
+                controller.jumpToPage(index);
               }),
             ),
           ],
