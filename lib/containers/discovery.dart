@@ -13,7 +13,7 @@ class NetworkSource {
   final String url;
   final int? width;
   final int? height;
-  final int? imgId;
+  final String? imgId;
   NetworkSource({
     required this.url,
     this.width,
@@ -61,7 +61,7 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
             url: itemData['img_url'] as String,
             width: itemData['width'] as int,
             height: itemData['height'] as int,
-            imgId: itemData['img_id'] as int,
+            imgId: itemData['img_id'] as String,
           ))
       .toList();
 // 分页
@@ -172,7 +172,7 @@ class _DiscoveryState extends State<Discovery> with AutomaticKeepAliveClientMixi
                         behavior: HitTestBehavior.opaque,
                         child: FadeInImage.assetNetwork(
                           placeholder: 'assets/images/loading.gif',
-                          image: data.url,
+                          image: '${data.url}?width=80',
                           fit: BoxFit.cover,
                           imageCacheWidth: 80,
                         ),
