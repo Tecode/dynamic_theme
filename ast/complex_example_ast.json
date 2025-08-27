@@ -1,0 +1,492 @@
+{
+  "type": "CompilationUnit",
+  "directives": [
+    {
+      "type": "ImportDirective",
+      "uri": "'package:flutter/material.dart'",
+      "prefix": null,
+      "combinators": []
+    }
+  ],
+  "declarations": [
+    {
+      "type": "ClassDeclaration",
+      "name": "ComplexWidget",
+      "isAbstract": false,
+      "superclass": "StatefulWidget",
+      "interfaces": [],
+      "mixins": [],
+      "members": [
+        {
+          "type": "FieldDeclaration",
+          "fields": [
+            {
+              "name": "title",
+              "initializer": null
+            }
+          ],
+          "isStatic": false,
+          "isConst": false,
+          "isFinal": true,
+          "fieldType": "String"
+        },
+        {
+          "type": "FieldDeclaration",
+          "fields": [
+            {
+              "name": "items",
+              "initializer": null
+            }
+          ],
+          "isStatic": false,
+          "isConst": false,
+          "isFinal": true,
+          "fieldType": "List<String>"
+        },
+        {
+          "type": "ConstructorDeclaration",
+          "name": null,
+          "parameters": [
+            {
+              "name": "title",
+              "type": null,
+              "isRequired": true,
+              "isNamed": true,
+              "isPositional": false,
+              "defaultValue": null
+            },
+            {
+              "name": "key",
+              "type": null,
+              "isRequired": false,
+              "isNamed": true,
+              "isPositional": false,
+              "defaultValue": null
+            },
+            {
+              "name": "items",
+              "type": null,
+              "isRequired": false,
+              "isNamed": true,
+              "isPositional": false,
+              "defaultValue": "const []"
+            }
+          ],
+          "isConst": true,
+          "isFactory": false
+        },
+        {
+          "type": "MethodDeclaration",
+          "name": "createState",
+          "returnType": "State<ComplexWidget>",
+          "parameters": [],
+          "isStatic": false,
+          "isAbstract": false,
+          "isGetter": false,
+          "isSetter": false,
+          "body": {
+            "type": "ExpressionFunctionBody",
+            "expression": {
+              "type": "MethodInvocation",
+              "methodName": "_ComplexWidgetState",
+              "target": null,
+              "arguments": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ClassDeclaration",
+      "name": "_ComplexWidgetState",
+      "isAbstract": false,
+      "superclass": "State<ComplexWidget>",
+      "interfaces": [],
+      "mixins": [],
+      "members": [
+        {
+          "type": "FieldDeclaration",
+          "fields": [
+            {
+              "name": "_counter",
+              "initializer": {
+                "type": "IntegerLiteralImpl",
+                "content": "0"
+              }
+            }
+          ],
+          "isStatic": false,
+          "isConst": false,
+          "isFinal": false,
+          "fieldType": "int"
+        },
+        {
+          "type": "FieldDeclaration",
+          "fields": [
+            {
+              "name": "_isVisible",
+              "initializer": {
+                "type": "BooleanLiteralImpl",
+                "content": "true"
+              }
+            }
+          ],
+          "isStatic": false,
+          "isConst": false,
+          "isFinal": false,
+          "fieldType": "bool"
+        },
+        {
+          "type": "MethodDeclaration",
+          "name": "_incrementCounter",
+          "returnType": "void",
+          "parameters": [],
+          "isStatic": false,
+          "isAbstract": false,
+          "isGetter": false,
+          "isSetter": false,
+          "body": {
+            "type": "BlockFunctionBody",
+            "statements": [
+              {
+                "type": "ExpressionStatementImpl",
+                "content": "setState(() {_counter++;});"
+              }
+            ]
+          }
+        },
+        {
+          "type": "MethodDeclaration",
+          "name": "build",
+          "returnType": "Widget",
+          "parameters": [
+            {
+              "name": "context",
+              "type": null,
+              "isRequired": true,
+              "isNamed": false,
+              "isPositional": true,
+              "defaultValue": null
+            }
+          ],
+          "isStatic": false,
+          "isAbstract": false,
+          "isGetter": false,
+          "isSetter": false,
+          "body": {
+            "type": "BlockFunctionBody",
+            "statements": [
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "MethodInvocation",
+                  "methodName": "Scaffold",
+                  "target": null,
+                  "arguments": [
+                    {
+                      "type": "NamedExpression",
+                      "name": "appBar",
+                      "expression": {
+                        "type": "MethodInvocation",
+                        "methodName": "AppBar",
+                        "target": null,
+                        "arguments": [
+                          {
+                            "type": "NamedExpression",
+                            "name": "title",
+                            "expression": {
+                              "type": "MethodInvocation",
+                              "methodName": "Text",
+                              "target": null,
+                              "arguments": [
+                                {
+                                  "type": "PositionalArgument",
+                                  "expression": {
+                                    "type": "PrefixedIdentifier",
+                                    "prefix": "widget",
+                                    "identifier": "title"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "NamedExpression",
+                            "name": "actions",
+                            "expression": {
+                              "type": "ListLiteral",
+                              "elements": [
+                                {
+                                  "type": "MethodInvocation",
+                                  "methodName": "IconButton",
+                                  "target": null,
+                                  "arguments": [
+                                    {
+                                      "type": "NamedExpression",
+                                      "name": "icon",
+                                      "expression": {
+                                        "type": "InstanceCreationExpression",
+                                        "constructorName": "Icon",
+                                        "arguments": [
+                                          {
+                                            "type": "PositionalArgument",
+                                            "expression": {
+                                              "type": "PrefixedIdentifier",
+                                              "prefix": "Icons",
+                                              "identifier": "visibility"
+                                            }
+                                          }
+                                        ],
+                                        "isConst": true
+                                      }
+                                    },
+                                    {
+                                      "type": "NamedExpression",
+                                      "name": "onPressed",
+                                      "expression": {
+                                        "type": "FunctionExpression",
+                                        "parameters": [],
+                                        "body": {
+                                          "type": "ExpressionFunctionBody",
+                                          "expression": {
+                                            "type": "MethodInvocation",
+                                            "methodName": "setState",
+                                            "target": null,
+                                            "arguments": [
+                                              {
+                                                "type": "PositionalArgument",
+                                                "expression": {
+                                                  "type": "FunctionExpression",
+                                                  "parameters": [],
+                                                  "body": {
+                                                    "type": "ExpressionFunctionBody",
+                                                    "expression": {
+                                                      "type": "AssignmentExpression",
+                                                      "leftHandSide": {
+                                                        "type": "SimpleIdentifier",
+                                                        "name": "_isVisible"
+                                                      },
+                                                      "rightHandSide": {
+                                                        "type": "PrefixExpressionImpl",
+                                                        "content": "!_isVisible"
+                                                      },
+                                                      "operator": "="
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ],
+                              "isConst": false
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "NamedExpression",
+                      "name": "body",
+                      "expression": {
+                        "type": "MethodInvocation",
+                        "methodName": "Column",
+                        "target": null,
+                        "arguments": [
+                          {
+                            "type": "NamedExpression",
+                            "name": "children",
+                            "expression": {
+                              "type": "ListLiteral",
+                              "elements": [
+                                "if (_isVisible) Container(padding: const EdgeInsets.all(16.0), child: Text('Counter: $_counter', style: Theme.of(context).textTheme.headlineMedium))",
+                                {
+                                  "type": "MethodInvocation",
+                                  "methodName": "Expanded",
+                                  "target": null,
+                                  "arguments": [
+                                    {
+                                      "type": "NamedExpression",
+                                      "name": "child",
+                                      "expression": {
+                                        "type": "MethodInvocation",
+                                        "methodName": "builder",
+                                        "target": {
+                                          "type": "SimpleIdentifier",
+                                          "name": "ListView"
+                                        },
+                                        "arguments": [
+                                          {
+                                            "type": "NamedExpression",
+                                            "name": "itemCount",
+                                            "expression": {
+                                              "type": "PropertyAccess",
+                                              "propertyName": "length",
+                                              "target": {
+                                                "type": "PrefixedIdentifier",
+                                                "prefix": "widget",
+                                                "identifier": "items"
+                                              }
+                                            }
+                                          },
+                                          {
+                                            "type": "NamedExpression",
+                                            "name": "itemBuilder",
+                                            "expression": {
+                                              "type": "FunctionExpression",
+                                              "parameters": [
+                                                {
+                                                  "name": "context",
+                                                  "type": null,
+                                                  "isRequired": true,
+                                                  "isNamed": false,
+                                                  "isPositional": true,
+                                                  "defaultValue": null
+                                                },
+                                                {
+                                                  "name": "index",
+                                                  "type": null,
+                                                  "isRequired": true,
+                                                  "isNamed": false,
+                                                  "isPositional": true,
+                                                  "defaultValue": null
+                                                }
+                                              ],
+                                              "body": {
+                                                "type": "BlockFunctionBody",
+                                                "statements": [
+                                                  {
+                                                    "type": "ReturnStatement",
+                                                    "expression": {
+                                                      "type": "MethodInvocation",
+                                                      "methodName": "ListTile",
+                                                      "target": null,
+                                                      "arguments": [
+                                                        {
+                                                          "type": "NamedExpression",
+                                                          "name": "title",
+                                                          "expression": {
+                                                            "type": "MethodInvocation",
+                                                            "methodName": "Text",
+                                                            "target": null,
+                                                            "arguments": [
+                                                              {
+                                                                "type": "PositionalArgument",
+                                                                "expression": {
+                                                                  "type": "IndexExpression",
+                                                                  "target": {
+                                                                    "type": "PrefixedIdentifier",
+                                                                    "prefix": "widget",
+                                                                    "identifier": "items"
+                                                                  },
+                                                                  "index": {
+                                                                    "type": "SimpleIdentifier",
+                                                                    "name": "index"
+                                                                  }
+                                                                }
+                                                              }
+                                                            ]
+                                                          }
+                                                        },
+                                                        {
+                                                          "type": "NamedExpression",
+                                                          "name": "trailing",
+                                                          "expression": {
+                                                            "type": "InstanceCreationExpression",
+                                                            "constructorName": "Icon",
+                                                            "arguments": [
+                                                              {
+                                                                "type": "PositionalArgument",
+                                                                "expression": {
+                                                                  "type": "PrefixedIdentifier",
+                                                                  "prefix": "Icons",
+                                                                  "identifier": "arrow_forward"
+                                                                }
+                                                              }
+                                                            ],
+                                                            "isConst": true
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              ],
+                              "isConst": false
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "NamedExpression",
+                      "name": "floatingActionButton",
+                      "expression": {
+                        "type": "MethodInvocation",
+                        "methodName": "FloatingActionButton",
+                        "target": null,
+                        "arguments": [
+                          {
+                            "type": "NamedExpression",
+                            "name": "onPressed",
+                            "expression": {
+                              "type": "SimpleIdentifier",
+                              "name": "_incrementCounter"
+                            }
+                          },
+                          {
+                            "type": "NamedExpression",
+                            "name": "tooltip",
+                            "expression": {
+                              "type": "SimpleStringLiteral",
+                              "value": "Increment"
+                            }
+                          },
+                          {
+                            "type": "NamedExpression",
+                            "name": "child",
+                            "expression": {
+                              "type": "InstanceCreationExpression",
+                              "constructorName": "Icon",
+                              "arguments": [
+                                {
+                                  "type": "PositionalArgument",
+                                  "expression": {
+                                    "type": "PrefixedIdentifier",
+                                    "prefix": "Icons",
+                                    "identifier": "add"
+                                  }
+                                }
+                              ],
+                              "isConst": true
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2025-08-27T13:46:29.785601",
+    "analyzer_version": "dart_analyzer"
+  }
+}

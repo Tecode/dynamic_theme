@@ -1,0 +1,200 @@
+{
+  "type": "CompilationUnit",
+  "directives": [
+    {
+      "type": "ImportDirective",
+      "uri": "'package:flutter/material.dart'",
+      "prefix": null,
+      "combinators": []
+    }
+  ],
+  "declarations": [
+    {
+      "type": "ClassDeclaration",
+      "name": "AppComponent",
+      "isAbstract": false,
+      "superclass": "StatelessWidget",
+      "interfaces": [],
+      "mixins": [],
+      "members": [
+        {
+          "type": "ConstructorDeclaration",
+          "name": null,
+          "parameters": [
+            {
+              "name": "key",
+              "type": null,
+              "isRequired": false,
+              "isNamed": true,
+              "isPositional": false,
+              "defaultValue": null
+            }
+          ],
+          "isConst": true,
+          "isFactory": false
+        },
+        {
+          "type": "MethodDeclaration",
+          "name": "build",
+          "returnType": "Widget",
+          "parameters": [
+            {
+              "name": "context",
+              "type": null,
+              "isRequired": true,
+              "isNamed": false,
+              "isPositional": true,
+              "defaultValue": null
+            }
+          ],
+          "isStatic": false,
+          "isAbstract": false,
+          "isGetter": false,
+          "isSetter": false,
+          "body": {
+            "type": "BlockFunctionBody",
+            "statements": [
+              {
+                "type": "ReturnStatement",
+                "expression": {
+                  "type": "MethodInvocation",
+                  "methodName": "MaterialApp",
+                  "target": null,
+                  "arguments": [
+                    {
+                      "type": "NamedExpression",
+                      "name": "home",
+                      "expression": {
+                        "type": "MethodInvocation",
+                        "methodName": "Scaffold",
+                        "target": null,
+                        "arguments": [
+                          {
+                            "type": "NamedExpression",
+                            "name": "appBar",
+                            "expression": {
+                              "type": "MethodInvocation",
+                              "methodName": "AppBar",
+                              "target": null,
+                              "arguments": [
+                                {
+                                  "type": "NamedExpression",
+                                  "name": "title",
+                                  "expression": {
+                                    "type": "InstanceCreationExpression",
+                                    "constructorName": "Text",
+                                    "arguments": [
+                                      {
+                                        "type": "PositionalArgument",
+                                        "expression": {
+                                          "type": "SimpleStringLiteral",
+                                          "value": "Hello"
+                                        }
+                                      }
+                                    ],
+                                    "isConst": true
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "NamedExpression",
+                            "name": "body",
+                            "expression": {
+                              "type": "MethodInvocation",
+                              "methodName": "Center",
+                              "target": null,
+                              "arguments": [
+                                {
+                                  "type": "NamedExpression",
+                                  "name": "child",
+                                  "expression": {
+                                    "type": "MethodInvocation",
+                                    "methodName": "Column",
+                                    "target": null,
+                                    "arguments": [
+                                      {
+                                        "type": "NamedExpression",
+                                        "name": "children",
+                                        "expression": {
+                                          "type": "ListLiteral",
+                                          "elements": [
+                                            {
+                                              "type": "InstanceCreationExpression",
+                                              "constructorName": "Text",
+                                              "arguments": [
+                                                {
+                                                  "type": "PositionalArgument",
+                                                  "expression": {
+                                                    "type": "SimpleStringLiteral",
+                                                    "value": "Welcome"
+                                                  }
+                                                }
+                                              ],
+                                              "isConst": true
+                                            },
+                                            {
+                                              "type": "MethodInvocation",
+                                              "methodName": "ElevatedButton",
+                                              "target": null,
+                                              "arguments": [
+                                                {
+                                                  "type": "NamedExpression",
+                                                  "name": "onPressed",
+                                                  "expression": {
+                                                    "type": "FunctionExpression",
+                                                    "parameters": [],
+                                                    "body": {
+                                                      "type": "BlockFunctionBody",
+                                                      "statements": []
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "type": "NamedExpression",
+                                                  "name": "child",
+                                                  "expression": {
+                                                    "type": "InstanceCreationExpression",
+                                                    "constructorName": "Text",
+                                                    "arguments": [
+                                                      {
+                                                        "type": "PositionalArgument",
+                                                        "expression": {
+                                                          "type": "SimpleStringLiteral",
+                                                          "value": "Click Me"
+                                                        }
+                                                      }
+                                                    ],
+                                                    "isConst": true
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "isConst": false
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2025-08-27T13:46:14.747648",
+    "analyzer_version": "dart_analyzer"
+  }
+}

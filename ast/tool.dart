@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
@@ -9,7 +10,8 @@ void main(List<String> args) {
     exit(1);
   }
 
-  final code = File(args[0]).readAsStringSync();
+  final inputFile = args[0];
+  final code = File(inputFile).readAsStringSync();
   final result = parseString(content: code);
 
   if (result.errors.isNotEmpty) {
@@ -29,6 +31,25 @@ void main(List<String> args) {
   print("\n🎯 Widget 结构分析:");
   print("═" * 50);
   _analyzeWidgets(unit);
+
+  // 生成JSON输出
+  print("\n💾 生成JSON文件:");
+  print("═" * 50);
+  final astJson = _buildAstJson(unit);
+  
+  // 获取tool.dart的目录路径
+  final toolFile = File(Platform.script.toFilePath());
+  final toolDir = toolFile.parent.path;
+  
+  final outputFileName = '${_getFileNameWithoutExtension(inputFile)}_ast.json';
+  final outputPath = '$toolDir/$outputFileName';
+  final outputFile = File(outputPath);
+
+  final jsonString = JsonEncoder.withIndent('  ').convert(astJson);
+  outputFile.writeAsStringSync(jsonString);
+
+  print("✅ JSON文件已生成: $outputPath");
+  print("📊 文件大小: ${outputFile.lengthSync()} 字节");
 }
 
 void _printCompilationUnit(CompilationUnit unit, int indent) {
@@ -286,5 +307,285 @@ class _WidgetVisitor extends RecursiveAstVisitor<void> {
     if (node.expression != null) {
       _printWidget(node.expression!, 0);
     }
+  }
+}
+
+// ===================== JSON 输出功能 =====================
+
+String _getFileNameWithoutExtension(String filePath) {
+  final file = File(filePath);
+  final baseName = file.uri.pathSegments.last;
+  final lastDotIndex = baseName.lastIndexOf('.');
+  if (lastDotIndex != -1) {
+    return baseName.substring(0, lastDotIndex);
+  }
+  return baseName;
+}
+
+Map<String, dynamic> _buildAstJson(CompilationUnit unit) {
+  return {
+    'type': 'CompilationUnit',
+    'directives': unit.directives.map(_directiveToJson).toList(),
+    'declarations': unit.declarations.map(_declarationToJson).toList(),
+    'metadata': {
+      'generated_at': DateTime.now().toIso8601String(),
+      'analyzer_version': 'dart_analyzer',
+    }
+  };
+}
+
+Map<String, dynamic> _directiveToJson(Directive directive) {
+  if (directive is ImportDirective) {
+    return {
+      'type': 'ImportDirective',
+      'uri': directive.uri.toString(),
+      'prefix': directive.prefix?.name,
+      'combinators': directive.combinators.map((c) => c.toString()).toList(),
+    };
+  } else if (directive is ExportDirective) {
+    return {
+      'type': 'ExportDirective',
+      'uri': directive.uri.toString(),
+      'combinators': directive.combinators.map((c) => c.toString()).toList(),
+    };
+  }
+  return {
+    'type': directive.runtimeType.toString(),
+    'content': directive.toString(),
+  };
+}
+
+Map<String, dynamic> _declarationToJson(Declaration declaration) {
+  if (declaration is ClassDeclaration) {
+    return {
+      'type': 'ClassDeclaration',
+      'name': declaration.name.lexeme,
+      'isAbstract': declaration.abstractKeyword != null,
+      'superclass': declaration.extendsClause?.superclass.toString(),
+      'interfaces': declaration.implementsClause?.interfaces
+              .map((i) => i.toString())
+              .toList() ??
+          [],
+      'mixins': declaration.withClause?.mixinTypes
+              .map((m) => m.toString())
+              .toList() ??
+          [],
+      'members': declaration.members.map(_classMemberToJson).toList(),
+    };
+  } else if (declaration is FunctionDeclaration) {
+    return {
+      'type': 'FunctionDeclaration',
+      'name': declaration.name.lexeme,
+      'returnType': declaration.returnType?.toString(),
+      'parameters': declaration.functionExpression.parameters?.parameters
+              .map(_parameterToJson)
+              .toList() ??
+          [],
+      'isGetter': declaration.isGetter,
+      'isSetter': declaration.isSetter,
+    };
+  }
+  return {
+    'type': declaration.runtimeType.toString(),
+    'content': declaration.toString(),
+  };
+}
+
+Map<String, dynamic> _classMemberToJson(ClassMember member) {
+  if (member is MethodDeclaration) {
+    return {
+      'type': 'MethodDeclaration',
+      'name': member.name.lexeme,
+      'returnType': member.returnType?.toString(),
+      'parameters':
+          member.parameters?.parameters.map(_parameterToJson).toList() ?? [],
+      'isStatic': member.isStatic,
+      'isAbstract': member.isAbstract,
+      'isGetter': member.isGetter,
+      'isSetter': member.isSetter,
+      'body': _functionBodyToJson(member.body),
+    };
+  } else if (member is ConstructorDeclaration) {
+    return {
+      'type': 'ConstructorDeclaration',
+      'name': member.name?.lexeme,
+      'parameters': member.parameters.parameters.map(_parameterToJson).toList(),
+      'isConst': member.constKeyword != null,
+      'isFactory': member.factoryKeyword != null,
+    };
+  } else if (member is FieldDeclaration) {
+    return {
+      'type': 'FieldDeclaration',
+      'fields': member.fields.variables
+          .map((v) => {
+                'name': v.name.lexeme,
+                'initializer': v.initializer != null
+                    ? _expressionToJson(v.initializer!)
+                    : null,
+              })
+          .toList(),
+      'isStatic': member.isStatic,
+      'isConst': member.fields.isConst,
+      'isFinal': member.fields.isFinal,
+      'fieldType': member.fields.type?.toString(),
+    };
+  }
+  return {
+    'type': member.runtimeType.toString(),
+    'content': member.toString(),
+  };
+}
+
+Map<String, dynamic> _parameterToJson(FormalParameter parameter) {
+  return {
+    'name': parameter.name?.lexeme,
+    'type': parameter.declaredElement?.type.toString(),
+    'isRequired': parameter.isRequired,
+    'isNamed': parameter.isNamed,
+    'isPositional': parameter.isPositional,
+    'defaultValue': parameter is DefaultFormalParameter
+        ? parameter.defaultValue?.toString()
+        : null,
+  };
+}
+
+Map<String, dynamic> _functionBodyToJson(FunctionBody body) {
+  if (body is ExpressionFunctionBody) {
+    return {
+      'type': 'ExpressionFunctionBody',
+      'expression': _expressionToJson(body.expression),
+    };
+  } else if (body is BlockFunctionBody) {
+    return {
+      'type': 'BlockFunctionBody',
+      'statements': body.block.statements.map(_statementToJson).toList(),
+    };
+  }
+  return {
+    'type': body.runtimeType.toString(),
+    'content': body.toString(),
+  };
+}
+
+Map<String, dynamic> _statementToJson(Statement statement) {
+  if (statement is ReturnStatement) {
+    return {
+      'type': 'ReturnStatement',
+      'expression': statement.expression != null
+          ? _expressionToJson(statement.expression!)
+          : null,
+    };
+  } else if (statement is VariableDeclarationStatement) {
+    return {
+      'type': 'VariableDeclarationStatement',
+      'variables': statement.variables.variables
+          .map((v) => {
+                'name': v.name.lexeme,
+                'initializer': v.initializer != null
+                    ? _expressionToJson(v.initializer!)
+                    : null,
+              })
+          .toList(),
+    };
+  }
+  return {
+    'type': statement.runtimeType.toString(),
+    'content': statement.toString(),
+  };
+}
+
+Map<String, dynamic> _expressionToJson(Expression expression) {
+  if (expression is InstanceCreationExpression) {
+    return {
+      'type': 'InstanceCreationExpression',
+      'constructorName': expression.constructorName.toString(),
+      'arguments':
+          expression.argumentList.arguments.map(_argumentToJson).toList(),
+      'isConst': expression.keyword?.lexeme == 'const',
+    };
+  } else if (expression is MethodInvocation) {
+    return {
+      'type': 'MethodInvocation',
+      'methodName': expression.methodName.name,
+      'target': expression.target != null
+          ? _expressionToJson(expression.target!)
+          : null,
+      'arguments':
+          expression.argumentList.arguments.map(_argumentToJson).toList(),
+    };
+  } else if (expression is ListLiteral) {
+    return {
+      'type': 'ListLiteral',
+      'elements': expression.elements
+          .map((e) => e is Expression ? _expressionToJson(e) : e.toString())
+          .toList(),
+      'isConst': expression.constKeyword != null,
+    };
+  } else if (expression is SimpleStringLiteral) {
+    return {
+      'type': 'SimpleStringLiteral',
+      'value': expression.value,
+    };
+  } else if (expression is SimpleIdentifier) {
+    return {
+      'type': 'SimpleIdentifier',
+      'name': expression.name,
+    };
+  } else if (expression is PropertyAccess) {
+    return {
+      'type': 'PropertyAccess',
+      'propertyName': expression.propertyName.name,
+      'target': expression.target != null
+          ? _expressionToJson(expression.target!)
+          : null,
+    };
+  } else if (expression is FunctionExpression) {
+    return {
+      'type': 'FunctionExpression',
+      'parameters':
+          expression.parameters?.parameters.map(_parameterToJson).toList() ??
+              [],
+      'body': _functionBodyToJson(expression.body),
+    };
+  } else if (expression is PrefixedIdentifier) {
+    return {
+      'type': 'PrefixedIdentifier',
+      'prefix': expression.prefix.name,
+      'identifier': expression.identifier.name,
+    };
+  } else if (expression is IndexExpression) {
+    return {
+      'type': 'IndexExpression',
+      'target': expression.target != null
+          ? _expressionToJson(expression.target!)
+          : null,
+      'index': _expressionToJson(expression.index),
+    };
+  } else if (expression is AssignmentExpression) {
+    return {
+      'type': 'AssignmentExpression',
+      'leftHandSide': _expressionToJson(expression.leftHandSide),
+      'rightHandSide': _expressionToJson(expression.rightHandSide),
+      'operator': expression.operator.lexeme,
+    };
+  }
+  return {
+    'type': expression.runtimeType.toString(),
+    'content': expression.toString(),
+  };
+}
+
+Map<String, dynamic> _argumentToJson(Expression argument) {
+  if (argument is NamedExpression) {
+    return {
+      'type': 'NamedExpression',
+      'name': argument.name.label.name,
+      'expression': _expressionToJson(argument.expression),
+    };
+  } else {
+    return {
+      'type': 'PositionalArgument',
+      'expression': _expressionToJson(argument),
+    };
   }
 }
