@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
@@ -45,7 +46,7 @@ void main(List<String> args) {
   final outputPath = '$toolDir/$outputFileName';
   final outputFile = File(outputPath);
 
-  final jsonString = JsonEncoder.withIndent('  ').convert(astJson);
+  final jsonString = const JsonEncoder.withIndent('  ').convert(astJson);
   outputFile.writeAsStringSync(jsonString);
 
   print("✅ JSON文件已生成: $outputPath");
