@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/containers/in_app_webview.dart';
 import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/containers/position_exchange.dart';
 import 'package:dynamic_theme/helpers/options.dart';
@@ -73,7 +74,9 @@ class _MineState extends State<Mine> {
                       ),
                     ),
                     child: Text(
-                      isDark ? AppLocalizations.of(context)!.pearlWhite : AppLocalizations.of(context)!.darkNight,
+                      isDark
+                          ? AppLocalizations.of(context)!.pearlWhite
+                          : AppLocalizations.of(context)!.darkNight,
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black,
                         fontSize: 16.0,
@@ -101,7 +104,8 @@ class _MineState extends State<Mine> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.of(context).pushNamed(NavigationPositioning.routeName),
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed(NavigationPositioning.routeName),
                     child: Text(
                       '滑动定位',
                       style: TextStyle(
@@ -111,9 +115,21 @@ class _MineState extends State<Mine> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.of(context).pushNamed(PositionExchange.routeName),
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed(PositionExchange.routeName),
                     child: Text(
                       '拖动排图',
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed(InAppWebViewComponent.routeName),
+                    child: Text(
+                      'Webview',
                       style: TextStyle(
                         color: isDark ? Colors.white : Colors.black,
                         fontSize: 16.0,

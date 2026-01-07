@@ -1,6 +1,7 @@
 import 'package:dynamic_theme/containers/app.dart';
 import 'package:dynamic_theme/containers/chat_list.dart';
 import 'package:dynamic_theme/containers/detail.dart';
+import 'package:dynamic_theme/containers/in_app_webview.dart';
 import 'package:dynamic_theme/containers/navigation_positioning.dart';
 import 'package:dynamic_theme/containers/new_view.dart';
 import 'package:dynamic_theme/containers/position_exchange.dart';
@@ -38,6 +39,11 @@ List<RouterUnit> _buildRouter() {
       title: '拖动排图',
       routeName: PositionExchange.routeName,
       buildRoute: (BuildContext context) => const PositionExchange(),
+    ),
+    RouterUnit(
+      title: 'Webview',
+      routeName: InAppWebViewComponent.routeName,
+      buildRoute: (BuildContext context) => const InAppWebViewComponent(),
     ),
   ];
   return routerList;
