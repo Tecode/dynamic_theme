@@ -1,18 +1,106 @@
-# Dynamic Theme 支持多语言切换（Flutter 3.10.x,Java 11）
+# Dynamic Theme 支持多语言切换（Flutter 3.10.x, Java 17）
 
-## 运行版本flutter3.10.x
+## 运行环境要求
+
+### Android
+
+| 项目 | 要求 |
+|------|------|
+| **Flutter** | ^3.10.0（建议 3.10.x stable，如 3.10.6） |
+| **Dart SDK** | >=3.0.0 <4.0.0 |
+| **Java** | **17**（项目已配置为 Java 17，与 AGP 8.x 一致） |
+| **Android Gradle Plugin (AGP)** | 8.2.2 |
+| **Gradle** | 8.7 |
+| **Kotlin** | 1.9.22 |
+| **compileSdkVersion** | 34 |
+| **minSdkVersion** | 23 |
+| **targetSdkVersion** | 34 |
+
+#### 关于 `android/gradle.properties` 中的 `org.gradle.java.home`
+
+项目中配置了 `org.gradle.java.home`，用于**指定本工程 Android 构建时使用的 JDK 路径**。这样做的原因：
+
+- **与系统 JDK 解耦**：本机可能装有多套 JDK（如 8、11、17），默认 `JAVA_HOME` 或 `java` 可能指向其它版本。Gradle 会优先使用 `org.gradle.java.home`，确保执行 Gradle、AGP、Kotlin 编译时统一用 Java 17，避免因版本不一致导致的构建失败。
+- **满足 AGP 8.x 要求**：Android Gradle Plugin 8.x 要求 Java 17，显式指定可避免误用 Java 11 等旧版本。
+- **团队协作**：该路径是**本机路径**（如 `/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home`），其他人拉代码后若 JDK 安装位置不同，需要改成自己机器上的 JDK 17 路径，或删除/注释该行，改用环境变量 `JAVA_HOME`。
+
+若你使用 Java 17 且已设置 `JAVA_HOME`，也可以不配置 `org.gradle.java.home`，Gradle 会使用 `JAVA_HOME`。
+
+#### 更换 Java 版本时的配置
+
+项目当前使用 **Java 17**。若你本机使用不同 Java 版本，可按以下方式配置：
+
+1. **使用 Java 17（推荐，与项目一致）**
+   - 安装 JDK 17（如 [Zulu OpenJDK 17](https://www.azul.com/downloads/?version=java-17-lts) 或 Oracle JDK 17）。
+   - 设置环境变量（以 macOS/Linux 为例）：
+     ```bash
+     export JAVA_HOME=/path/to/jdk-17   # 替换为你的 JDK 17 路径
+     export PATH="$JAVA_HOME/bin:$PATH"
+     ```
+   - 验证：`java -version` 应显示 17.x。
+
+2. **修改项目以使用其他 Java 版本（如 Java 11 或 21）**
+   - 编辑 `android/app/build.gradle`：
+     ```gradle
+     android {
+         compileOptions {
+             sourceCompatibility JavaVersion.VERSION_17   // 改为 VERSION_11 或 VERSION_21
+             targetCompatibility JavaVersion.VERSION_17
+         }
+         kotlinOptions {
+             jvmTarget = '17'   // 改为 '11' 或 '21'
+         }
+     }
+     ```
+   - 若 `android/gradle.properties` 里配置了 `org.gradle.java.home`，需改为目标 JDK 的安装路径，或删除该行改用环境变量。
+   - 注意：AGP 8.x 官方要求 **Java 17**，若降级到 Java 11 需同时降级 AGP（如改为 7.x），在 `android/settings.gradle` 中修改 `com.android.application` 版本并对应调整 Gradle 版本。
+
+3. **多版本 Java 共存（如通过 asdf、jenv、sdkman）**
+   - 在项目目录下使用对应工具切换到 JDK 17，例如：
+     ```bash
+     # jenv 示例
+     jenv local 17
+     # 或 asdf
+     asdf local java openjdk-17.0.x
+     ```
+   - 确保 `JAVA_HOME` 与 `java -version` 一致。
+
+---
+
+### iOS
+
+| 项目 | 要求 |
+|------|------|
+| **操作系统** | macOS（仅 macOS 可编译 iOS 应用） |
+| **Xcode** | 最新稳定版或与 Flutter 3.10 兼容的版本（建议 14.x 或 15.x） |
+| **CocoaPods** | 已安装（`gem install cocoapods` 或 `brew install cocoapods`） |
+| **iOS 最低部署版本** | 12.0 |
+| **Swift** | 5.0 |
+
+#### 首次运行 iOS 前
+
 ```bash
+cd ios && pod install && cd ..
+flutter run
+```
+
+若遇到 CocoaPods 或 Xcode 签名问题，请确保：
+- 已用 Xcode 打开过 `ios/Runner.xcworkspace` 并选择开发团队（Signing & Capabilities）。
+- 模拟器或真机的系统版本 ≥ iOS 12.0。
+
+---
+
+### 已验证的 Flutter / Java 示例版本
+
+```bash
+# Flutter
 Flutter 3.10.6 • channel stable • https://github.com/flutter/flutter.git
 Framework • revision f468f3366c (9 months ago) • 2023-07-12 15:19:05 -0700
 Engine • revision cdbeda788a
 Tools • Dart 3.0.6 • DevTools 2.23.1
-```
 
-## Java 版本
-```bash
-openjdk version "11.0.22" 2024-01-16 LTS
-OpenJDK Runtime Environment Zulu11.70+15-CA (build 11.0.22+7-LTS)
-OpenJDK 64-Bit Server VM Zulu11.70+15-CA (build 11.0.22+7-LTS, mixed mode)
+# Java（建议与项目一致使用 17）
+openjdk version "17.x.x" ...
 ```
 
 ## 打包arm64,arm
