@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 科技感启动页配色 -->
+    <color name="launch_bg_dark">#0A0E27</color>
+    <color name="launch_bg_bottom">#060918</color>
+    <color name="launch_accent">#66D9FF</color>
+    <color name="launch_accent_soft">#3388AA</color>
+</resources>

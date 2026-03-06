@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
-        <!-- Show a splash screen on the activity. Automatically removed when
-             Flutter draws its first frame -->
+        <!-- 科技感启动页：与 launch_background 配色一致 -->
         <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="android:statusBarColor">@color/launch_bg_dark</item>
+        <item name="android:navigationBarColor">@color/launch_bg_bottom</item>
     </style>
 </resources>

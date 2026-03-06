@@ -1,35 +1,40 @@
-buildscript {
-    ext.kotlin_version = '1.7.10'
-    repositories {
-        google()
-        jcenter()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
     }
 }
 
 rootProject.buildDir = '../build'
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
+subprojects { subproject ->
+    subproject.buildDir = "${rootProject.buildDir}/${subproject.name}"
+    subproject.evaluationDependsOn(':app')
+
+    subproject.plugins.withId("com.android.library") {
+        def manifest = subproject.file("src/main/AndroidManifest.xml")
+        if (manifest.exists()) {
+            def pkg = new XmlSlurper().parse(manifest).@package.text()
+            if (pkg && (subproject.android.namespace == null || subproject.android.namespace.isEmpty())) {
+                subproject.android.namespace = pkg
+                println "Set namespace for ${subproject.name}: $pkg"
+            }
+        }
+
+        if (subproject.name == "flutter_inappwebview_android") {
+            // This legacy plugin fails R8 on AGP 8 due android.window.BackEvent references.
+            subproject.android.buildTypes {
+                release {
+                    minifyEnabled false
+                }
+            }
+            subproject.tasks.matching { it.name == "minifyReleaseWithR8" }.configureEach {
+                enabled = false
+            }
+        }
+    }
 }
 
 tasks.register("clean", Delete) {
