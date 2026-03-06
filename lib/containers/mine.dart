@@ -104,8 +104,8 @@ class _MineState extends State<Mine> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.of(context)
-                        .pushNamed(NavigationPositioning.routeName),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(NavigationPositioning.routeName),
                     child: Text(
                       '滑动定位',
                       style: TextStyle(
@@ -115,8 +115,7 @@ class _MineState extends State<Mine> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.of(context)
-                        .pushNamed(PositionExchange.routeName),
+                    onPressed: () => Navigator.of(context).pushNamed(PositionExchange.routeName),
                     child: Text(
                       '拖动排图',
                       style: TextStyle(
@@ -126,8 +125,8 @@ class _MineState extends State<Mine> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.of(context)
-                        .pushNamed(InAppWebViewComponent.routeName),
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(InAppWebViewComponent.routeName),
                     child: Text(
                       'Webview',
                       style: TextStyle(
