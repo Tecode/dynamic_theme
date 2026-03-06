@@ -108,6 +108,24 @@ openjdk version "17.x.x" ...
 flutter build apk --release --target-platform android-arm64,android-arm
 ```
 
+### APK 体积优化
+
+项目已做以下优化以减小 release APK 体积：
+
+- **资源**：仅打包运行时需要的资源（`assets/icons/`、`assets/images/`、`network_image.json`、`city_list.json`），不包含 `assets/preview/` 等文档用资源。
+- **Android**：已开启 R8 代码压缩与资源收缩（`minifyEnabled true`、`shrinkResources true`），规则见 `android/app/proguard-rules.pro`。
+
+如需进一步减小体积，可：
+
+1. **Dart 混淆并剥离调试信息**（发布时建议）：
+   ```bash
+   flutter build apk --release --obfuscate --split-debug-info=./debug-info/
+   ```
+2. **上架 Google Play 时使用 App Bundle**（按设备生成更小 APK）：
+   ```bash
+   flutter build appbundle --release --obfuscate --split-debug-info=./debug-info/
+   ```
+
 ## Android版本下载（iOS下载代码打包📦）
 <p align="center">
     <img width="200" title="预览截图" src="./assets/preview/QRCode_258.png">
@@ -148,7 +166,11 @@ flutter drive --target=test_driver/app.dart
 ## Flutter 打包
 
 ```bash
+# 普通 release
 flutter build apk --release
+
+# 体积优化（混淆 + 剥离调试信息）
+flutter build apk --release --obfuscate --split-debug-info=./debug-info/
 ```
 
 ## Flutter 性能调试

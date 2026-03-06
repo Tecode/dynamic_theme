@@ -57,10 +57,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  # 仅打包运行时需要的资源，排除 preview/ 等文档用资源以减小 APK 体积
   assets:
-    - assets/
     - assets/icons/
     - assets/images/
+    - assets/network_image.json
+    - assets/city_list.json
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

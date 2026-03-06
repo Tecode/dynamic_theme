@@ -56,9 +56,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.debug
-            // Stable baseline for AGP 8 + legacy plugins; can re-enable later if needed.
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
