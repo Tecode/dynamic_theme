@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 科技感启动页：深色渐变 + 中心装饰 -->
+<?xml version="1.0" encoding="UTF-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
             <gradient
                 android:angle="270"
-                android:startColor="@color/launch_bg_dark"
+                android:startColor="#0A0E27"
                 android:centerColor="#080C20"
-                android:endColor="@color/launch_bg_bottom"
+                android:endColor="#060918"
                 android:type="linear" />
         </shape>
     </item>
-    <item
-        android:gravity="center"
-        android:drawable="@drawable/launch_center_ring" />
 </layer-list>

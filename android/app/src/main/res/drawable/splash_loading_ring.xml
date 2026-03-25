@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外圈 -->
+    <item>
+        <shape android:shape="oval">
+            <stroke
+                android:width="3dp"
+                android:color="#66FFFFFF" />
+        </shape>
+    </item>
+    <!-- 旋转的弧形部分 -->
+    <item
+        android:bottom="3dp"
+        android:left="3dp"
+        android:right="3dp"
+        android:top="3dp">
+        <shape
+            android:innerRadius="14dp"
+            android:shape="ring"
+            android:thickness="3dp"
+            android:useLevel="true">
+            <gradient
+                android:startColor="#667eea"
+                android:endColor="#66D9FF"
+                android:type="sweep" />
+        </shape>
+    </item>
+</layer-list>

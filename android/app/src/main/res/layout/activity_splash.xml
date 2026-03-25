@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0E27">
+
+    <LinearLayout
+        android:id="@+id/logoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:alpha="0"
+        android:scaleX="0.5"
+        android:scaleY="0.5">
+
+        <!-- Logo 容器 -->
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/splash_logo_bg">
+
+            <!-- 星星图标 -->
+            <ImageView
+                android:id="@+id/logoIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/splash_star_icon" />
+
+        </FrameLayout>
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="动态主题"
+            android:textColor="#66D9FF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:alpha="0" />
+
+    </LinearLayout>
+
+    <!-- Loading 环 -->
+    <ImageView
+        android:id="@+id/loadingRing"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/splash_loading_ring"
+        android:visibility="gone" />
+
+</FrameLayout>
